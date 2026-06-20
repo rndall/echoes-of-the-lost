@@ -5,11 +5,10 @@ extends CharacterBody2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+@onready var state_machine: StateMachine = $StateMachine
 
 
 func _ready() -> void:
 	animation_tree.set_active(true)
-
-
-func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	
+	animation_tree.set("parameters/Idle/blend_position", Vector2.DOWN)

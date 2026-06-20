@@ -2,10 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://blluba6pmobia" path="res://icon.svg" id="1_b1ae5"]
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="2_uplvm"]
+[ext_resource type="PackedScene" uid="uid://bqj31sewmuvba" path="res://components/triggers/scene_transition_trigger.tscn" id="3_uplvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
 
 [node name="Outside" type="Node2D" unique_id=226189137]
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=132597735]
 texture = ExtResource("1_b1ae5")
 
+[node name="Icon2" type="Sprite2D" parent="." unique_id=313455300]
+position = Vector2(0, 128)
+texture = ExtResource("1_b1ae5")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=181612692]
+
+[node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_uplvm")]
+position = Vector2(0, -74)
+target_scene = "uid://3s5rfvjydnns"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=1345698477]
+shape = SubResource("RectangleShape2D_3onaq")
+
 [node name="Player" parent="." unique_id=526460507 instance=ExtResource("2_uplvm")]
+position = Vector2(0, -49)

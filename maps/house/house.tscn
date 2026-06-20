@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3s5rfvjydnns"]
+
+[ext_resource type="Texture2D" uid="uid://blluba6pmobia" path="res://icon.svg" id="1_8w5vc"]
+[ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="2_jakod"]
+[ext_resource type="PackedScene" uid="uid://bqj31sewmuvba" path="res://components/triggers/scene_transition_trigger.tscn" id="3_jakod"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
+
+[node name="House" type="Node2D" unique_id=1696503527]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=796460343]
+position = Vector2(0, -64)
+texture = ExtResource("1_8w5vc")
+
+[node name="Player" parent="." unique_id=526460507 instance=ExtResource("2_jakod")]
+position = Vector2(0, -11)
+
+[node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_jakod")]
+position = Vector2(0, 10)
+target_scene = "uid://c5g3ll83gblw0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=899105112]
+shape = SubResource("RectangleShape2D_3onaq")

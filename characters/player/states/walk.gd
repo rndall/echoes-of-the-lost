@@ -23,3 +23,4 @@ func physics_update(_delta: float) -> void:
 	player.animation_tree.set("parameters/Walk/blend_position", input_direction)
 	player.animation_tree.set("parameters/Attack/blend_position", input_direction)
 	
+	player.move_and_slide()

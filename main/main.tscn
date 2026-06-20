@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddec742yofrsg"]
 
-[ext_resource type="PackedScene" uid="uid://c5g3ll83gblw0" path="res://maps/outside/outside.tscn" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://cv13se4jlyddr" path="res://main/main.gd" id="1_53q0u"]
 
-[node name="Main" type="Node" unique_id=791653139]
-
-[node name="Outside" parent="." unique_id=226189137 instance=ExtResource("1_53q0u")]
+[node name="MainMenu" type="Node2D" unique_id=1689230191]
+script = ExtResource("1_53q0u")
+initial_scene = "uid://c5g3ll83gblw0"

@@ -6,15 +6,18 @@ signal loading_screen_ready
 
 
 func _ready() -> void:
+	Events.scene_progress_changed.connect(_on_scene_progress_changed)
+	Events.scene_load_finished.connect(_on_scene_load_finished)
+	
 	await animation_player.animation_finished
 	loading_screen_ready.emit()
 
 
-func _on_progress_changed(_new_value: float) -> void:
+func _on_scene_progress_changed(_new_value: float) -> void:
 	pass
 
 
-func _on_load_finished() -> void:
+func _on_scene_load_finished() -> void:
 	animation_player.play_backwards("transition")
 	await animation_player.animation_finished
 	queue_free()
