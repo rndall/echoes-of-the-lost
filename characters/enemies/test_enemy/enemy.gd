@@ -1,4 +1,4 @@
-class_name Player
+class_name Enemy
 extends CharacterBody2D
 
 @export var speed: float = 100.0
@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-@onready var state_machine: StateMachine = $StateMachine
 
 
 func _ready() -> void:

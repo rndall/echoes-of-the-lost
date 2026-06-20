@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://blluba6pmobia" path="res://icon.svg" id="1_b1ae5"]
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="2_uplvm"]
 [ext_resource type="PackedScene" uid="uid://bqj31sewmuvba" path="res://components/triggers/scene_transition_trigger.tscn" id="3_uplvm"]
+[ext_resource type="PackedScene" uid="uid://moj2d7nttpvb" path="res://characters/enemies/test_enemy/enemy.tscn" id="4_0lnqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
 
@@ -26,3 +27,5 @@ shape = SubResource("RectangleShape2D_3onaq")
 
 [node name="Player" parent="." unique_id=526460507 instance=ExtResource("2_uplvm")]
 position = Vector2(0, -49)
+
+[node name="Enemy" parent="." unique_id=1794877411 instance=ExtResource("4_0lnqv")]

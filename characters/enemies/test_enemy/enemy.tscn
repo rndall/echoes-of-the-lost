@@ -1,15 +1,11 @@
-[gd_scene format=3 uid="uid://pbocopymbreb"]
+[gd_scene format=3 uid="uid://moj2d7nttpvb"]
 
-[ext_resource type="Script" uid="uid://c78id6uo55m7u" path="res://characters/player/player.gd" id="1_dirf7"]
-[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/sprites/walk.png" id="2_dirf7"]
-[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/sprites/attack.png" id="3_idpv6"]
-[ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="4_dirf7"]
-[ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
-[ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
-[ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
-[ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="5_rpf03"]
-[ext_resource type="Script" uid="uid://dgfbmjiwscke0" path="res://characters/player/states/walk.gd" id="6_idpv6"]
-[ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
+[ext_resource type="Script" uid="uid://ggrma8qmigr5" path="res://characters/enemies/test_enemy/enemy.gd" id="1_axs5g"]
+[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/sprites/walk.png" id="2_yd2um"]
+[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/sprites/attack.png" id="3_hj4rt"]
+[ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_8jy0c"]
+[ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="5_dr0v3"]
+[ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="6_ykuce"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3onaq"]
 radius = 6.0
@@ -39,7 +35,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_dirf7")]
+"values": [ExtResource("2_yd2um")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,7 +112,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_idpv6")]
+"values": [ExtResource("3_hj4rt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -161,10 +157,10 @@ tracks/4/path = NodePath("SwordHitbox:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(6, 19), Vector2(3, 14), Vector2(-8, 9)]
+"values": [Vector2(6.000001, -20), Vector2(1.5383759, -12.17297), Vector2(-0.99999976, -9)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -173,10 +169,10 @@ tracks/5/path = NodePath("SwordHitbox:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [2.530727415391778, 2.5062928058638576, 4.2062434973063345]
+"values": [0.8150688, 2.0198894, 4.2062435]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -205,7 +201,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_idpv6")]
+"values": [ExtResource("3_hj4rt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -294,7 +290,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_idpv6")]
+"values": [ExtResource("3_hj4rt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -383,7 +379,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_idpv6")]
+"values": [ExtResource("3_hj4rt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -428,7 +424,7 @@ tracks/4/path = NodePath("SwordHitbox:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.1, 0.3015702),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-5.9999995, -19), Vector2(-3, -14), Vector2(8, -9)]
@@ -440,7 +436,7 @@ tracks/5/path = NodePath("SwordHitbox:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
+"times": PackedFloat32Array(0, 0.1, 0.3015702),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-0.7853982, -0.7609635538695281, 0.7155849933176751]
@@ -735,14 +731,15 @@ size = Vector2(4, 20.518051)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpf03"]
 size = Vector2(12, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=526460507]
-script = ExtResource("1_dirf7")
+[node name="Enemy" type="CharacterBody2D" unique_id=526460507]
+script = ExtResource("1_axs5g")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=393763556]
 position = Vector2(0, -16)
-texture = ExtResource("2_dirf7")
+texture = ExtResource("2_yd2um")
 hframes = 4
 vframes = 4
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534997948]
 shape = SubResource("CapsuleShape2D_3onaq")
@@ -761,39 +758,22 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=505558297]
 zoom = Vector2(3, 3)
 
-[node name="SwordHitbox" parent="." unique_id=1825321196 instance=ExtResource("4_x5dtk")]
+[node name="SwordHitbox" parent="." unique_id=1825321196 instance=ExtResource("4_8jy0c")]
 position = Vector2(12, -23)
-collision_mask = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=1383912089]
 position = Vector2(-2.861023e-06, -10.259024)
 shape = SubResource("RectangleShape2D_3t07l")
 
-[node name="HealthComponent" parent="." unique_id=1150607002 instance=ExtResource("4_rpf03")]
+[node name="HealthComponent" parent="." unique_id=1150607002 instance=ExtResource("5_dr0v3")]
 position = Vector2(1.9073486e-06, 0)
+max_health = 30.0
 
-[node name="HurtboxComponent" parent="." unique_id=1562833728 node_paths=PackedStringArray("health_component") instance=ExtResource("5_rpf03")]
-collision_layer = 2
+[node name="HurtboxComponent" parent="." unique_id=1562833728 node_paths=PackedStringArray("health_component") instance=ExtResource("6_ykuce")]
+collision_layer = 8
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1109096821]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_rpf03")
-
-[node name="StateMachine" type="Node" parent="." unique_id=1299248727 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_dirf7")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine" unique_id=1871123313]
-script = ExtResource("5_dirf7")
-metadata/_custom_type_script = "uid://o12jg021ygoa"
-
-[node name="Walking" type="Node" parent="StateMachine" unique_id=452745031]
-script = ExtResource("6_idpv6")
-metadata/_custom_type_script = "uid://o12jg021ygoa"
-
-[node name="Action" type="Node" parent="StateMachine" unique_id=1970872076]
-script = ExtResource("7_dirf7")
-metadata/_custom_type_script = "uid://o12jg021ygoa"
-
-[connection signal="animation_finished" from="AnimationTree" to="StateMachine/Action" method="_on_animation_tree_animation_finished"]
