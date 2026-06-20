@@ -2,6 +2,7 @@ extends PlayerState
 
 
 func enter(_previous_state_path: String, _data := {}) -> void:
+	player.velocity = Vector2.ZERO
 	player.animation_state.travel("Attack")
 
 

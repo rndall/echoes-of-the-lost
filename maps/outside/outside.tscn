@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c5g3ll83gblw0"]
+
+[ext_resource type="Texture2D" uid="uid://blluba6pmobia" path="res://icon.svg" id="1_b1ae5"]
+[ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="2_uplvm"]
+
+[node name="Outside" type="Node2D" unique_id=226189137]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=132597735]
+texture = ExtResource("1_b1ae5")
+
+[node name="Player" parent="." unique_id=526460507 instance=ExtResource("2_uplvm")]

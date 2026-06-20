@@ -2,6 +2,7 @@ extends PlayerState
 
 
 func enter(_previous_state_path: String, _data := {}) -> void:
+	player.velocity = Vector2.ZERO
 	player.animation_state.travel("Idle")
 
 
@@ -10,6 +11,6 @@ func physics_update(_delta: float) -> void:
 			"move_up", "move_down")
 	
 	if Input.is_action_just_pressed("action"):
-		finished.emit(ATTACKING)
+		finished.emit(ACTION)
 	elif input_direction != Vector2.ZERO:
 		finished.emit(WALKING)

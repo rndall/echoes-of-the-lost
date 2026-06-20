@@ -10,7 +10,7 @@ func physics_update(_delta: float) -> void:
 			"move_up", "move_down")
 	
 	if Input.is_action_just_pressed("action"):
-		finished.emit(ATTACKING)
+		finished.emit(ACTION)
 		return
 	
 	if input_direction == Vector2.ZERO:
@@ -18,8 +18,8 @@ func physics_update(_delta: float) -> void:
 		return
 	
 	player.velocity = input_direction * player.speed
-	player.last_direction = input_direction 
-	player.update_blend_positions(input_direction)
 	
-	player.move_and_slide()
+	player.animation_tree.set("parameters/Idle/blend_position", input_direction)
+	player.animation_tree.set("parameters/Walk/blend_position", input_direction)
+	player.animation_tree.set("parameters/Attack/blend_position", input_direction)
 	
