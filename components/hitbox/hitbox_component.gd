@@ -12,6 +12,6 @@ func _on_area_entered(area: Area2D) -> void:
 		var attack = Attack.new()
 		attack.attack_damage = attack_damage
 		attack.knockback_force = knockback_force
-		attack.attack_position = global_position
+		attack.attack_position = get_owner().global_position
 		
 		hurtbox.damage(attack)
