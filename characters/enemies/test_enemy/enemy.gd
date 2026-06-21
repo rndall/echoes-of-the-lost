@@ -27,11 +27,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_health_changed(_current_health: float, attack: Attack) -> void:
-	print("emit health change")
 	velocity = (global_position - attack.attack_position).normalized() * attack.knockback_force
 
 
 func _on_death() -> void:
 	print("dead")
-	#queue_free()
+	queue_free()
 	pass

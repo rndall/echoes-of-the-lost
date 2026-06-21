@@ -768,8 +768,9 @@ collision_mask = 2
 position = Vector2(-2.861023e-06, -10.259024)
 shape = SubResource("RectangleShape2D_3t07l")
 
-[node name="HealthComponent" parent="." unique_id=1150607002 instance=ExtResource("5_dr0v3")]
+[node name="HealthComponent" parent="." unique_id=1150607002 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("5_dr0v3")]
 position = Vector2(1.9073486e-06, 0)
+sprite_2d = NodePath("../Sprite2D")
 max_health = 30.0
 
 [node name="HurtboxComponent" parent="." unique_id=1562833728 node_paths=PackedStringArray("health_component") instance=ExtResource("6_ykuce")]
