@@ -770,8 +770,9 @@ collision_mask = 8
 position = Vector2(-2.861023e-06, -10.259024)
 shape = SubResource("RectangleShape2D_3t07l")
 
-[node name="HealthComponent" parent="." unique_id=1150607002 instance=ExtResource("4_rpf03")]
+[node name="HealthComponent" parent="." unique_id=1150607002 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_rpf03")]
 position = Vector2(1.9073486e-06, 0)
+sprite_2d = NodePath("../Sprite2D")
 
 [node name="HurtboxComponent" parent="." unique_id=1562833728 node_paths=PackedStringArray("health_component") instance=ExtResource("5_rpf03")]
 collision_layer = 2
