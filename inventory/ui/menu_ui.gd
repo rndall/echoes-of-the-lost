@@ -5,7 +5,7 @@ var is_open = false
 func _ready() -> void:
 	close()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		if is_open:
 			close()

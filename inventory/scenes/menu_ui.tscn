@@ -5,25 +5,21 @@
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
 [ext_resource type="Texture2D" uid="uid://bj27tcutc1klm" path="res://inventory/assets/healthbar_full.png" id="5_ld3xo"]
+[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/sprites/walk.png" id="5_wvcyl"]
 [ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="6_m2dew"]
 [ext_resource type="PackedScene" uid="uid://bnsakyh0cjo74" path="res://inventory/scenes/inventory_slot_ui.tscn" id="7_a4f11"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7rnr"]
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c21ss"]
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
+atlas = ExtResource("5_wvcyl")
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pvt8j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c7rnr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c21ss")
+"texture": SubResource("AtlasTexture_sys31")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
