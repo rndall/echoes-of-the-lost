@@ -735,7 +735,7 @@ size = Vector2(4, 20.518051)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpf03"]
 size = Vector2(12, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=526460507]
+[node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_dirf7")
 
@@ -765,6 +765,8 @@ zoom = Vector2(3, 3)
 [node name="SwordHitbox" parent="." unique_id=1825321196 instance=ExtResource("4_x5dtk")]
 position = Vector2(12, -23)
 collision_mask = 8
+attack_damage = 1.0
+knockback_force = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=1383912089]
 position = Vector2(-2.861023e-06, -10.259024)
@@ -782,9 +784,10 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_rpf03")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1299248727 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=1151931471 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_dirf7")
 initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dp3mcwv8k6n5f"
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1871123313]
 script = ExtResource("5_dirf7")

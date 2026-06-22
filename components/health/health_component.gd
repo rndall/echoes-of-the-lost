@@ -26,8 +26,8 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 	if health <= 0:
 		var dead_tween = create_tween().set_trans(Tween.TRANS_SINE)
 		dead_tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.2)
-		dead_tween.parallel().tween_property(sprite_2d, "scale", 
-				Vector2.ZERO, 0.2)
+		await dead_tween.parallel().tween_property(sprite_2d, "scale", 
+				Vector2.ZERO, 0.2).finished
 		get_owner().set_physics_process(false)
 		died.emit()
 		return
