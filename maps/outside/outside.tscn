@@ -9,14 +9,14 @@
 
 [node name="Outside" type="Node2D" unique_id=226189137]
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=132597735]
+[node name="Layers" type="Node2D" parent="." unique_id=1196892974]
+
+[node name="Icon" type="Sprite2D" parent="Layers" unique_id=132597735]
 texture = ExtResource("1_b1ae5")
 
-[node name="Icon2" type="Sprite2D" parent="." unique_id=313455300]
+[node name="Icon2" type="Sprite2D" parent="Layers" unique_id=313455300]
 position = Vector2(0, 128)
 texture = ExtResource("1_b1ae5")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=181612692]
 
 [node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_uplvm")]
 position = Vector2(0, -74)

@@ -7,7 +7,10 @@ extends EnemyState
 var player: Player
 
 
-func enter(_previous_state_path: String, _data := {}) -> void:
+func enter(previous_state_path: String, data := {}) -> void:
+	super(previous_state_path, data)
+
+	
 	player = get_tree().get_first_node_in_group("player")
 
 
