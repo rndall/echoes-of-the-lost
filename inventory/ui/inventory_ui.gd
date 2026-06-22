@@ -9,4 +9,4 @@ func _ready() -> void:
 	
 func update_slots():
 	for i in range(min(player_inv.slots.size(), slots.size())):
-		slots[i].update(player_inv.slots[i])
+			slots[i].update(player_inv.slots[i])

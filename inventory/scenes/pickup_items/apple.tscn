@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://dpf0fj4b5xr03"]
 
-[ext_resource type="Script" uid="uid://kxds6cavu0pm" path="res://scripts/pickup_items/apple.gd" id="1_4lbrk"]
-[ext_resource type="Texture2D" uid="uid://nlmmhxpqu4nk" path="res://assets/apple-icon.png" id="1_vnwo1"]
+[ext_resource type="Script" uid="uid://kxds6cavu0pm" path="res://inventory/items/apple.gd" id="1_4lbrk"]
+[ext_resource type="Texture2D" uid="uid://cbqr1km2llkhr" path="res://inventory/assets/items/apple-icon.png" id="2_1ohju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lbrk"]
 radius = 3.0
 
 [node name="apple" type="Area2D" unique_id=23155672]
+collision_layer = 32
 script = ExtResource("1_4lbrk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1091737577]
-texture = ExtResource("1_vnwo1")
+texture = ExtResource("2_1ohju")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1438575872]
 position = Vector2(0, 1)

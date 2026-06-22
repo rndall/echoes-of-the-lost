@@ -25,6 +25,7 @@ animations = [{
 }]
 
 [node name="menu_ui" type="Control" unique_id=885035941]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,11 +50,10 @@ texture = ExtResource("1_86ygs")
 
 [node name="inventory_ui" parent="NinePatchRect" unique_id=1659296847 instance=ExtResource("2_b5e6c")]
 layout_mode = 1
-offset_left = -77.0
-offset_top = 23.0
-offset_right = -201.0
-offset_bottom = -52.0
-script = null
+offset_left = -119.0
+offset_top = 18.0
+offset_right = -159.0
+offset_bottom = -49.0
 
 [node name="player_view" type="NinePatchRect" parent="NinePatchRect" unique_id=521040755]
 z_index = 2

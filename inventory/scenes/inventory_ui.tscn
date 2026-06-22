@@ -45,72 +45,54 @@ columns = 6
 
 [node name="inventory_slot_ui" parent="NinePatchRect/GridContainer" unique_id=1799614433 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui2" parent="NinePatchRect/GridContainer" unique_id=172962455 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui2" parent="NinePatchRect/GridContainer" unique_id=1644203753 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui3" parent="NinePatchRect/GridContainer" unique_id=1454617238 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui3" parent="NinePatchRect/GridContainer" unique_id=251395993 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui4" parent="NinePatchRect/GridContainer" unique_id=135533012 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui4" parent="NinePatchRect/GridContainer" unique_id=554549422 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui5" parent="NinePatchRect/GridContainer" unique_id=1677061108 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui5" parent="NinePatchRect/GridContainer" unique_id=1021080520 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui6" parent="NinePatchRect/GridContainer" unique_id=423311440 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui6" parent="NinePatchRect/GridContainer" unique_id=260169215 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui7" parent="NinePatchRect/GridContainer" unique_id=1052559422 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui7" parent="NinePatchRect/GridContainer" unique_id=1772659394 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui8" parent="NinePatchRect/GridContainer" unique_id=649931083 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui8" parent="NinePatchRect/GridContainer" unique_id=48825549 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui9" parent="NinePatchRect/GridContainer" unique_id=551217689 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui9" parent="NinePatchRect/GridContainer" unique_id=557941921 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui10" parent="NinePatchRect/GridContainer" unique_id=2025618422 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui10" parent="NinePatchRect/GridContainer" unique_id=972556751 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui11" parent="NinePatchRect/GridContainer" unique_id=1994342057 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui11" parent="NinePatchRect/GridContainer" unique_id=1269847144 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui12" parent="NinePatchRect/GridContainer" unique_id=1114583431 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui12" parent="NinePatchRect/GridContainer" unique_id=2142756661 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui13" parent="NinePatchRect/GridContainer" unique_id=1015876656 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui13" parent="NinePatchRect/GridContainer" unique_id=1545516472 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui14" parent="NinePatchRect/GridContainer" unique_id=134673618 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui14" parent="NinePatchRect/GridContainer" unique_id=1292891131 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui15" parent="NinePatchRect/GridContainer" unique_id=591999034 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui15" parent="NinePatchRect/GridContainer" unique_id=1051977330 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui16" parent="NinePatchRect/GridContainer" unique_id=1935064262 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui16" parent="NinePatchRect/GridContainer" unique_id=1533796332 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui17" parent="NinePatchRect/GridContainer" unique_id=650438211 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui17" parent="NinePatchRect/GridContainer" unique_id=1284994135 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null
 
-[node name="inventory_slot_ui18" parent="NinePatchRect/GridContainer" unique_id=628865444 instance=ExtResource("2_ylkvr")]
+[node name="inventory_slot_ui18" parent="NinePatchRect/GridContainer" unique_id=1868379696 instance=ExtResource("2_ylkvr")]
 layout_mode = 2
-script = null

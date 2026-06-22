@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var item: InvItem = preload("res://resources/inv_items/apple.tres")
+@export var item: InvItem = preload("res://inventory/resources/inventory_items/apple.tres")
 
 var player = null
 
@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:

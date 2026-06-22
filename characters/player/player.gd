@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var state_machine: StateMachine = $StateMachine
-
+@onready var inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 
 func _ready() -> void:
 	health_component.health = GameManager.player_health
@@ -27,3 +27,6 @@ func _on_death() -> void:
 	print("dead")
 	#queue_free()
 	pass
+
+func collect(item):
+	inv.insert(item)

@@ -737,7 +737,7 @@ size = Vector2(4, 20.518051)
 size = Vector2(12, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
-collision_mask = 20
+collision_mask = 52
 script = ExtResource("1_dirf7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=393763556]
