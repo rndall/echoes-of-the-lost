@@ -736,7 +736,7 @@ size = Vector2(4, 20.518051)
 size = Vector2(12, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
-collision_mask = 4
+collision_mask = 20
 script = ExtResource("1_dirf7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=393763556]
@@ -744,6 +744,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_dirf7")
 hframes = 4
 vframes = 4
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534997948]
 shape = SubResource("CapsuleShape2D_3onaq")
@@ -769,7 +770,8 @@ collision_mask = 8
 knockback_force = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=1383912089]
-position = Vector2(-2.861023e-06, -10.259024)
+position = Vector2(-0.02292633, -10.33729)
+rotation = 0.001550377
 shape = SubResource("RectangleShape2D_3t07l")
 
 [node name="HealthComponent" parent="." unique_id=1150607002 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_rpf03")]
