@@ -1,8 +1,8 @@
 class_name EnemyFollow
 extends EnemyState
 
-@export var speed: float = 40.0
 @export var max_range: float = 120
+@export var speed: float = 40.0
 
 var player: Player
 
@@ -14,7 +14,10 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func physics_update(_delta: float) -> void:
 	var direction = player.global_position - enemy.global_position
 	
-	enemy.velocity = direction.normalized() * speed
+	if direction.length() > 10:
+		enemy.velocity = direction.normalized() * speed
+	else:
+		enemy.velocity = Vector2.ZERO
 	
 	if direction.length() > max_range:
 		finished.emit(WANDER)

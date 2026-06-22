@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="3_ulp8i"]
 [ext_resource type="Script" uid="uid://el2uw7mge5un" path="res://characters/enemies/manananggal/states/wander.gd" id="4_s3my2"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="4_xclqn"]
+[ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="5_073j3"]
 [ext_resource type="Script" uid="uid://b8myi4kv0x3ax" path="res://characters/enemies/manananggal/follow.gd" id="7_e53ke"]
 [ext_resource type="Script" uid="uid://bssnyx448430u" path="res://characters/enemies/manananggal/knocked_back.gd" id="8_vyl4s"]
 
@@ -72,6 +73,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxb3u"]
 size = Vector2(54, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtr1d"]
+size = Vector2(20, 31)
+
 [node name="Manananggal" type="CharacterBody2D" unique_id=274057768]
 collision_layer = 0
 collision_mask = 0
@@ -101,6 +105,15 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=984565806]
 position = Vector2(0, -25.5)
 shape = SubResource("RectangleShape2D_oxb3u")
+
+[node name="HitboxComponent" parent="." unique_id=1825321196 instance=ExtResource("5_073j3")]
+collision_mask = 2
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=190672045]
+position = Vector2(0, -25.5)
+shape = SubResource("RectangleShape2D_wtr1d")
+debug_color = Color(1, 0, 0, 0.20784314)
 
 [node name="StateMachine" type="Node" parent="." unique_id=703364018 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_pts0a")
