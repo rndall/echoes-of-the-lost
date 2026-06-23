@@ -42,7 +42,7 @@ func _update_weapon_slot() -> void:
 	if weapon_slot_ui and weapon_slot_ui is WeaponSlotUI:
 		weapon_slot_ui.update(weapon_inv.get_slot_by_index(0))
 
-func _on_item_dropped(item: InvItem, amount: int) -> void:
+func _on_item_dropped(_item: InvItem, _amount: int) -> void:
 	pass
 	#print("Item dropped: ", item.name, " x", amount)
 
