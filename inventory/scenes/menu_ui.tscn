@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bj27tcutc1klm" path="res://inventory/assets/healthbar_full.png" id="5_ld3xo"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
 [ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="6_m2dew"]
-[ext_resource type="PackedScene" uid="uid://b3vfkdyhcv20e" path="res://inventory/scenes/inv_hotbar_slot_ui.tscn" id="8_wvcyl"]
+[ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="8_wvcyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
 atlas = ExtResource("5_wvcyl")
@@ -101,8 +101,10 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="inv_hotbar_slot_ui" parent="NinePatchRect/GridContainer" unique_id=668456404 instance=ExtResource("8_wvcyl")]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/GridContainer" unique_id=1313629518]
 layout_mode = 2
+texture = ExtResource("8_wvcyl")
 
-[node name="inv_hotbar_slot_ui2" parent="NinePatchRect/GridContainer" unique_id=892656510 instance=ExtResource("8_wvcyl")]
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/GridContainer" unique_id=1192600220]
 layout_mode = 2
+texture = ExtResource("8_wvcyl")

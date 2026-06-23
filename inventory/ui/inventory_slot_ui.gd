@@ -11,7 +11,11 @@ var inventory: Inventory
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 
+var animated_sprite: AnimatedSprite2D = null
+static var currently_selected: InventorySlotUI = null
+
 func _ready() -> void:
+	animated_sprite = get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 	# inventory_slot_ui.tscn names the sprite "item_display";
 	# hotbar_slot_ui.tscn names it "Sprite2D".
 	var panel = $CenterContainer/Panel
@@ -25,6 +29,9 @@ func _ready() -> void:
 
 	gui_input.connect(_on_gui_input)
 	mouse_entered.connect(_on_mouse_entered)
+	
+	if animated_sprite:
+		animated_sprite.play("default")
 
 func setup(index: int, inv: Inventory) -> void:
 	slot_index = index
@@ -43,12 +50,14 @@ func update(slot: InvSlot) -> void:
 			amount_text.text = str(slot.amount)
 
 func _on_gui_input(event: InputEvent) -> void:
-	var slot = inventory.get_slot_by_index(slot_index)
-	if slot == null or slot.item == null:
-		return
-
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			_select()
+
+			var slot = inventory.get_slot_by_index(slot_index)
+			if slot == null or slot.item == null:
+				return
+			
 			is_dragging = true
 			drag_offset = get_local_mouse_position()
 			modulate = Color(1.2, 1.2, 1.2)
@@ -59,6 +68,9 @@ func _on_gui_input(event: InputEvent) -> void:
 				_handle_drop()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		var slot = inventory.get_slot_by_index(slot_index)
+		if slot == null or slot.item == null:
+			return
 		_handle_right_click()
 
 func _on_mouse_entered() -> void:
@@ -70,6 +82,9 @@ func _handle_drop() -> void:
 	if target == null:
 		return
 	_perform_slot_action(target.slot_index, target.inventory)
+	
+	_deselect()
+	target._select()
 
 func _perform_slot_action(target_index: int, target_inventory: Inventory) -> void:
 	if target_inventory == inventory and target_index == slot_index:
@@ -164,3 +179,14 @@ func split_stack() -> void:
 		return
 	slot.amount -= slot.amount / 2
 	inventory.update.emit()
+	
+func _deselect() -> void:
+	if animated_sprite:
+		animated_sprite.play("default")
+
+func _select() -> void:
+	if currently_selected and currently_selected != self:
+		currently_selected._deselect()
+	currently_selected = self
+	if animated_sprite:
+		animated_sprite.play("selected")
