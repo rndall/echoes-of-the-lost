@@ -7,4 +7,6 @@ signal scene_load_finished
 
 signal map_changed(map: Map)
 
+signal player_health_changed(current_health: float)
+
 enum Map {HOUSE, OUTSIDE}
