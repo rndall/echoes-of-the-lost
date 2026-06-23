@@ -14,7 +14,7 @@ func spawn_item_drop(item: InvItem, amount: int, position: Vector2) -> void:
 	var drop = drop_scene.instantiate()
 	
 	# Try to call setup if it exists
-	if drop.has_method("setup"):
+	if drop and drop.has_method("setup"):
 		drop.setup(item, amount)
 	
 	drop.global_position = position

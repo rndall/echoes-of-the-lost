@@ -90,11 +90,6 @@ func _perform_slot_action(target_index: int) -> void:
 	if source_slot == null or source_slot.item == null:
 		return
 
-	# Shift+drag = force swap
-	if Input.is_action_pressed("ui_shift"):
-		inventory.swap_slot(slot_index, target_index)
-		return
-
 	# Ctrl+drag = move half stack
 	if Input.is_action_pressed("ui_select"):
 		_partial_move(target_index, source_slot.amount / 2)

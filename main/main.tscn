@@ -20,5 +20,6 @@ gradient = ExtResource("3_xwkvk")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=313321479]
 
 [node name="DayNightCycleUI" parent="CanvasLayer" unique_id=1929152440 instance=ExtResource("4_c651c")]
+mouse_filter = 2
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
