@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://pbocopymbreb"]
 
 [ext_resource type="Script" uid="uid://c78id6uo55m7u" path="res://characters/player/player.gd" id="1_dirf7"]
-[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/sprites/walk.png" id="2_dirf7"]
-[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/sprites/attack.png" id="3_idpv6"]
+[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="2_dirf7"]
+[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/assets/sprites/attack.png" id="3_idpv6"]
 [ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="4_dirf7"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
 [ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
+[ext_resource type="AudioStream" uid="uid://c41blxsnf72iu" path="res://characters/player/assets/sfx/character_attack.mp3" id="5_on558"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="5_rpf03"]
 [ext_resource type="Script" uid="uid://dgfbmjiwscke0" path="res://characters/player/states/walk.gd" id="6_idpv6"]
 [ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
+[ext_resource type="AudioStream" uid="uid://bixv11gfhfyp5" path="res://characters/player/assets/sfx/character_hurt.mp3" id="7_gqopd"]
 [ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://inventory/scenes/menu_ui.tscn" id="11_3t07l"]
 [ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="12_on558"]
 
@@ -192,6 +194,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordHitbox/Attack")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 resource_name = "attack_left"
@@ -280,6 +296,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-0.8429940287132613, -0.7470009198535732, -2.5154843]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordHitbox/Attack")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_j3ovn"]
@@ -370,6 +400,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.8425456, 0.74700093, 2.4960482]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordHitbox/Attack")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_afbqv"]
 resource_name = "attack_up"
@@ -458,6 +502,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SwordHitbox/Attack")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_sglur"]
@@ -746,7 +804,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_dirf7")
 hframes = 4
 vframes = 4
-frame = 6
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534997948]
 shape = SubResource("CapsuleShape2D_3onaq")
@@ -775,6 +833,10 @@ knockback_force = 100.0
 position = Vector2(-0.02292633, -10.33729)
 rotation = 0.001550377
 shape = SubResource("RectangleShape2D_3t07l")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="SwordHitbox" unique_id=928177923]
+stream = ExtResource("5_on558")
+bus = &"SFX"
 
 [node name="HealthComponent" parent="." unique_id=1150607002 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_rpf03")]
 position = Vector2(1.9073486e-06, 0)
@@ -821,5 +883,8 @@ offset_right = -182.0
 offset_bottom = 71.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=1794402395]
+stream = ExtResource("7_gqopd")
 
 [connection signal="animation_finished" from="AnimationTree" to="StateMachine/Action" method="_on_animation_tree_animation_finished"]

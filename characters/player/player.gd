@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 
+@onready var hurt: AudioStreamPlayer2D = $Hurt
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
@@ -21,6 +22,9 @@ func _ready() -> void:
 
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
 	GameManager.player_health = current_health
+	
+	if GameManager.player_health > 0:
+		hurt.play()
 
 
 func _on_death() -> void:

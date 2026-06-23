@@ -1,7 +1,24 @@
 [gd_scene format=3 uid="uid://ddec742yofrsg"]
 
 [ext_resource type="Script" uid="uid://cv13se4jlyddr" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://cu47cgnlk8f54" path="res://day_night/day_night_cycle.gd" id="2_pjrb6"]
+[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://day_night/day_night_cycle_gradient_texture.tres" id="3_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://ceolcwatpaicu" path="res://day_night/ui/day_night_cycle_ui.tscn" id="4_c651c"]
+[ext_resource type="PackedScene" uid="uid://wmmb64bnb3pn" path="res://day_night/audio/sound_machine.tscn" id="5_3wy1v"]
 
-[node name="MainMenu" type="Node2D" unique_id=1689230191]
+[node name="Main" type="Node" unique_id=339283379]
 script = ExtResource("1_53q0u")
 initial_scene = "uid://c5g3ll83gblw0"
+
+[node name="WorldContainer" type="Node2D" parent="." unique_id=994377854]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=669445507]
+color = Color(0.13333334, 0.14901961, 0.25882354, 1)
+script = ExtResource("2_pjrb6")
+gradient = ExtResource("3_xwkvk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=313321479]
+
+[node name="DayNightCycleUI" parent="CanvasLayer" unique_id=1929152440 instance=ExtResource("4_c651c")]
+
+[node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
