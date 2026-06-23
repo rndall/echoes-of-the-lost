@@ -874,6 +874,7 @@ offset_bottom = 55.0
 hotbar_ui = NodePath("../hotbar_ui")
 
 [node name="hotbar_ui" parent="." unique_id=385176462 instance=ExtResource("12_on558")]
+z_index = 10
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
