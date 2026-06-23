@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://8nkl7g8r3t4j" path="res://inventory/ui/menu_ui.gd" id="1_qa6pt"]
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
-[ext_resource type="Texture2D" uid="uid://bj27tcutc1klm" path="res://inventory/assets/healthbar_full.png" id="5_ld3xo"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
+[ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
 [ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="8_wvcyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
@@ -68,14 +68,10 @@ position = Vector2(21, 36)
 sprite_frames = SubResource("SpriteFrames_pvt8j")
 autoplay = "default"
 
-[node name="lifebar" type="TextureRect" parent="NinePatchRect" unique_id=121314962]
+[node name="HealthBarSprite" parent="NinePatchRect" unique_id=203065318 instance=ExtResource("7_wvcyl")]
 z_index = 2
-layout_mode = 0
-offset_left = 62.0
-offset_top = 80.0
-offset_right = 135.0
-offset_bottom = 91.0
-texture = ExtResource("5_ld3xo")
+position = Vector2(99, 85)
+scale = Vector2(1.05, 1.05)
 
 [node name="artifact_slots" type="GridContainer" parent="NinePatchRect" unique_id=651948238]
 layout_mode = 1
