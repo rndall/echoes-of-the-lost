@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://moj2d7nttpvb"]
 
 [ext_resource type="Script" uid="uid://d3k6nmcge16uy" path="res://characters/enemies/test_enemy/test_enemy.gd" id="1_axs5g"]
-[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/sprites/walk.png" id="2_yd2um"]
-[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/sprites/attack.png" id="3_hj4rt"]
+[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="2_yd2um"]
+[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/assets/sprites/attack.png" id="3_hj4rt"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_8jy0c"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="5_dr0v3"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="6_ykuce"]
