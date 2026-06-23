@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_kjgve")
+id = "1"
 name = "Apple"
 texture = ExtResource("2_itd72")
+max_stack = 64
 metadata/_custom_type_script = "uid://bhamvq1lajjdf"

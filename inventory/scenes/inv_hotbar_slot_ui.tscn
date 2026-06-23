@@ -43,7 +43,6 @@ script = ExtResource("1_ued0l")
 position = Vector2(9, 7.625)
 scale = Vector2(0.9078949, 0.9583333)
 sprite_frames = SubResource("SpriteFrames_wshhj")
-animation = &"selected"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=893971307]
 custom_minimum_size = Vector2(16, 16)

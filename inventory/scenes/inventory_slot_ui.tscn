@@ -43,7 +43,6 @@ script = ExtResource("1_kx22e")
 position = Vector2(8.25, 8.5)
 scale = Vector2(0.9705882, 0.93749994)
 sprite_frames = SubResource("SpriteFrames_dutb6")
-animation = &"selected"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=667354410]
 layout_mode = 0
