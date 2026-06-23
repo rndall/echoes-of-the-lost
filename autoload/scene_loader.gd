@@ -7,14 +7,16 @@ var progress: Array = []
 var use_sub_threads: bool = true
 
 var scene_container: Node
+var target_spawn_name: String = ""
 
 
 func _ready() -> void:
 	set_process(false)
 
 
-func load_scene(_scene_path: String) -> void:
+func load_scene(_scene_path: String, _target_spawn_name: String = "") -> void:
 	scene_path = _scene_path
+	target_spawn_name = _target_spawn_name
 	
 	var new_load_screen = loading_screen.instantiate()
 	add_child(new_load_screen)
@@ -59,3 +61,26 @@ func _switch_scene_in_container() -> void:
 	# 2. Instance the new scene and add it
 	var new_scene = loaded_resource.instantiate()
 	target_node.add_child(new_scene)
+	
+	_reposition_player(new_scene)
+
+
+func _reposition_player(new_map: Node) -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+
+	if target_spawn_name != "":
+		var spawn_point = new_map.get_node_or_null(target_spawn_name)
+		if spawn_point:
+			player.global_position = spawn_point.global_position
+		else:
+			push_warning("Spawn point " + target_spawn_name + " not found in new map!")
+			
+		target_spawn_name = "" 
+		
+	# Game Start (No specific door was passed)
+	else:
+		var default_start = new_map.get_node_or_null("Spawns/DefaultStartPoint")
+		if default_start:
+			player.global_position = default_start.global_position

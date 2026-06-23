@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://day_night/day_night_cycle_gradient_texture.tres" id="3_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://ceolcwatpaicu" path="res://day_night/ui/day_night_cycle_ui.tscn" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://wmmb64bnb3pn" path="res://day_night/audio/sound_machine.tscn" id="5_3wy1v"]
+[ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="6_kfbq2"]
 
 [node name="Main" type="Node" unique_id=339283379]
 script = ExtResource("1_53q0u")
@@ -23,3 +24,5 @@ gradient = ExtResource("3_xwkvk")
 mouse_filter = 2
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
+
+[node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
