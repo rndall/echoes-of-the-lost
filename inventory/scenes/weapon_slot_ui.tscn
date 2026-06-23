@@ -1,13 +1,36 @@
 [gd_scene format=3 uid="uid://edpxyxw2vqne"]
 
+[ext_resource type="Script" uid="uid://d2hm0h00dbkbd" path="res://inventory/ui/weapon_slot_ui.gd" id="1_sr3ci"]
 [ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="1_vl8da"]
 
 [node name="weapon_slot_ui" type="Panel" unique_id=487318286]
-anchors_preset = -1
-anchor_left = 0.21800001
-anchor_right = 0.21800001
-offset_left = -0.13601685
-offset_right = -0.13601685
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(18, 16)
+script = ExtResource("1_sr3ci")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1723721694]
+position = Vector2(9, 8)
 texture = ExtResource("1_vl8da")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=146855137]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1330701327]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(18, 16)
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel" unique_id=1418459303]
+position = Vector2(9, 8)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=1694823511]
+layout_mode = 0
+offset_left = 3.0000002
+offset_top = 8.999999
+offset_right = 43.0
+offset_bottom = 28.0
+scale = Vector2(0.33, 0.33)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 2

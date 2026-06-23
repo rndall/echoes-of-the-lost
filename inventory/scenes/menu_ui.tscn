@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bmnlkgpi0rclg" path="res://inventory/assets/main_menu_bg.png" id="1_86ygs"]
 [ext_resource type="Script" uid="uid://8nkl7g8r3t4j" path="res://inventory/ui/menu_ui.gd" id="1_qa6pt"]
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
-[ext_resource type="PackedScene" uid="uid://edpxyxw2vqne" path="res://inventory/scenes/weapon_slot_ui.tscn" id="3_wvcyl"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
 [ext_resource type="Texture2D" uid="uid://bj27tcutc1klm" path="res://inventory/assets/healthbar_full.png" id="5_ld3xo"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
@@ -52,25 +51,6 @@ offset_left = -119.0
 offset_top = 18.0
 offset_right = -159.0
 offset_bottom = -49.0
-
-[node name="weapon_slot" type="NinePatchRect" parent="NinePatchRect" unique_id=1950082570]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 49.0
-offset_right = 83.0
-offset_bottom = 65.0
-
-[node name="weapon_slot_ui" parent="NinePatchRect/weapon_slot" unique_id=487318286 instance=ExtResource("3_wvcyl")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1.0
-offset_right = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="player_view" type="NinePatchRect" parent="NinePatchRect" unique_id=521040755]
 z_index = 2

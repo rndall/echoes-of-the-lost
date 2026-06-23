@@ -84,6 +84,19 @@ func _handle_drop() -> void:
 	var target = SlotRegistry.find_slot_at(get_global_mouse_position(), self)
 	if target == null:
 		return
+	
+	# Validate if dropping to a weapon slot
+	if target is WeaponSlotUI:
+		var source_slot = inventory.get_slot_by_index(slot_index)
+		if source_slot == null or source_slot.item == null:
+			_deselect()
+			return
+			
+		# Only WEAPON items can be dropped on weapon slots
+		if source_slot.item.item_type != InvItem.ItemType.WEAPON:
+			_deselect()
+			return
+	
 	_perform_slot_action(target.slot_index, target.inventory)
 	
 	_deselect()
@@ -117,6 +130,13 @@ func _cross_inventory_move(target_index: int, target_inventory: Inventory) -> vo
 	var target_slot = target_inventory.get_slot_by_index(target_index)
 
 	if source_slot == null or source_slot.item == null:
+		return
+
+	# Check if target is a weapon inventory (single slot = weapon inventory)
+	var is_weapon_target = target_inventory.slots.size() == 1
+	
+	if is_weapon_target and source_slot.item.item_type != InvItem.ItemType.WEAPON:
+		# Reject non-weapon items to weapon inventory
 		return
 
 	if target_slot.item == null:

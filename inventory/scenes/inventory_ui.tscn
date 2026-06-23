@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://en6v0y4p0tgg" path="res://inventory/ui/inventory_ui.gd" id="1_aut80"]
 [ext_resource type="Texture2D" uid="uid://dh3ocw4ool4vt" path="res://inventory/assets/inv_bg.png" id="2_mdwe3"]
 [ext_resource type="PackedScene" uid="uid://bnsakyh0cjo74" path="res://inventory/scenes/inventory_slot_ui.tscn" id="2_ylkvr"]
+[ext_resource type="PackedScene" uid="uid://edpxyxw2vqne" path="res://inventory/scenes/weapon_slot_ui.tscn" id="3_hm3cx"]
 [ext_resource type="PackedScene" uid="uid://b3vfkdyhcv20e" path="res://inventory/scenes/inv_hotbar_slot_ui.tscn" id="3_mnfuu"]
 
 [node name="inventory_ui" type="Control" unique_id=1659296847]
@@ -35,6 +36,14 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+
+[node name="weapon_slot_ui" parent="NinePatchRect" unique_id=487318286 instance=ExtResource("3_hm3cx")]
+z_index = 2
+layout_mode = 1
+offset_left = 50.115982
+offset_top = -33.0
+offset_right = 68.11598
+offset_bottom = -17.0
 
 [node name="hotbar_slots" type="GridContainer" parent="NinePatchRect" unique_id=1053472860]
 layout_mode = 1
