@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://dbpx0wkyll3hw"]
 
 [ext_resource type="Texture2D" uid="uid://s8fqtnxrx46n" path="res://inventory/assets/hotbar_slot.png" id="1_br2pd"]
-[ext_resource type="Script" uid="uid://clhlk8n6rw1jm" path="res://inventory/ui/inventory_slot_ui.gd" id="1_hw0hq"]
 [ext_resource type="FontFile" uid="uid://drjhmlb8cg30" path="res://inventory/fonts/Boiled Pasta.ttf" id="2_hw0hq"]
 
 [node name="hotbar_slot_ui" type="Panel" unique_id=142587982]
 custom_minimum_size = Vector2(18, 16)
 offset_right = 18.0
 offset_bottom = 16.0
-script = ExtResource("1_hw0hq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091843096]
 position = Vector2(9, 8)

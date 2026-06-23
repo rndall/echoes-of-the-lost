@@ -1,11 +1,8 @@
 extends Control
 
-class_name InventoryUI
-
 @onready var player_inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 @onready var inv_slots: Array = $NinePatchRect/inv_slots.get_children()
-
-const HOTBAR_SLOT_COUNT = 6  # Hotbar uses slots 0-5, inventory uses 6+
+@onready var hotbar_slots: Array = $NinePatchRect/hotbar_slots.get_children()
 
 var slots = []
 var currently_dragging: InventorySlotUI = null
@@ -14,38 +11,31 @@ func _ready() -> void:
 	player_inv.update.connect(update_slots)
 	player_inv.item_dropped.connect(_on_item_dropped)
 	
-	# Initialize slots array with empty placeholders for hotbar (will be filled by HotbarUI)
-	slots = []
-	for i in range(HOTBAR_SLOT_COUNT):
-		slots.append(null)  # Placeholder for hotbar slots 0-5
-	
-	# Add inventory slots at positions 6-17
-	for i in range(inv_slots.size()):
-		var actual_slot_index = i + HOTBAR_SLOT_COUNT  # Offset by hotbar count
-		slots.append(inv_slots[i])
-		
+	# Initialize all slots
+	slots = hotbar_slots + inv_slots
+	for i in range(min(player_inv.slots.size(), slots.size())):
 		# Cast to InventorySlotUI if using the enhanced version
-		if inv_slots[i] is InventorySlotUI:
-			inv_slots[i].setup(actual_slot_index, player_inv, self)
+		if slots[i] is InventorySlotUI:
+			slots[i].setup(i, player_inv, self)
 	
 	update_slots()
 
 func update_slots() -> void:
-	"""Update all inventory slot visuals"""
-	for i in range(slots.size()):
-		# Skip placeholder positions for hotbar slots
-		if slots[i] == null:
-			continue
-		
-		var inv_slot = player_inv.get_slot_by_index(i)  # Use direct index, hotbar handles 0-5
-		
-		if inv_slot and slots[i].has_method("update"):
-			slots[i].update(inv_slot)
+	"""Update all slot visuals"""
+	slots = hotbar_slots + inv_slots
+	
+	for i in range(min(player_inv.slots.size(), slots.size())):
+		slots[i].update(player_inv.slots[i])
 
 func _on_item_dropped(item: InvItem, amount: int) -> void:
 	"""Handle item drop signal - spawn item in world"""
-	print("Item dropped: ", item.name, " x", amount)
 	# TODO: Spawn item drop in world at player position
+	# Example:
+	# var drop_scene = preload("res://inventory/scenes/item_drop.tscn")
+	# var drop = drop_scene.instantiate()
+	# drop.setup(item, amount)
+	# get_tree().current_scene.add_child(drop)
+	print("Item dropped: ", item.name, " x", amount)
 
 func _input(event: InputEvent) -> void:
 	"""Handle inventory shortcuts"""
@@ -53,24 +43,21 @@ func _input(event: InputEvent) -> void:
 	# Press 'Q' to drop selected/hovered item
 	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
 		if currently_dragging:
-			var slot_ui = currently_dragging
-			# Find index in our slots array (already matches inventory slot indices)
-			var idx = slots.find(slot_ui)
-			if idx != -1:
-				player_inv.drop_item(idx, 1)
+			var index = slots.find(currently_dragging)
+			if index != -1:
+				player_inv.drop_item(index, 1)
 	
 	# Press 'Shift+Q' to drop entire stack
 	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
 		if Input.is_action_pressed("ui_shift"):
 			if currently_dragging:
-				var slot_ui = currently_dragging
-				var idx = slots.find(slot_ui)
-				if idx != -1:
-					var slot = player_inv.get_slot_by_index(idx)
+				var index = slots.find(currently_dragging)
+				if index != -1:
+					var slot = player_inv.get_slot_by_index(index)
 					if slot:
-						player_inv.drop_item(idx, slot.amount)
+						player_inv.drop_item(index, slot.amount)
 
-# Helper methods for inventory management
+# Optional: Helper methods for inventory management
 
 func add_item_to_inventory(item: InvItem, amount: int = 1) -> bool:
 	"""Public method to add items to player inventory"""
@@ -101,7 +88,9 @@ func get_inventory() -> Inventory:
 
 func _find_item_resource(item_id: String) -> InvItem:
 	"""Find item resource by ID"""
+	# Load from your items directory
 	var path = "res://inventory/resources/inventory_items/"
+	# This is a simple lookup - adjust based on your naming convention
 	if ResourceLoader.exists(path + item_id + ".tres"):
 		return load(path + item_id + ".tres")
 	return null
