@@ -23,7 +23,8 @@ func _update_slots() -> void:
 		slots[i].update(player_inv.slots[i])
 
 func _on_item_dropped(item: InvItem, amount: int) -> void:
-	print("Item dropped: ", item.name, " x", amount)
+	pass
+	#print("Item dropped: ", item.name, " x", amount)
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and event.keycode == KEY_Q):
