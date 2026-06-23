@@ -1,48 +1,40 @@
 extends Control
 
 @onready var player_inv: Inventory = preload("res://inventory/resources/player_inv.tres")
-
-# hotbar_slots (indices 0-5) come first so they map to player_inv.slots[0-5].
-# inv_slots (indices 6-17) follow immediately after.
 @onready var inv_slots: Array = $NinePatchRect/inv_slots.get_children()
 @onready var hotbar_slots: Array = $NinePatchRect/hotbar_slots.get_children()
 
 var slots: Array = []
 
 func _ready() -> void:
-	player_inv.update.connect(update_slots)
-	player_inv.item_dropped.connect(_on_item_dropped)
-
+	# hotbar_slots map to indices 0-5, inv_slots to 6-17
 	slots = hotbar_slots + inv_slots
 
 	for i in range(mini(player_inv.slots.size(), slots.size())):
 		if slots[i] is InventorySlotUI:
-			slots[i].setup(i, player_inv, self)
+			slots[i].setup(i, player_inv)
 
-	update_slots()
+	player_inv.update.connect(_update_slots)
+	player_inv.item_dropped.connect(_on_item_dropped)
+	_update_slots()
 
-func update_slots() -> void:
-	"""Refresh every slot visual to match the inventory resource"""
-	slots = hotbar_slots + inv_slots
+func _update_slots() -> void:
 	for i in range(mini(player_inv.slots.size(), slots.size())):
 		slots[i].update(player_inv.slots[i])
 
 func _on_item_dropped(item: InvItem, amount: int) -> void:
-	"""Handle item drop signal - spawn item in world"""
-	# TODO: Spawn item drop in world at player position
 	print("Item dropped: ", item.name, " x", amount)
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and event.keycode == KEY_Q):
 		return
-	if currently_dragging == null:
+
+	# Find whichever slot the mouse is currently over
+	var hovered = SlotRegistry.find_slot_at(get_global_mouse_position())
+	if hovered == null or hovered.inventory != player_inv:
 		return
 
-	var index = slots.find(currently_dragging)
-	if index == -1:
-		return
-
-	# Shift+Q drops the whole stack; plain Q drops one
+	var index = hovered.slot_index
 	if Input.is_action_pressed("ui_shift"):
 		var slot = player_inv.get_slot_by_index(index)
 		if slot:
@@ -50,9 +42,7 @@ func _input(event: InputEvent) -> void:
 	else:
 		player_inv.drop_item(index, 1)
 
-var currently_dragging: InventorySlotUI = null
-
-# ── Public helpers ────────────────────────────────────────────────────────────
+# ── Public helpers ─────────────────────────────────────────────────────────────
 
 func get_inventory() -> Inventory:
 	return player_inv

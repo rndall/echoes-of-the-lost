@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://c0kkca571ctrq"
 SceneLoader="*uid://drndpv164jc74"
 Events="*uid://cbgmuq604ngf1"
 GameManager="*uid://cv27b2ic5xdro"
+SlotRegistry="*uid://eb7ueu1gxgkw"
 
 [display]
 
