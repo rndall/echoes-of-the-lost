@@ -4,3 +4,7 @@ extends Node
 
 signal scene_progress_changed(progress)
 signal scene_load_finished
+
+signal map_changed(map: Map)
+
+enum Map {HOUSE, OUTSIDE}

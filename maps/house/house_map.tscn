@@ -17,7 +17,7 @@ position = Vector2(0, -11)
 
 [node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_tpley")]
 position = Vector2(0, 10)
-target_scene = "uid://c5g3ll83gblw0"
+target_map = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=899105112]
 shape = SubResource("RectangleShape2D_3onaq")

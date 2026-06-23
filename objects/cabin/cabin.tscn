@@ -158,7 +158,6 @@ tile_set = SubResource("TileSet_oxb3u")
 
 [node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("2_xpw45")]
 position = Vector2(28.5, -11)
-target_scene = "uid://3s5rfvjydnns"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=2043394659]
 shape = SubResource("RectangleShape2D_os51x")
