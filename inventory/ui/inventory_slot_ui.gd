@@ -36,6 +36,10 @@ func update(slot: InvSlot) -> void:
 			amount_text.text = str(slot.amount)
 
 func _on_gui_input(event: InputEvent) -> void:
+	# Safety check - setup() may not have been called yet
+	if inventory == null or slot_index == -1:
+		return
+	
 	var slot = inventory.get_slot_by_index(slot_index)
 	
 	if slot == null or slot.item == null:
@@ -64,6 +68,9 @@ func _on_mouse_entered() -> void:
 
 func _handle_drop_on_slot() -> void:
 	"""Handle dropping dragged item onto another slot"""
+	if inv_ui == null or inv_ui.slots == null:
+		return
+	
 	var mouse_pos = get_global_mouse_position()
 	var space_state = get_tree().root.get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
@@ -83,7 +90,7 @@ func _handle_drop_on_slot() -> void:
 
 func _perform_slot_action(target_index: int) -> void:
 	"""Perform move/swap/stack action based on item and modifiers"""
-	if target_index == slot_index:
+	if inventory == null or target_index == slot_index:
 		return
 	
 	var source_slot = inventory.get_slot_by_index(slot_index)
@@ -107,7 +114,7 @@ func _perform_slot_action(target_index: int) -> void:
 
 func _partial_move(target_index: int, amount: int) -> void:
 	"""Move partial amount to another slot"""
-	if amount <= 0:
+	if inventory == null or amount <= 0:
 		return
 	
 	var source_slot = inventory.get_slot_by_index(slot_index)
@@ -143,6 +150,9 @@ func _partial_move(target_index: int, amount: int) -> void:
 
 func _handle_right_click() -> void:
 	"""Right click menu - drop item"""
+	if inventory == null or slot_index == -1:
+		return
+	
 	var slot = inventory.get_slot_by_index(slot_index)
 	
 	if slot == null or slot.item == null:
@@ -153,6 +163,9 @@ func _handle_right_click() -> void:
 
 func split_stack() -> void:
 	"""Split stack in half (use with custom UI)"""
+	if inventory == null or slot_index == -1:
+		return
+	
 	var slot = inventory.get_slot_by_index(slot_index)
 	
 	if slot == null or slot.item == null or slot.amount <= 1:
