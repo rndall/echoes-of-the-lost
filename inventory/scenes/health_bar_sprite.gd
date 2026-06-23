@@ -13,12 +13,21 @@ func _on_player_health_changed(current_health: float) -> void:
 	if GameManager.MAX_PLAYER_HEALTH <= 0:
 		return
 	
-	var health_percent = clampf(
-		current_health / GameManager.MAX_PLAYER_HEALTH,
-		0.0,
-		1.0
-	)
+	if current_health == GameManager.MAX_PLAYER_HEALTH:
+		frame = 0
+		return
 	
-	var target_frame = int((1.0 - health_percent) * (TOTAL_FRAMES - 1))
+	if current_health <= 0:
+		frame = TOTAL_FRAMES - 1
+		return
 	
-	frame = target_frame
+	var health_pct: float = (current_health / GameManager.MAX_PLAYER_HEALTH) * 100.0
+	
+	if health_pct < 20:
+		frame = 4
+	elif health_pct < 40:
+		frame = 3
+	elif health_pct < 60:
+		frame = 2
+	else:
+		frame = 1 
