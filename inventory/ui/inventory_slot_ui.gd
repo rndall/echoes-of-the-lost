@@ -91,14 +91,19 @@ func _handle_drop() -> void:
 		if source_slot == null or source_slot.item == null:
 			_deselect()
 			return
-			
 		# Only WEAPON items can be dropped on weapon slots
 		if source_slot.item.item_type != InvItem.ItemType.WEAPON:
 			_deselect()
 			return
+			
+	if self is WeaponSlotUI and target is not WeaponSlotUI:
+		var target_slot = target.inventory.get_slot_by_index(target.slot_index)
+		if target_slot and target_slot.item and target_slot.item.item_type != InvItem.ItemType.WEAPON:
+			# Target has a non-weapon — would swap it into weapon slot, reject
+			_deselect()
+			return
 	
 	_perform_slot_action(target.slot_index, target.inventory)
-	
 	_deselect()
 	target._select()
 

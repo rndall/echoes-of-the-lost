@@ -21,7 +21,7 @@ func _ready() -> void:
 
 	# Setup weapon slot
 	if weapon_slot_ui and weapon_slot_ui is WeaponSlotUI:
-		weapon_slot_ui.call_deferred("setup", 0, weapon_inv)  # Index 0 for the single weapon slot
+		weapon_slot_ui.setup(0, weapon_inv)  # Index 0 for the single weapon slot
 
 	# Connect update signals
 	player_inv.update.connect(_update_slots)
