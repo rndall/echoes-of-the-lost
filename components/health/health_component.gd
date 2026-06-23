@@ -6,6 +6,7 @@ signal died
 
 @export var sprite_2d: Sprite2D
 @export var max_health: float = 10.0
+
 var health: float
 var can_take_damage: bool = true
 

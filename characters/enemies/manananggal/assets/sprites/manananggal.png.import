@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0ud6liw56e0j"
-path="res://.godot/imported/attack.png-ff61d71cfdbca35e7455eeee3ed675ba.ctex"
+uid="uid://dpbw8l1n3xqnb"
+path="res://.godot/imported/manananggal.png-98653e99fa79457895b37bc33d2c7323.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/sprites/attack.png"
-dest_files=["res://.godot/imported/attack.png-ff61d71cfdbca35e7455eeee3ed675ba.ctex"]
+source_file="res://characters/enemies/manananggal/assets/sprites/manananggal.png"
+dest_files=["res://.godot/imported/manananggal.png-98653e99fa79457895b37bc33d2c7323.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpbw8l1n3xqnb"
-path="res://.godot/imported/manananggal.png-6a98c77cec9649d5a1aefb5d3eeda3bf.ctex"
+uid="uid://dwib4miphw4to"
+path="res://.godot/imported/walk.png-fdcf7086178a26b587227ce85388b5ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/manananggal/sprites/manananggal.png"
-dest_files=["res://.godot/imported/manananggal.png-6a98c77cec9649d5a1aefb5d3eeda3bf.ctex"]
+source_file="res://characters/player/assets/sprites/walk.png"
+dest_files=["res://.godot/imported/walk.png-fdcf7086178a26b587227ce85388b5ba.ctex"]
 
 [params]
 

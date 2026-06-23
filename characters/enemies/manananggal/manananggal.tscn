@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://buckmemkx0asn"]
 
 [ext_resource type="Script" uid="uid://1uialsjnri57" path="res://characters/enemies/manananggal/manananggal.gd" id="1_7182o"]
-[ext_resource type="Texture2D" uid="uid://dpbw8l1n3xqnb" path="res://characters/enemies/manananggal/sprites/manananggal.png" id="1_fjlc8"]
+[ext_resource type="Texture2D" uid="uid://dpbw8l1n3xqnb" path="res://characters/enemies/manananggal/assets/sprites/manananggal.png" id="1_fjlc8"]
 [ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="3_pts0a"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="3_ulp8i"]
+[ext_resource type="AudioStream" uid="uid://edjifmrqltcg" path="res://characters/enemies/manananggal/assets/sfx/manananggal_hurt.mp3" id="4_5kjqh"]
 [ext_resource type="Script" uid="uid://el2uw7mge5un" path="res://characters/enemies/manananggal/states/wander.gd" id="4_s3my2"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="4_xclqn"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="5_073j3"]
@@ -132,3 +133,6 @@ metadata/_custom_type_script = "uid://b8myi4kv0x3ax"
 [node name="KnockedBack" type="Node" parent="StateMachine" unique_id=130758702]
 script = ExtResource("8_vyl4s")
 metadata/_custom_type_script = "uid://bssnyx448430u"
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=556654894]
+stream = ExtResource("4_5kjqh")
