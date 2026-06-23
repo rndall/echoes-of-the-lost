@@ -25,6 +25,7 @@ animations = [{
 }]
 
 [node name="menu_ui" type="Control" unique_id=885035941]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

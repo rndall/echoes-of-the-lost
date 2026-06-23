@@ -9,7 +9,7 @@
 atlas = ExtResource("2_jbl8d")
 region = Rect2(0, 0, 19, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d0867"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ued0l"]
 atlas = ExtResource("3_r8fic")
 region = Rect2(0, 0, 18, 17)
 
@@ -18,12 +18,17 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gu5kx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d0867")
 }],
 "loop": 1,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ued0l")
+}],
+"loop": 1,
+"name": &"selected",
 "speed": 5.0
 }]
 
@@ -38,6 +43,7 @@ script = ExtResource("1_ued0l")
 position = Vector2(9, 7.625)
 scale = Vector2(0.9078949, 0.9583333)
 sprite_frames = SubResource("SpriteFrames_wshhj")
+animation = &"selected"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=893971307]
 custom_minimum_size = Vector2(16, 16)
@@ -61,14 +67,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=1062943171]
 z_index = 1
+texture_filter = 1
 layout_mode = 0
-offset_left = -9.0
+offset_left = -3.0
 offset_top = 1.0
-offset_right = 6.0
-offset_bottom = 8.0
+offset_right = 24.121208
+offset_bottom = 20.0
+scale = Vector2(0.33, 0.33)
 theme_override_fonts/font = ExtResource("4_40xnj")
-theme_override_font_sizes/font_size = 6
-text = "2"
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 2
 vertical_alignment = 2
 autowrap_mode = 2
