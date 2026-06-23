@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bmnlkgpi0rclg" path="res://inventory/assets/main_menu_bg.png" id="1_86ygs"]
 [ext_resource type="Script" uid="uid://8nkl7g8r3t4j" path="res://inventory/ui/menu_ui.gd" id="1_qa6pt"]
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
+[ext_resource type="PackedScene" uid="uid://edpxyxw2vqne" path="res://inventory/scenes/weapon_slot_ui.tscn" id="3_wvcyl"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
 [ext_resource type="Texture2D" uid="uid://bj27tcutc1klm" path="res://inventory/assets/healthbar_full.png" id="5_ld3xo"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
-[ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="6_m2dew"]
 [ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="8_wvcyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
@@ -53,6 +53,25 @@ offset_top = 18.0
 offset_right = -159.0
 offset_bottom = -49.0
 
+[node name="weapon_slot" type="NinePatchRect" parent="NinePatchRect" unique_id=1950082570]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 49.0
+offset_right = 83.0
+offset_bottom = 65.0
+
+[node name="weapon_slot_ui" parent="NinePatchRect/weapon_slot" unique_id=487318286 instance=ExtResource("3_wvcyl")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="player_view" type="NinePatchRect" parent="NinePatchRect" unique_id=521040755]
 z_index = 2
 layout_mode = 0
@@ -69,7 +88,7 @@ position = Vector2(21, 36)
 sprite_frames = SubResource("SpriteFrames_pvt8j")
 autoplay = "default"
 
-[node name="TextureRect2" type="TextureRect" parent="NinePatchRect" unique_id=121314962]
+[node name="lifebar" type="TextureRect" parent="NinePatchRect" unique_id=121314962]
 z_index = 2
 layout_mode = 0
 offset_left = 62.0
@@ -78,15 +97,7 @@ offset_right = 135.0
 offset_bottom = 91.0
 texture = ExtResource("5_ld3xo")
 
-[node name="TextureRect3" type="TextureRect" parent="NinePatchRect" unique_id=1898429732]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 46.0
-offset_right = 81.0
-offset_bottom = 62.0
-texture = ExtResource("6_m2dew")
-
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect" unique_id=651948238]
+[node name="artifact_slots" type="GridContainer" parent="NinePatchRect" unique_id=651948238]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,10 +112,10 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/GridContainer" unique_id=1313629518]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/artifact_slots" unique_id=1313629518]
 layout_mode = 2
 texture = ExtResource("8_wvcyl")
 
-[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/GridContainer" unique_id=1192600220]
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/artifact_slots" unique_id=1192600220]
 layout_mode = 2
 texture = ExtResource("8_wvcyl")

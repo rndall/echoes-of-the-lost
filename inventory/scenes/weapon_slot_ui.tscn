@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://edpxyxw2vqne"]
+
+[ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="1_vl8da"]
+
+[node name="weapon_slot_ui" type="Panel" unique_id=487318286]
+anchors_preset = -1
+anchor_left = 0.21800001
+anchor_right = 0.21800001
+offset_left = -0.13601685
+offset_right = -0.13601685
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1723721694]
+texture = ExtResource("1_vl8da")
