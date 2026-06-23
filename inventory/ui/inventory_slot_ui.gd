@@ -61,10 +61,13 @@ func _on_gui_input(event: InputEvent) -> void:
 			is_dragging = true
 			drag_offset = get_local_mouse_position()
 			modulate = Color(1.2, 1.2, 1.2)
+			
+			DragGhost.start(slot.item.texture, get_global_mouse_position())
 		else:
 			if is_dragging:
 				is_dragging = false
 				modulate = Color.WHITE
+				DragGhost.stop()
 				_handle_drop()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
