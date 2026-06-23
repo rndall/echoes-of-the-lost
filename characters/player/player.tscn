@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dgfbmjiwscke0" path="res://characters/player/states/walk.gd" id="6_idpv6"]
 [ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://inventory/scenes/menu_ui.tscn" id="11_3t07l"]
+[ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="12_on558"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3onaq"]
 radius = 6.0
@@ -807,5 +808,11 @@ metadata/_custom_type_script = "uid://o12jg021ygoa"
 [node name="menu_ui" parent="." unique_id=885035941 instance=ExtResource("11_3t07l")]
 offset_top = 55.0
 offset_bottom = 55.0
+
+[node name="hotbar_ui" parent="." unique_id=385176462 instance=ExtResource("12_on558")]
+offset_left = -184.0
+offset_top = 70.0
+offset_right = -184.0
+offset_bottom = 70.0
 
 [connection signal="animation_finished" from="AnimationTree" to="StateMachine/Action" method="_on_animation_tree_animation_finished"]
