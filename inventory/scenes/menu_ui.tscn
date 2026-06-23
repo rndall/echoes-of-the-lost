@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
+[ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
 [ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="8_wvcyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
@@ -95,3 +96,10 @@ texture = ExtResource("8_wvcyl")
 [node name="TextureRect2" type="TextureRect" parent="NinePatchRect/artifact_slots" unique_id=1192600220]
 layout_mode = 2
 texture = ExtResource("8_wvcyl")
+
+[node name="task_list_ui" parent="NinePatchRect" unique_id=1010010946 instance=ExtResource("8_sys31")]
+layout_mode = 1
+offset_left = 158.0
+offset_top = 16.0
+offset_right = -22.0
+offset_bottom = -24.0

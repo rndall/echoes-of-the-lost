@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://vpla1yntpiai"]
+
+[ext_resource type="Texture2D" uid="uid://dh3ocw4ool4vt" path="res://inventory/assets/inv_bg.png" id="1_lb5dm"]
+[ext_resource type="Texture2D" uid="uid://bvwqp5dc4i5xj" path="res://inventory/assets/task_checkbox.png" id="2_xmfmb"]
+[ext_resource type="Texture2D" uid="uid://btgavy8rddr6b" path="res://inventory/assets/task_checkbox_crossed.png" id="3_84471"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84471"]
+atlas = ExtResource("2_xmfmb")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rakbo"]
+atlas = ExtResource("3_84471")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2g58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84471")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rakbo")
+}],
+"loop": 1,
+"name": &"done",
+"speed": 5.0
+}]
+
+[node name="task_ui" type="Panel" unique_id=790355026]
+custom_minimum_size = Vector2(90, 15)
+offset_right = 90.0
+offset_bottom = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1255041683]
+custom_minimum_size = Vector2(90, 15)
+layout_mode = 0
+texture = ExtResource("1_lb5dm")
+
+[node name="Panel" type="Panel" parent="NinePatchRect" unique_id=807341338]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 13.0
+offset_bottom = 13.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NinePatchRect/Panel" unique_id=1432444788]
+position = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_m2g58")
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=2091515939]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 240.24239
+offset_bottom = 45.45454
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "lorem ipsum"
+vertical_alignment = 1
+autowrap_mode = 2
