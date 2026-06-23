@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://3s5rfvjydnns"]
 
 [ext_resource type="Texture2D" uid="uid://blluba6pmobia" path="res://icon.svg" id="1_0mefl"]
-[ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="2_k7ipq"]
 [ext_resource type="PackedScene" uid="uid://bqj31sewmuvba" path="res://components/triggers/scene_transition_trigger.tscn" id="3_tpley"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
@@ -12,12 +11,12 @@
 position = Vector2(0, -64)
 texture = ExtResource("1_0mefl")
 
-[node name="Player" parent="." unique_id=526460507 instance=ExtResource("2_k7ipq")]
-position = Vector2(0, -11)
-
 [node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_tpley")]
 position = Vector2(0, 10)
 target_map = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=899105112]
 shape = SubResource("RectangleShape2D_3onaq")
+
+[node name="ExitDoorSpawn" type="Marker2D" parent="." unique_id=1138525894]
+position = Vector2(0, -21)
