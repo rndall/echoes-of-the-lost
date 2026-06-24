@@ -8,8 +8,19 @@ const MIN_DIST_FROM_OBSTACLES = 48.0
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
 @onready var player_spawn: Marker2D = $Spawns/DefaultStartPoint
+
+
 func _ready() -> void:
-	_spawn_anting_anting()
+	if GameManager.anting_anting_collected:
+		print("[Spawn] Anting-anting already collected. Skipping spawn.")
+		return
+		
+	if GameManager.anting_anting_saved_pos != Vector2.ZERO:
+		_instantiate_item(GameManager.anting_anting_saved_pos)
+		print("[Spawn] Restored anting_anting at saved pos: ", GameManager.anting_anting_saved_pos)
+	else:
+		_spawn_anting_anting()
+
 
 func _spawn_anting_anting() -> void:
 	var valid_cells = soil_layer.get_used_cells() + ground_layer.get_used_cells()
@@ -36,12 +47,18 @@ func _spawn_anting_anting() -> void:
 
 	var spawn_pos: Vector2 = filtered_cells[randi() % filtered_cells.size()]
 
+	GameManager.anting_anting_saved_pos = spawn_pos
+	
+	_instantiate_item(spawn_pos)
+	print("[Spawn] First time setup. Spawned and saved at: ", spawn_pos)
+	print("[Spawn] Total valid cells: ", filtered_cells.size())
+
+
+func _instantiate_item(pos: Vector2) -> void:
 	var item = anting_anting_scene.instantiate()
-	item.position = spawn_pos
+	item.position = pos
 	objects_node.add_child(item)
 
-	print("[Spawn] anting_anting spawned at: ", spawn_pos)
-	print("[Spawn] Total valid cells: ", filtered_cells.size())
 
 func _is_clear(pos: Vector2, obstacles: Array[Vector2]) -> bool:
 	for obs_pos in obstacles:
