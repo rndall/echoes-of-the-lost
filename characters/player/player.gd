@@ -41,4 +41,6 @@ func heal(amount: int) -> void:
 	var max_health = GameManager.MAX_PLAYER_HEALTH
 	health = min(health + amount, max_health)
 	GameManager.player_health = health
+	health_component.health = health
+	Events.player_health_changed.emit(health)
 	print([amount, health])
