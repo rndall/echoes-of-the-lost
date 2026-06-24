@@ -4,6 +4,7 @@ extends Node2D
 
 const MIN_DIST_FROM_OBSTACLES = 48.0
 
+@onready var ground_layer: TileMapLayer = $Layers/Ground
 @onready var soil_layer: TileMapLayer = $Layers/Soil
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
@@ -12,7 +13,8 @@ func _ready() -> void:
 	_spawn_anting_anting()
 
 func _spawn_anting_anting() -> void:
-	var valid_cells = soil_layer.get_used_cells()
+	var random_layer = [ground_layer, soil_layer].pick_random()
+	var valid_cells = random_layer.get_used_cells()
 	if valid_cells.is_empty():
 		push_warning("No soil cells found!")
 		return
