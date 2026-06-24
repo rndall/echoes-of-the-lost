@@ -23,21 +23,24 @@ var _artifact_inv: Inventory = null
 # Highlights the sparkle sprite when the mouse is over it.
 var _hovered: bool = false
 
+@onready var echo: AudioStreamPlayer2D = $Echo
+@onready var pickup_sound: AudioStreamPlayer = $PickupSound
+
+
 func _ready() -> void:
 	_item = load(ITEM_PATH) as InvItem
 	_artifact_inv = load(ARTIFACT_INV_PATH) as Inventory
 
 	# Enable mouse interaction on the Area2D itself.
 	input_pickable = true
-	connect("input_event", _on_input_event)
-	connect("mouse_entered", _on_mouse_entered)
-	connect("mouse_exited", _on_mouse_exited)
+
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton \
 			and event.button_index == MOUSE_BUTTON_LEFT \
 			and event.pressed:
 		_try_collect()
+
 
 func _try_collect() -> void:
 	if _item == null or _artifact_inv == null:
@@ -55,16 +58,22 @@ func _try_collect() -> void:
 			break
 
 	if collected:
+		GameManager.anting_anting_collected = true
+		echo.stop()
+		pickup_sound.play()
+		hide()
+		await pickup_sound.finished
 		queue_free()
 	# If no free slot, silently do nothing — the player needs to check their
 	# artifact slots. You can add UI feedback here later.
 
-# ── Optional hover feedback ───────────────────────────────────────────────────
 
+# ── Optional hover feedback ───────────────────────────────────────────────────
 func _on_mouse_entered() -> void:
 	_hovered = true
 	# Brighten the sprite slightly so the player knows it's clickable.
 	modulate = Color(1.4, 1.4, 1.4)
+
 
 func _on_mouse_exited() -> void:
 	_hovered = false
