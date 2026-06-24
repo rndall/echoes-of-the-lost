@@ -1,9 +1,52 @@
 [gd_scene format=3 uid="uid://d17jlxhursebq"]
 
-[ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="1_g7xdv"]
 [ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/items/anting_anting.gd" id="1_iimbc"]
 [ext_resource type="AudioStream" uid="uid://b3kyeoqessag7" path="res://inventory/assets/sfx/Never Gonna Give You Up.mp3" id="3_003bj"]
 [ext_resource type="AudioStream" uid="uid://budr8dcgmudia" path="res://inventory/assets/sfx/artifact pickup sting.mp3" id="4_p83uf"]
+[ext_resource type="Texture2D" uid="uid://d16tv11jeww5a" path="res://inventory/assets/items/ice_sparkles.png" id="2_iimbc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_003bj"]
+atlas = ExtResource("2_iimbc")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p83uf"]
+atlas = ExtResource("2_iimbc")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgpo8"]
+atlas = ExtResource("2_iimbc")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvvsa"]
+atlas = ExtResource("2_iimbc")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcvix"]
+atlas = ExtResource("2_iimbc")
+region = Rect2(192, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dutb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_003bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p83uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgpo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvvsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcvix")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dutb6"]
 radius = 13.038404
@@ -13,10 +56,12 @@ scale = Vector2(0.75, 0.75)
 monitoring = false
 script = ExtResource("1_iimbc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641748339]
-position = Vector2(3, 1)
-scale = Vector2(0.875, 0.9375)
-texture = ExtResource("1_g7xdv")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1197433447]
+position = Vector2(1.9999996, 1.4999998)
+scale = Vector2(0.49999997, 0.42187503)
+sprite_frames = SubResource("SpriteFrames_dutb6")
+autoplay = "default"
+frame_progress = 0.20841035
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517450683]
 position = Vector2(1, 0)
