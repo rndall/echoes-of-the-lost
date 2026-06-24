@@ -3,18 +3,18 @@ extends Node2D
 @export var anting_anting_scene: PackedScene = preload("res://inventory/scenes/pickup_items/anting_anting.tscn")
 
 const MIN_DIST_FROM_OBSTACLES = 48.0
-
+@onready var ground_layer: TileMapLayer = $Layers/Ground
 @onready var soil_layer: TileMapLayer = $Layers/Soil
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
-
+@onready var player_spawn: Marker2D = $Spawns/DefaultStartPoint
 func _ready() -> void:
 	_spawn_anting_anting()
 
 func _spawn_anting_anting() -> void:
-	var valid_cells = soil_layer.get_used_cells()
+	var valid_cells = soil_layer.get_used_cells() + ground_layer.get_used_cells()
 	if valid_cells.is_empty():
-		push_warning("No soil cells found!")
+		push_warning("No valid cells found!")
 		return
 
 	var obstacle_positions: Array[Vector2] = []
@@ -22,6 +22,7 @@ func _spawn_anting_anting() -> void:
 		obstacle_positions.append(child.global_position)
 	for child in trees_node.get_children():
 		obstacle_positions.append(child.global_position)
+	obstacle_positions.append(player_spawn.position)
 
 	var filtered_cells: Array = []
 	for cell in valid_cells:
