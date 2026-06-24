@@ -9,6 +9,7 @@ var is_open: bool = false
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
 @onready var artifact_slot_nodes: Array = $NinePatchRect/artifact_slots.get_children()
 
+
 func _ready() -> void:
 	# Fallback: find hotbar by group if not assigned in the Inspector.
 	if hotbar_ui == null:

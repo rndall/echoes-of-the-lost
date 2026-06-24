@@ -2,6 +2,7 @@ extends InventorySlotUI
 
 class_name WeaponSlotUI
 
+
 # Weapon slot UI: only accepts WEAPON items, enforces max amount 1
 # Inherits drag/drop behavior from InventorySlotUI with these overrides:
 # - Rejects non-weapons in update()
@@ -23,8 +24,13 @@ func update(slot: InvSlot) -> void:
 	
 	item_visual.visible = false
 	amount_text.visible = false
-
+	
+	
 	if slot and slot.item:
 		item_visual.visible = true
 		item_visual.texture = slot.item.texture
+		GameManager.player_weapon = slot.item
+		Events.player_weapon_equipped.emit(slot.item)
+	else:
+		GameManager.player_weapon = null
 		# Never show amount for weapon slot (always 1)

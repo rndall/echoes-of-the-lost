@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bjn1jwdb5uc6j" path="res://maps/outside/assets/forest_floor.png" id="2_hdwuj"]
 [ext_resource type="PackedScene" uid="uid://bikbcp5i10kqp" path="res://objects/tree/tree.tscn" id="3_0lnqv"]
 [ext_resource type="PackedScene" uid="uid://dpf0fj4b5xr03" path="res://inventory/scenes/pickup_items/apple.tscn" id="6_p6s7j"]
+[ext_resource type="PackedScene" uid="uid://buckmemkx0asn" path="res://characters/enemies/manananggal/manananggal.tscn" id="8_y1hac"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdwuj"]
 texture = ExtResource("1_0lnqv")
@@ -338,3 +339,6 @@ position = Vector2(458, 270)
 
 [node name="DefaultStartPoint" type="Marker2D" parent="Spawns" unique_id=1879102444]
 position = Vector2(213, 374)
+
+[node name="Manananggal" parent="." unique_id=274057768 instance=ExtResource("8_y1hac")]
+position = Vector2(426, 382)

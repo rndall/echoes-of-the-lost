@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="4_dirf7"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
+[ext_resource type="Script" uid="uid://cg5crbxbfkofa" path="res://characters/player/player_hitbox.gd" id="5_58jvb"]
 [ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
 [ext_resource type="AudioStream" uid="uid://c41blxsnf72iu" path="res://characters/player/assets/sfx/character_attack.mp3" id="5_on558"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="5_rpf03"]
@@ -827,6 +828,7 @@ zoom = Vector2(3, 3)
 position = Vector2(12, -23)
 rotation = 0.8425456
 collision_mask = 8
+script = ExtResource("5_58jvb")
 knockback_force = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" unique_id=1383912089]

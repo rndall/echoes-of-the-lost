@@ -1,10 +1,9 @@
 class_name HitboxComponent
 extends Area2D
 
-@onready var weapon_inv: Inventory = preload("res://inventory/resources/weapon_inv.tres")
-
 @export var attack_damage: float = 1.0
 @export var knockback_force: float
+
 
 func _process(_delta: float) -> void:
 	if not monitoring:
@@ -20,19 +19,10 @@ func _process(_delta: float) -> void:
 
 func attack_hurtbox(hurtbox: HurtboxComponent) -> void:
 	var attack = Attack.new()
-	var weapon_dmg := 0
 
-	if weapon_inv.slots.size() > 0:
-		var item = weapon_inv.slots[0].item
-
-		if item is WeaponItem:
-			weapon_dmg = item.damage
-
-	attack.attack_damage = attack_damage + weapon_dmg
+	attack.attack_damage = attack_damage
 	attack.knockback_force = knockback_force
 	attack.attack_position = get_owner().global_position
-	
-	print(attack.attack_damage)
 	
 	hurtbox.damage(attack)
 

@@ -80,7 +80,7 @@ size = Vector2(20, 31)
 [node name="Manananggal" type="CharacterBody2D" unique_id=274057768]
 z_index = 5
 collision_layer = 0
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_7182o")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1669022227]
