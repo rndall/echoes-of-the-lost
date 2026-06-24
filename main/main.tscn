@@ -7,11 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://wmmb64bnb3pn" path="res://day_night/audio/sound_machine.tscn" id="5_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="6_kfbq2"]
 
-[node name="Main" type="Node" unique_id=339283379]
+[node name="Main" type="Node2D" unique_id=1144406930]
+y_sort_enabled = true
 script = ExtResource("1_53q0u")
 initial_scene = "uid://c5g3ll83gblw0"
 
 [node name="WorldContainer" type="Node2D" parent="." unique_id=994377854]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=669445507]
 color = Color(0.13333334, 0.14901961, 0.25882354, 1)
@@ -24,5 +28,3 @@ gradient = ExtResource("3_xwkvk")
 mouse_filter = 2
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
-
-[node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
