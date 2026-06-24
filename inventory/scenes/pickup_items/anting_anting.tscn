@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://d17jlxhursebq"]
 
 [ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="1_g7xdv"]
+[ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/items/anting_anting.gd" id="1_iimbc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dutb6"]
 radius = 13.038404
 
 [node name="anting_anting" type="Area2D" unique_id=133703089]
+script = ExtResource("1_iimbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641748339]
 position = Vector2(3, 1)

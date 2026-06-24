@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
+[ext_resource type="PackedScene" uid="uid://d1qgggbcr8kqn" path="res://inventory/scenes/artifact_slot_ui.tscn" id="7_sys31"]
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
-[ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="8_65x4j"]
 [ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
-[ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="8_wvcyl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sys31"]
 atlas = ExtResource("5_wvcyl")
@@ -90,18 +89,11 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/artifact_slots" unique_id=1313629518]
+[node name="artifact_slot_ui" parent="NinePatchRect/artifact_slots" unique_id=731823642 instance=ExtResource("7_sys31")]
 layout_mode = 2
-texture = ExtResource("8_wvcyl")
 
-[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/artifact_slots/TextureRect" unique_id=1486494926]
-position = Vector2(11, 10)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_65x4j")
-
-[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/artifact_slots" unique_id=1192600220]
+[node name="artifact_slot_ui2" parent="NinePatchRect/artifact_slots" unique_id=1943478940 instance=ExtResource("7_sys31")]
 layout_mode = 2
-texture = ExtResource("8_wvcyl")
 
 [node name="task_list_ui" parent="NinePatchRect" unique_id=1010010946 instance=ExtResource("8_sys31")]
 layout_mode = 1
