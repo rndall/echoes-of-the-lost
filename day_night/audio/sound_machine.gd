@@ -9,6 +9,10 @@ extends Node
 @onready var night_soundscape: AudioStreamPlayer = $NightSoundscape
 
 
+func _ready() -> void:
+	Events.time_tick.connect(set_daytime)
+
+
 func set_daytime(_day: int, hour: int, minute: int) -> void:
 	if hour <= day_hour or hour >= night_hour:
 		# check if we need to play night soundscape

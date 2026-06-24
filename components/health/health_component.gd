@@ -11,8 +11,23 @@ var health: float
 var can_take_damage: bool = true
 
 
+func _enter_tree() -> void:
+	var value = GameManager.get_data_value(get_path(), "hp")
+	if not value:
+		return
+	
+	health = value
+	if health <= 0:
+		die()
+
+
+func _exit_tree() -> void:
+	GameManager.store_data_value(get_path(), "hp", health)
+
+
 func _ready() -> void:
-	health = max_health
+	if not health:
+		health = max_health
 
 
 func damage(attack: Attack, invincible_time: float = 0.0, 
@@ -25,12 +40,7 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 	health_changed.emit(health, attack)
 	
 	if health <= 0:
-		var dead_tween = create_tween().set_trans(Tween.TRANS_SINE)
-		dead_tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.2)
-		await dead_tween.parallel().tween_property(sprite_2d, "scale", 
-				Vector2.ZERO, 0.2).finished
-		get_owner().set_physics_process(false)
-		died.emit()
+		die()
 		return
 	
 	if invincible_time > 0.0:
@@ -63,3 +73,12 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 				#"modulate:a", 1.0, flash_step).finished.connect(
 						#func(): can_take_damage = true
 				#)
+
+
+func die() -> void:
+	var dead_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	dead_tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.2)
+	await dead_tween.parallel().tween_property(sprite_2d, "scale", 
+			Vector2.ZERO, 0.2).finished
+	get_owner().set_physics_process(false)
+	died.emit()
