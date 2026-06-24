@@ -2,11 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="1_g7xdv"]
 [ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/items/anting_anting.gd" id="1_iimbc"]
+[ext_resource type="AudioStream" uid="uid://b3kyeoqessag7" path="res://inventory/assets/sfx/Never Gonna Give You Up.mp3" id="3_003bj"]
+[ext_resource type="AudioStream" uid="uid://budr8dcgmudia" path="res://inventory/assets/sfx/artifact pickup sting.mp3" id="4_p83uf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dutb6"]
 radius = 13.038404
 
 [node name="anting_anting" type="Area2D" unique_id=133703089]
+scale = Vector2(0.75, 0.75)
+monitoring = false
 script = ExtResource("1_iimbc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641748339]
@@ -17,3 +21,17 @@ texture = ExtResource("1_g7xdv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517450683]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_dutb6")
+
+[node name="Echo" type="AudioStreamPlayer2D" parent="." unique_id=40841265]
+stream = ExtResource("3_003bj")
+volume_db = -10.0
+autoplay = true
+max_distance = 150.0
+bus = &"Music"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=984974832]
+stream = ExtResource("4_p83uf")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
