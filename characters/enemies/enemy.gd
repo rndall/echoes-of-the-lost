@@ -5,6 +5,18 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 
 
+func _enter_tree() -> void:
+	var value = GameManager.get_data_value(get_path(), "pos")
+	if not value:
+		return
+	
+	global_position = value
+
+
+func _exit_tree() -> void:
+	GameManager.store_data_value(get_path(), "pos", global_position)
+
+
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)

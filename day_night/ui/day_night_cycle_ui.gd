@@ -1,11 +1,14 @@
 extends Control
 
-
 @onready var day_label_background: Label = %DayLabelBackground
 @onready var day_label: Label = %DayLabel
 @onready var time_label_background: Label = %TimeLabelBackground
 @onready var time_label: Label = %TimeLabel
 @onready var arrow: TextureRect = %Arrow
+
+
+func _ready() -> void:
+	Events.time_tick.connect(set_daytime)
 
 
 func set_daytime(day: int, hour: int, minute: int) -> void:

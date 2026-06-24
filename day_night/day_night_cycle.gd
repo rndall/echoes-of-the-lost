@@ -1,7 +1,5 @@
 extends CanvasModulate
 
-signal time_tick(day: int, hour: int, minute: int)
-
 const MINUTES_PER_DAY = 1440
 const MINUTES_PER_HOUR = 60
 const INGAME_TO_REAL_MINUTE_DURATION = (2 * PI) / MINUTES_PER_DAY
@@ -42,7 +40,7 @@ func _recalculate_time() -> void:
 	
 	if past_minute != minute:
 		past_minute = minute
-		time_tick.emit(day, hour, minute)
+		Events.time_tick.emit(day, hour, minute)
 
 
 func _on_map_changed(map: Events.Map) -> void:
