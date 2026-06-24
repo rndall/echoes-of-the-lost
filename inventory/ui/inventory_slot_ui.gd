@@ -10,6 +10,10 @@ var inventory: Inventory
 
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
+var drag_started: bool = false          # NEW: drag has actually begun
+var mouse_pressed: bool = false         # NEW: mouse is held down
+var press_position: Vector2 = Vector2.ZERO
+const DRAG_THRESHOLD: float = 4.0  
 
 var animated_sprite: AnimatedSprite2D = null
 static var currently_selected: InventorySlotUI = null
@@ -52,29 +56,43 @@ func update(slot: InvSlot) -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			_select()
-
-			var slot = inventory.get_slot_by_index(slot_index)
-			if slot == null or slot.item == null:
-				return
-			
-			is_dragging = true
-			drag_offset = get_local_mouse_position()
-			modulate = Color(1.2, 1.2, 1.2)
-			
-			DragGhost.start(slot.item.texture, get_global_mouse_position())
+			mouse_pressed = true
+			press_position = get_global_mouse_position()
+			drag_started = false
+			is_dragging = false
+			get_viewport().set_input_as_handled()  # consume the event here
 		else:
-			if is_dragging:
-				is_dragging = false
-				modulate = Color.WHITE
-				DragGhost.stop()
-				_handle_drop()
+			if mouse_pressed:
+				mouse_pressed = false
+				if drag_started:
+					drag_started = false
+					is_dragging = false
+					modulate = Color.WHITE
+					DragGhost.stop()
+					_handle_drop()
+				else:
+					_select()
+				get_viewport().set_input_as_handled()  # consume on release too
+
+	if event is InputEventMouseMotion and mouse_pressed:
+		if not drag_started:
+			var dist = get_global_mouse_position().distance_to(press_position)
+			if dist >= DRAG_THRESHOLD:
+				var slot = inventory.get_slot_by_index(slot_index)
+				if slot == null or slot.item == null:
+					mouse_pressed = false
+					return
+				drag_started = true
+				is_dragging = true
+				modulate = Color(1.2, 1.2, 1.2)
+				DragGhost.start(slot.item.texture, get_global_mouse_position())
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		var slot = inventory.get_slot_by_index(slot_index)
 		if slot == null or slot.item == null:
 			return
 		_handle_right_click()
+		get_viewport().set_input_as_handled()
 
 func _on_mouse_entered() -> void:
 	if is_dragging:
@@ -218,3 +236,6 @@ func _select() -> void:
 	currently_selected = self
 	if animated_sprite:
 		animated_sprite.play("selected")
+
+func set_selected(is_selected: bool) -> void:
+	pass

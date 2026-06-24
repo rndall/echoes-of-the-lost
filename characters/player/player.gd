@@ -35,3 +35,10 @@ func _on_death() -> void:
 
 func collect(item):
 	inv.insert(item)
+	
+func heal(amount: int) -> void:
+	var health = GameManager.player_health
+	var max_health = GameManager.MAX_PLAYER_HEALTH
+	health = min(health + amount, max_health)
+	GameManager.player_health = health
+	print([amount, health])

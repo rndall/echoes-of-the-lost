@@ -37,7 +37,8 @@ func insert(item: InvItem, amount: int = 1):
 	update.emit()
 
 func remove(item: InvItem, amount: int = 1):
-	"""Remove item from inventory"""
+	print("🟡 [REMOVE] %s x%d (CALLED FROM:)" % [item.name, amount])  # ← ADD THIS
+	print_stack()
 	for slot in slots:
 		if slot.item and slot.item.id == item.id:
 			slot.amount -= amount
@@ -137,6 +138,8 @@ func drop_item(slot_index: int, amount: int = 1) -> bool:
 		return false
 	
 	var drop_amount = mini(amount, slot.amount)
+	print("🔴 [DROP_ITEM] Slot %d - %s x%d (CALLED FROM:)" % [slot_index, slot.item.name, drop_amount])  # ← ADD THIS
+	print_stack()
 	slot.amount -= drop_amount
 	
 	if slot.amount <= 0:
@@ -166,3 +169,27 @@ func count_item(item_id: String) -> int:
 		if slot.item and slot.item.id == item_id:
 			total += slot.amount
 	return total
+	
+func use_item(slot_index: int, player: Node) -> bool:
+	var slot = get_slot_by_index(slot_index)
+	if slot == null or slot.item == null:
+		return false
+
+	# Guard by item_type enum — safer than class check alone
+	if slot.item.item_type != InvItem.ItemType.CONSUMABLE:
+		return false
+
+	# Also confirm it's actually a ConsumableItem script
+	if not slot.item is ConsumableItem:
+		return false
+		
+	print("🟢 [USE_ITEM] Slot %d - %s" % [slot_index, slot.item.name])
+
+	var consumed: bool = (slot.item as ConsumableItem).use(player)
+	if consumed:
+		slot.amount -= 1
+		if slot.amount <= 0:
+			slot.clear()
+		update.emit()
+
+	return consumed
