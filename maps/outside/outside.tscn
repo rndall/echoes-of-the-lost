@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c5g3ll83gblw0"]
 
 [ext_resource type="Texture2D" uid="uid://c5oeds1c8x534" path="res://maps/outside/assets/water_bg.png" id="1_0lnqv"]
+[ext_resource type="Script" uid="uid://bct7e5r1sjras" path="res://maps/outside/outside.gd" id="1_p6s7j"]
 [ext_resource type="PackedScene" uid="uid://ds8vpxu7dwye7" path="res://objects/cabin/cabin.tscn" id="2_0lnqv"]
 [ext_resource type="Texture2D" uid="uid://bjn1jwdb5uc6j" path="res://maps/outside/assets/forest_floor.png" id="2_hdwuj"]
 [ext_resource type="PackedScene" uid="uid://bikbcp5i10kqp" path="res://objects/tree/tree.tscn" id="3_0lnqv"]
@@ -267,6 +268,7 @@ sources/0 = SubResource("TileSetAtlasSource_y1hac")
 
 [node name="Outside" type="Node2D" unique_id=226189137]
 y_sort_enabled = true
+script = ExtResource("1_p6s7j")
 
 [node name="Layers" type="Node2D" parent="." unique_id=1196892974]
 

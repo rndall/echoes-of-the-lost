@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d17jlxhursebq"]
+
+[ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="1_g7xdv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dutb6"]
+radius = 13.038404
+
+[node name="anting_anting" type="Area2D" unique_id=133703089]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641748339]
+position = Vector2(3, 1)
+scale = Vector2(0.875, 0.9375)
+texture = ExtResource("1_g7xdv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517450683]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_dutb6")
