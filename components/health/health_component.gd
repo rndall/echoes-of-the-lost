@@ -43,7 +43,7 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 		return
 	
 	health -= attack.attack_damage
-	#print(instance_id, health)
+	print(instance_id, health)
 	health_changed.emit(health, attack)
 	
 	if health <= 0:

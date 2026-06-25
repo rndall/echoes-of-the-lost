@@ -330,12 +330,17 @@ position = Vector2(429, 258)
 
 [node name="apple" parent="Objects" unique_id=23155672 instance=ExtResource("6_p6s7j")]
 position = Vector2(224, 421)
+monitorable = false
 
 [node name="apple2" parent="Objects" unique_id=87990844 instance=ExtResource("6_p6s7j")]
 position = Vector2(236, 422)
+collision_layer = 0
+monitorable = false
 
 [node name="axe" parent="Objects" unique_id=1930831341 instance=ExtResource("7_y1hac")]
 position = Vector2(217, 352)
+collision_layer = 0
+monitorable = false
 
 [node name="Spawns" type="Node2D" parent="." unique_id=597417931]
 
@@ -345,8 +350,9 @@ position = Vector2(458, 270)
 [node name="DefaultStartPoint" type="Marker2D" parent="Spawns" unique_id=1879102444]
 position = Vector2(213, 374)
 
-[connection signal="body_entered" from="Objects/axe" to="Objects/axe" method="_on_body_entered"]
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=806440033 node_paths=PackedStringArray("tilemap_layer")]
 script = ExtResource("8_kh3qa")
 enemy_scene = ExtResource("8_y1hac")
 tilemap_layer = NodePath("../Layers/Ground")
+
+[connection signal="body_entered" from="Objects/axe" to="Objects/axe" method="_on_body_entered"]

@@ -135,9 +135,10 @@ hotbar_6={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Player Attacks"
 2d_physics/layer_3="Enemies"
-2d_physics/layer_4="Enemies Attack"
+2d_physics/layer_4="Enemies Attacks"
 2d_physics/layer_5="Environment"
 2d_physics/layer_6="Pickup"
+2d_physics/layer_7="Environtment Attacks"
 
 [physics]
 
