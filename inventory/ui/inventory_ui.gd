@@ -47,28 +47,53 @@ func _on_item_dropped(_item: InvItem, _amount: int) -> void:
 	#print("Item dropped: ", item.name, " x", amount)
 
 func _input(event: InputEvent) -> void:
-	if not (event is InputEventKey and event.pressed and event.keycode == KEY_Q):
-		return
+	# Q key: equip weapon from selected slot
+	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
+		_try_equip_selected_weapon()
+		get_tree().root.set_input_as_handled()
 
-	# Find whichever slot the mouse is currently over
-	var hovered = SlotRegistry.find_slot_at(get_global_mouse_position())
-	if hovered == null:
+func _try_equip_selected_weapon() -> void:
+	"""Try to equip the weapon in the currently selected slot"""
+	var selected = InventorySlotUI.currently_selected
+	if selected == null or selected.inventory != player_inv:
 		return
+	
+	var source_slot = player_inv.get_slot_by_index(selected.slot_index)
+	if source_slot == null or source_slot.item == null:
+		return
+	
+	# Only weapons can be equipped
+	if source_slot.item.item_type != InvItem.ItemType.WEAPON:
+		return
+	
+	# Check if there's already a weapon equipped
+	var equipped_slot = weapon_inv.get_slot_by_index(0)
+	if equipped_slot and equipped_slot.item != null:
+		# Weapon is equipped - swap instead of clearing
+		_swap_weapon(source_slot, equipped_slot)
+	else:
+		# No weapon equipped - just equip the new one
+		equip_weapon(source_slot.item)
+		source_slot.clear()
+		player_inv.update.emit()
 
-	# Handle drops for both inventories
-	if hovered.inventory == player_inv:
-		var index = hovered.slot_index
-		if Input.is_action_pressed("ui_shift"):
-			var slot = player_inv.get_slot_by_index(index)
-			if slot:
-				player_inv.drop_item(index, slot.amount)
-		else:
-			player_inv.drop_item(index, 1)
-	elif hovered.inventory == weapon_inv:
-		var index = hovered.slot_index
-		var slot = weapon_inv.get_slot_by_index(index)
-		if slot:
-			weapon_inv.drop_item(index, slot.amount)
+func _swap_weapon(source_slot: InvSlot, equipped_slot: InvSlot) -> void:
+	"""Swap a weapon from inventory with the currently equipped weapon"""
+	# Save the equipped weapon
+	var equipped_item = equipped_slot.item
+	var equipped_amount = equipped_slot.amount
+	
+	# Put the selected weapon in the weapon slot
+	equipped_slot.item = source_slot.item
+	equipped_slot.amount = source_slot.amount
+	
+	# Put the old weapon back in the inventory slot
+	source_slot.item = equipped_item
+	source_slot.amount = equipped_amount
+	
+	# Update both inventories
+	player_inv.update.emit()
+	weapon_inv.update.emit()
 
 # ── Public helpers ─────────────────────────────────────────────────────────────
 
