@@ -6,13 +6,17 @@ signal died
 
 @export var sprite_2d: Sprite2D
 @export var max_health: float = 10.0
+@export var instance_id: String
 
 var health: float
 var can_take_damage: bool = true
 
 
 func _enter_tree() -> void:
-	var value = GameManager.get_data_value(get_path(), "hp")
+	if instance_id.is_empty():
+		return
+	
+	var value = GameManager.get_data_value(instance_id, "hp")
 	if not value:
 		return
 	
@@ -22,7 +26,10 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	GameManager.store_data_value(get_path(), "hp", health)
+	if instance_id.is_empty():
+		return
+	
+	GameManager.store_data_value(instance_id, "hp", health)
 
 
 func _ready() -> void:
@@ -36,7 +43,7 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 		return
 	
 	health -= attack.attack_damage
-	print(health)
+	#print(instance_id, health)
 	health_changed.emit(health, attack)
 	
 	if health <= 0:
