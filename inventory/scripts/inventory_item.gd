@@ -12,7 +12,6 @@ class_name InvItem
 enum ItemType {
 	CONSUMABLE,
 	WEAPON,
-	EQUIPMENT,
 	MATERIAL,
 	ARTIFACT
 }
