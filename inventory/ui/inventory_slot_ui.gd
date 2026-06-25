@@ -238,4 +238,7 @@ func _select() -> void:
 		animated_sprite.play("selected")
 
 func set_selected(is_selected: bool) -> void:
-	pass
+	if is_selected:
+		_select()
+	else:
+		_deselect()
