@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://vpla1yntpiai"]
 
-[ext_resource type="Texture2D" uid="uid://dh3ocw4ool4vt" path="res://inventory/assets/inv_bg.png" id="1_lb5dm"]
 [ext_resource type="Texture2D" uid="uid://bvwqp5dc4i5xj" path="res://inventory/assets/task_checkbox.png" id="2_xmfmb"]
 [ext_resource type="Texture2D" uid="uid://btgavy8rddr6b" path="res://inventory/assets/task_checkbox_crossed.png" id="3_84471"]
 
@@ -32,6 +31,7 @@ animations = [{
 }]
 
 [node name="task_ui" type="Panel" unique_id=790355026]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 15)
 offset_right = 90.0
 offset_bottom = 15.0
@@ -39,7 +39,6 @@ offset_bottom = 15.0
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1255041683]
 custom_minimum_size = Vector2(90, 15)
 layout_mode = 0
-texture = ExtResource("1_lb5dm")
 
 [node name="Panel" type="Panel" parent="NinePatchRect" unique_id=807341338]
 self_modulate = Color(1, 1, 1, 0)
