@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bikbcp5i10kqp" path="res://objects/tree/tree.tscn" id="3_0lnqv"]
 [ext_resource type="PackedScene" uid="uid://dpf0fj4b5xr03" path="res://inventory/scenes/pickup_items/apple.tscn" id="6_p6s7j"]
 [ext_resource type="PackedScene" uid="uid://fq0rpqcft4tv" path="res://inventory/scenes/pickup_items/axe.tscn" id="7_y1hac"]
+[ext_resource type="Script" uid="uid://bfcg8k1d17qnv" path="res://maps/outside/enemy_spawner.gd" id="8_kh3qa"]
 [ext_resource type="PackedScene" uid="uid://buckmemkx0asn" path="res://characters/enemies/manananggal/manananggal.tscn" id="8_y1hac"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdwuj"]
@@ -344,7 +345,8 @@ position = Vector2(458, 270)
 [node name="DefaultStartPoint" type="Marker2D" parent="Spawns" unique_id=1879102444]
 position = Vector2(213, 374)
 
-[node name="Manananggal" parent="." unique_id=274057768 instance=ExtResource("8_y1hac")]
-position = Vector2(426, 382)
-
 [connection signal="body_entered" from="Objects/axe" to="Objects/axe" method="_on_body_entered"]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=806440033 node_paths=PackedStringArray("tilemap_layer")]
+script = ExtResource("8_kh3qa")
+enemy_scene = ExtResource("8_y1hac")
+tilemap_layer = NodePath("../Layers/Ground")
