@@ -15,8 +15,11 @@ var spawn_points: Dictionary[Events.Map, String] = {
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.set_process_mode(PROCESS_MODE_DISABLED)
+		get_tree().paused = true
+		
 		SceneLoader.load_scene(target_scene[target_map], spawn_points[target_map])
 		await Events.scene_load_finished
-		body.set_process_mode(PROCESS_MODE_INHERIT)
+		
+		get_tree().paused = false
+		
 		Events.map_changed.emit(target_map)

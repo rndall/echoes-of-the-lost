@@ -100,7 +100,7 @@ func _instantiate_enemy_at_pos(spawn_id: String, spawn_pos: Vector2, use_saved_p
 	
 	enemy_instance.tree_exited.connect(func():
 		spawned_enemies.erase(spawn_id)
-		if GameManager.phase == GameManager.PHASE.NIGHT and spawn_timer.is_stopped():
+		if is_inside_tree() and GameManager.phase == GameManager.PHASE.NIGHT and spawn_timer.is_stopped():
 			spawn_timer.start()
 	)
 	

@@ -11,6 +11,7 @@ var target_spawn_name: String = ""
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(false)
 
 
