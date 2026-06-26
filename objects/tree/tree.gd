@@ -10,6 +10,7 @@ extends StaticBody2D
 var has_died: bool = false
 var _hovered: bool = false
 var spawned_drops: Array = []
+var current_day: int = 0
 
 func _exit_tree() -> void:
 	var save_data := {
@@ -27,6 +28,7 @@ func _exit_tree() -> void:
 func _ready() -> void:
 	$interaction_area.input_event.connect(_on_input_event)
 	health_component.died.connect(_on_died)
+	Events.time_tick.connect(_on_time_tick)
 	
 	var value = GameManager.get_data_entry(get_path())
 	if not value:
@@ -54,6 +56,10 @@ func _ready() -> void:
 		else:
 			health_component.die()
 
+		health_component.die()
+		
+func _on_time_tick(day: int, _hour: int, _minute: int) -> void:
+	current_day = day
 
 func _on_died() -> void:
 	if has_died:
@@ -93,15 +99,23 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		_try_collect()
 		
 func _try_collect() -> void:
+	var last_collection_day = GameManager.get_data_value(get_path(), "last_collection_day")
+	
+	if last_collection_day == current_day:
+		print("🌳 Already collected from this tree today! Come back tomorrow.")
+		return
+	
 	var _item: InvItem = load("res://inventory/resources/inventory_items/apple.tres")
 	var _inv: Inventory = load("res://inventory/resources/player_inv.tres")
-	var collected_amount = randi_range(1, 2)
+	var collected_amount = randi_range(1, 2)	
 	
 	if _item == null or _inv == null:
 		push_warning("apple: missing item or inventory resource.")
 		return
 	
+	GameManager.store_data_value(get_path(), "last_collection_day", current_day)
 	_inv.insert(_item, collected_amount)
+	print("🍎 Collected %d apples! Come back tomorrow for more." % collected_amount)
 	
 func _on_mouse_entered() -> void:
 	_hovered = true
