@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
@@ -20,6 +20,7 @@ func _exit_tree() -> void:
 	)
 
 func _ready() -> void:
+	$interaction_area.input_event.connect(_on_input_event)
 	health_component.died.connect(_on_died)
 	
 	var value = GameManager.get_data_entry(get_path())
