@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ds8vpxu7dwye7" path="res://objects/cabin/cabin.tscn" id="2_0lnqv"]
 [ext_resource type="Texture2D" uid="uid://bjn1jwdb5uc6j" path="res://maps/outside/assets/forest_floor.png" id="2_hdwuj"]
 [ext_resource type="PackedScene" uid="uid://bikbcp5i10kqp" path="res://objects/tree/tree.tscn" id="3_0lnqv"]
-[ext_resource type="PackedScene" uid="uid://dpf0fj4b5xr03" path="res://inventory/scenes/pickup_items/apple.tscn" id="6_p6s7j"]
 [ext_resource type="PackedScene" uid="uid://fq0rpqcft4tv" path="res://inventory/scenes/pickup_items/axe.tscn" id="7_y1hac"]
 [ext_resource type="Script" uid="uid://bfcg8k1d17qnv" path="res://maps/outside/enemy_spawner.gd" id="8_kh3qa"]
 [ext_resource type="PackedScene" uid="uid://buckmemkx0asn" path="res://characters/enemies/manananggal/manananggal.tscn" id="8_y1hac"]
@@ -327,15 +326,6 @@ position = Vector2(210, 141)
 
 [node name="Cabin" parent="Objects" unique_id=1945979290 instance=ExtResource("2_0lnqv")]
 position = Vector2(429, 258)
-
-[node name="apple" parent="Objects" unique_id=23155672 instance=ExtResource("6_p6s7j")]
-position = Vector2(224, 421)
-monitorable = false
-
-[node name="apple2" parent="Objects" unique_id=87990844 instance=ExtResource("6_p6s7j")]
-position = Vector2(236, 422)
-collision_layer = 0
-monitorable = false
 
 [node name="axe" parent="Objects" unique_id=1930831341 instance=ExtResource("7_y1hac")]
 position = Vector2(217, 352)

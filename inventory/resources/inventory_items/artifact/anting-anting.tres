@@ -8,5 +8,5 @@ script = ExtResource("1_ikl7e")
 id = "3"
 name = "Anting-Anting"
 texture = ExtResource("2_up26n")
-item_type = 4
+item_type = 3
 metadata/_custom_type_script = "uid://bhamvq1lajjdf"

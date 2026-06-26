@@ -4,7 +4,8 @@ extends StaticBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 
 @export var log_scene: PackedScene = preload("res://inventory/scenes/pickup_items/log.tscn")
-@export var log_spawn_radius: float = 50.0
+@export var apple_scene: PackedScene = preload("res://inventory/scenes/pickup_items/apple.tscn")
+@export var spawn_radius: float = 50.0
 
 var has_died: bool = false
 
@@ -39,15 +40,25 @@ func _on_died() -> void:
 		return
 	has_died = true
 	
-	var log_count = randi_range(1,3)
+	var log_count = randi_range(1,2)
+	var apple_count = randi_range(1,3)
 	
 	for i in range(log_count):
 		var angle = randf() * TAU
-		var distance = randf_range(20.0, log_spawn_radius)
+		var distance = randf_range(20.0, spawn_radius)
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 
 		var log_instance = log_scene.instantiate()
 		get_parent().add_child(log_instance)
 		log_instance.global_position = global_position + offset
+		
+	for i in range(apple_count):
+		var angle = randf() * TAU
+		var distance = randf_range(20.0, spawn_radius)
+		var offset = Vector2(cos(angle), sin(angle)) * distance
+
+		var apple_instance = apple_scene.instantiate()
+		get_parent().add_child(apple_instance)
+		apple_instance.global_position = global_position + offset
 
 	queue_free()

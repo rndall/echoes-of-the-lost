@@ -48,7 +48,7 @@ func _try_collect() -> void:
 	var collected := false
 	for slot in _artifact_inv.slots:
 		if slot.item == null:
-			slot.item = _item
+			_artifact_inv.insert(_item, 1)
 			slot.amount = 1
 			_artifact_inv.update.emit()
 			collected = true
