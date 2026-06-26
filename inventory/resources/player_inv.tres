@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cf0ajsu05p2h4" path="res://inventory/scripts/inventory.gd" id="1_743t2"]
 [ext_resource type="Script" uid="uid://dld72vt2wtgge" path="res://inventory/scripts/inv_slot.gd" id="2_xixeb"]
-[ext_resource type="Resource" uid="uid://bxgfs6hkqd4yr" path="res://inventory/resources/inventory_items/bow.tres" id="4_pjc36"]
+[ext_resource type="Resource" uid="uid://cd42opetmfuqv" path="res://inventory/resources/inventory_items/sword.tres" id="3_m4j26"]
+[ext_resource type="Resource" uid="uid://don4yxked8ve" path="res://inventory/resources/inventory_items/axe.tres" id="4_m4j26"]
 
 [sub_resource type="Resource" id="Resource_de57d"]
 script = ExtResource("2_xixeb")
-item = ExtResource("4_pjc36")
+item = ExtResource("3_m4j26")
 amount = 1
 metadata/_custom_type_script = "uid://dld72vt2wtgge"
 
 [sub_resource type="Resource" id="Resource_loe11"]
 script = ExtResource("2_xixeb")
+item = ExtResource("4_m4j26")
 metadata/_custom_type_script = "uid://dld72vt2wtgge"
 
 [sub_resource type="Resource" id="Resource_lxows"]

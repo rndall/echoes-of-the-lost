@@ -2,15 +2,70 @@
 
 [ext_resource type="Script" uid="uid://d2hm0h00dbkbd" path="res://inventory/ui/weapon_slot_ui.gd" id="1_sr3ci"]
 [ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="1_vl8da"]
+[ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="3_ia6k1"]
+[ext_resource type="Texture2D" uid="uid://cgr8joftgqomw" path="res://inventory/assets/inv_slot_selected.png" id="4_7cp0y"]
+[ext_resource type="Texture2D" uid="uid://dch8hhmus8mjw" path="res://inventory/assets/weapon_slot_selected.png" id="5_ellve"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cp0y"]
+atlas = ExtResource("1_vl8da")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ellve"]
+atlas = ExtResource("3_ia6k1")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy8f0"]
+atlas = ExtResource("4_7cp0y")
+region = Rect2(0, 0, 18, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fmt1"]
+atlas = ExtResource("5_ellve")
+region = Rect2(0, 0, 18, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dutb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cp0y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ellve")
+}],
+"loop": 1,
+"name": &"equipped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy8f0")
+}],
+"loop": 1,
+"name": &"equipped_selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fmt1")
+}],
+"loop": 1,
+"name": &"selected",
+"speed": 5.0
+}]
 
 [node name="weapon_slot_ui" type="Panel" unique_id=487318286]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(18, 16)
 script = ExtResource("1_sr3ci")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1723721694]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2106785865]
 position = Vector2(9, 8)
-texture = ExtResource("1_vl8da")
+sprite_frames = SubResource("SpriteFrames_dutb6")
+animation = &"selected"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=146855137]
 layout_mode = 0
