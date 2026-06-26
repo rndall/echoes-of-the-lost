@@ -9,15 +9,20 @@ extends StaticBody2D
 
 var has_died: bool = false
 var _hovered: bool = false
+var spawned_drops: Array = []
 
 func _exit_tree() -> void:
-	GameManager.store_data_entry(get_path(), 
-			{ 
-				"hp": health_component.health, 
-				"pos": global_position, 
-				"frame": sprite_2d.frame
-			}
-	)
+	var save_data := {
+		"hp": health_component.health,
+		"pos": global_position,
+		"frame": sprite_2d.frame,
+	}
+
+	if has_died:
+		save_data["dead"] = true
+		save_data["drops"] = spawned_drops
+
+	GameManager.store_data_entry(get_path(), save_data)
 
 func _ready() -> void:
 	$interaction_area.input_event.connect(_on_input_event)
@@ -32,14 +37,29 @@ func _ready() -> void:
 	global_position = value["pos"]
 	sprite_2d.frame = value["frame"]
 	
+	if value.has("dead") and value["dead"]:
+		has_died = true
+		spawned_drops = value.get("drops", [])
+		if spawned_drops.size() > 0:
+			_spawn_drops(spawned_drops)
+		queue_free()
+		return
+
 	if health_component.health <= 0:
-		health_component.die()
+		if value.has("drops"):
+			has_died = true
+			spawned_drops = value["drops"]
+			_spawn_drops(spawned_drops)
+			queue_free()
+		else:
+			health_component.die()
 
 
 func _on_died() -> void:
 	if has_died:
 		return
 	has_died = true
+	spawned_drops = []
 	
 	var log_count = randi_range(1,2)
 	var apple_count = randi_range(3,5)
@@ -49,18 +69,20 @@ func _on_died() -> void:
 		var distance = randf_range(20.0, spawn_radius)
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 
-		var log_instance = log_scene.instantiate()
-		get_parent().add_child(log_instance)
-		log_instance.global_position = global_position + offset
+		var log_position = global_position + offset
+		var log_drop := {"id": "log_%d" % spawned_drops.size(), "item": "log", "pos": log_position}
+		spawned_drops.append(log_drop)
+		_spawn_drop(log_scene, log_drop)
 		
 	for i in range(apple_count):
 		var angle = randf() * TAU
 		var distance = randf_range(20.0, spawn_radius)
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 
-		var apple_instance = apple_scene.instantiate()
-		get_parent().add_child(apple_instance)
-		apple_instance.global_position = global_position + offset
+		var apple_position = global_position + offset
+		var apple_drop := {"id": "apple_%d" % spawned_drops.size(), "item": "apple", "pos": apple_position}
+		spawned_drops.append(apple_drop)
+		_spawn_drop(apple_scene, apple_drop)
 
 	queue_free()
 	
@@ -89,3 +111,25 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	_hovered = false
 	modulate = Color.WHITE
+
+
+func _spawn_drops(drops: Array) -> void:
+	for drop in drops:
+		var item_scene: PackedScene
+		match drop["item"]:
+			"log":
+				item_scene = log_scene
+			"apple":
+				item_scene = apple_scene
+			_:
+				continue
+
+		_spawn_drop(item_scene, drop)
+
+
+func _spawn_drop(item_scene: PackedScene, drop: Dictionary) -> void:
+	var drop_instance = item_scene.instantiate()
+	drop_instance.global_position = drop["pos"]
+	drop_instance.set_meta("tree_save_path", str(get_path()))
+	drop_instance.set_meta("drop_id", drop["id"])
+	get_parent().call_deferred("add_child", drop_instance)
