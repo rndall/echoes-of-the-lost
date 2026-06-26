@@ -12,16 +12,19 @@ var _hovered: bool = false
 var spawned_drops: Array = []
 var current_day: int = 0
 
+
 func _exit_tree() -> void:
-	var save_data := {
-		"hp": health_component.health,
-		"pos": global_position,
-		"frame": sprite_2d.frame,
-	}
+	var save_data = GameManager.get_data_entry(get_path())
+	save_data["hp"] = health_component.health
+	save_data["pos"] = global_position
+	save_data["frame"] = sprite_2d.frame
 
 	if has_died:
 		save_data["dead"] = true
-		save_data["drops"] = spawned_drops
+		if GameManager.has_data_value(get_path(), "drops"):
+			save_data["drops"] = GameManager.get_data_value(get_path(), "drops")
+		else:
+			save_data["drops"] = spawned_drops
 
 	GameManager.store_data_entry(get_path(), save_data)
 
@@ -144,6 +147,6 @@ func _spawn_drops(drops: Array) -> void:
 func _spawn_drop(item_scene: PackedScene, drop: Dictionary) -> void:
 	var drop_instance = item_scene.instantiate()
 	drop_instance.global_position = drop["pos"]
-	drop_instance.set_meta("tree_save_path", str(get_path()))
+	drop_instance.set_meta("tree_save_path", get_path())
 	drop_instance.set_meta("drop_id", drop["id"])
 	get_parent().call_deferred("add_child", drop_instance)

@@ -18,7 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 	var tree_save_path := str(get_meta("tree_save_path", ""))
 	var drop_id := str(get_meta("drop_id", ""))
 	if tree_save_path != "" and drop_id != "":
-		var tree_data = GameManager.get_data_entry(tree_save_path)
+		var tree_data := GameManager.get_data_entry(tree_save_path)
 		if tree_data.has("drops"):
 			var remaining_drops: Array = []
 			for drop in tree_data["drops"]:
