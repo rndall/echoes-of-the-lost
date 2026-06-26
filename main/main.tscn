@@ -28,3 +28,4 @@ gradient = ExtResource("3_xwkvk")
 mouse_filter = 2
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
+process_mode = 3

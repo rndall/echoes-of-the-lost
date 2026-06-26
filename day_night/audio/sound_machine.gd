@@ -7,10 +7,11 @@ extends Node
 @onready var night_jingle: AudioStreamPlayer = $NightJingle
 @onready var day_soundscape: AudioStreamPlayer = $DaySoundscape
 @onready var night_soundscape: AudioStreamPlayer = $NightSoundscape
-
+@onready var outside_bus_index = AudioServer.get_bus_index("Outside")
 
 func _ready() -> void:
 	Events.time_tick.connect(set_daytime)
+	Events.map_changed.connect(_on_map_changed)
 
 
 func set_daytime(_day: int, hour: int, minute: int) -> void:
@@ -32,3 +33,15 @@ func set_daytime(_day: int, hour: int, minute: int) -> void:
 		night_jingle.play()
 		day_soundscape.stop()
 		night_soundscape.play()
+
+
+func _on_map_changed(map: Events.Map) -> void:
+	match map:
+		Events.Map.HOUSE:
+			AudioServer.set_bus_mute(outside_bus_index, true)
+			
+			day_jingle.stop()
+			night_jingle.stop()
+			
+		Events.Map.OUTSIDE:
+			AudioServer.set_bus_mute(outside_bus_index, false)
