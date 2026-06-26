@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
@@ -8,6 +8,7 @@ extends StaticBody2D
 @export var spawn_radius: float = 50.0
 
 var has_died: bool = false
+var _hovered: bool = false
 
 func _exit_tree() -> void:
 	GameManager.store_data_entry(get_path(), 
@@ -17,7 +18,6 @@ func _exit_tree() -> void:
 				"frame": sprite_2d.frame
 			}
 	)
-
 
 func _ready() -> void:
 	health_component.died.connect(_on_died)
@@ -41,7 +41,7 @@ func _on_died() -> void:
 	has_died = true
 	
 	var log_count = randi_range(1,2)
-	var apple_count = randi_range(1,3)
+	var apple_count = randi_range(3,5)
 	
 	for i in range(log_count):
 		var angle = randf() * TAU
@@ -62,3 +62,29 @@ func _on_died() -> void:
 		apple_instance.global_position = global_position + offset
 
 	queue_free()
+	
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton \
+			and event.button_index == MOUSE_BUTTON_LEFT \
+			and event.pressed:
+		_try_collect()
+		
+func _try_collect() -> void:
+	var _item: InvItem = load("res://inventory/resources/inventory_items/apple.tres")
+	var _inv: Inventory = load("res://inventory/resources/player_inv.tres")
+	var collected_amount = randi_range(1, 2)
+	
+	if _item == null or _inv == null:
+		push_warning("apple: missing item or inventory resource.")
+		return
+	
+	_inv.insert(_item, collected_amount)
+	
+func _on_mouse_entered() -> void:
+	_hovered = true
+	# Brighten the sprite slightly so the player knows it's clickable.
+	modulate = Color(1.4, 1.4, 1.4)
+
+func _on_mouse_exited() -> void:
+	_hovered = false
+	modulate = Color.WHITE

@@ -9,7 +9,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pq47m"]
 
-[node name="Tree" type="StaticBody2D" unique_id=263276032]
+[node name="Tree" type="Area2D" unique_id=89705297]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_lhnm0")
@@ -32,3 +32,5 @@ debug_color = Color(0.88243043, 0.27146682, 0.51229304, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=1222556066 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("4_jc7sr")]
 sprite_2d = NodePath("../Sprite2D")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
