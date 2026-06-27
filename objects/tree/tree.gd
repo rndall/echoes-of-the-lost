@@ -71,7 +71,10 @@ func _on_died() -> void:
 	spawned_drops = []
 	
 	var log_count = randi_range(1,2)
-	var apple_count = randi_range(3,5)
+	
+	var last_collection_day = GameManager.get_data_value(get_path(), "last_collection_day")
+	var should_spawn_apples = last_collection_day != current_day
+	var apple_count = randi_range(3,5) if should_spawn_apples else 0
 	
 	for i in range(log_count):
 		var angle = randf() * TAU
@@ -110,7 +113,7 @@ func _try_collect() -> void:
 	
 	var _item: InvItem = load("res://inventory/resources/inventory_items/apple.tres")
 	var _inv: Inventory = load("res://inventory/resources/player_inv.tres")
-	var collected_amount = randi_range(1, 2)	
+	var collected_amount = randi_range(2, 4)
 	
 	if _item == null or _inv == null:
 		push_warning("apple: missing item or inventory resource.")
