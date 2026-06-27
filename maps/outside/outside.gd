@@ -3,6 +3,7 @@ extends Node2D
 @export var anting_anting_scene: PackedScene = preload("res://inventory/scenes/pickup_items/anting_anting.tscn")
 
 const MIN_DIST_FROM_OBSTACLES = 48.0
+const RAYCAST_LENGTH = 100.0  # How far to raycast downward
 @onready var ground_layer: TileMapLayer = $Layers/Ground
 @onready var soil_layer: TileMapLayer = $Layers/Soil
 @onready var objects_node: Node2D = $Objects
@@ -38,7 +39,7 @@ func _spawn_anting_anting() -> void:
 	var filtered_cells: Array = []
 	for cell in valid_cells:
 		var world_pos = soil_layer.map_to_local(cell)
-		if _is_clear(world_pos, obstacle_positions):
+		if _is_clear(world_pos, obstacle_positions) and _is_on_ground(world_pos):
 			filtered_cells.append(world_pos)
 
 	if filtered_cells.is_empty():
@@ -65,3 +66,17 @@ func _is_clear(pos: Vector2, obstacles: Array[Vector2]) -> bool:
 		if pos.distance_to(obs_pos) < MIN_DIST_FROM_OBSTACLES:
 			return false
 	return true
+
+
+func _is_on_ground(pos: Vector2) -> bool:
+	# Use a raycast query to check if there's ground below this position
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(pos, pos + Vector2.DOWN * RAYCAST_LENGTH)
+	
+	# Optional: set collision mask to only check certain layers (adjust if needed)
+	# query.collision_mask = 1  # e.g., layer 1 for ground colliders
+	
+	var result = space_state.intersect_ray(query)
+	
+	# If the raycast hits something below, it's valid ground
+	return result != null
