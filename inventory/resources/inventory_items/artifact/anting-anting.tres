@@ -8,5 +8,6 @@ script = ExtResource("1_ikl7e")
 id = "3"
 name = "Anting-Anting"
 texture = ExtResource("2_up26n")
+description = "An amulet worn smooth by mountain water. The symbol pressed into its face is old — older than the Spanish names for these hills. Hunters from the foothills say Malyari himself breathed into the first one, and that his breath still lives in every copy made since."
 item_type = 3
 metadata/_custom_type_script = "uid://bhamvq1lajjdf"
