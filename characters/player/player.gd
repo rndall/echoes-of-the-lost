@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 
+var facing_direction: Vector2 = Vector2.DOWN
+
 func _ready() -> void:
 	add_to_group("player")
 	health_component.health = GameManager.player_health
@@ -45,3 +47,6 @@ func heal(amount: int) -> void:
 	health_component.health = health
 	Events.player_health_changed.emit(health)
 	print([amount, health])
+	
+func get_facing_direction() -> Vector2:
+	return animation_tree.get("parameters/Idle/blend_position")
