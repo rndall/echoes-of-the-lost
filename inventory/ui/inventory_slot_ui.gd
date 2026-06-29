@@ -4,6 +4,8 @@ class_name InventorySlotUI
 
 var item_visual: Sprite2D
 var amount_text: Label
+var item_info: Label
+var item_info_panel: Panel
 
 var slot_index: int = -1
 var inventory: Inventory
@@ -18,6 +20,11 @@ const DRAG_THRESHOLD: float = 4.0
 var animated_sprite: AnimatedSprite2D = null
 static var currently_selected: InventorySlotUI = null
 
+# ── Hover tooltip system ───────────────────────────────────────────────────────
+var hover_timer: float = 0.0
+const HOVER_DURATION: float = 1.0  # Display tooltip after 1 second of hovering
+var is_hovering: bool = false
+
 func _ready() -> void:
 	animated_sprite = get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 	# inventory_slot_ui.tscn names the sprite "item_display";
@@ -27,12 +34,23 @@ func _ready() -> void:
 	if item_visual == null:
 		item_visual = panel.get_node_or_null("Sprite2D") as Sprite2D
 	amount_text = panel.get_node("Label") as Label
+	
+	# Get the item_info label (child of item_display or item_visual)
+	if item_visual:
+		item_info_panel = item_visual.get_node_or_null("Panel") as Panel
+		item_info = item_info_panel.get_node_or_null("item_info") as Label
+	
+	# Ensure item_info is hidden initially
+	if item_info:
+		item_info.visible = false
+		item_info_panel.visible = false
 
 	SlotRegistry.register(self)
 	tree_exiting.connect(func(): SlotRegistry.unregister(self))
 
 	gui_input.connect(_on_gui_input)
 	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	
 	if animated_sprite:
 		animated_sprite.play("default")
@@ -52,6 +70,74 @@ func update(slot: InvSlot) -> void:
 		if slot.amount > 1:
 			amount_text.visible = true
 			amount_text.text = str(slot.amount)
+
+func _process(delta: float) -> void:
+	# Update hover timer if hovering
+	if is_hovering:
+		hover_timer += delta
+		if hover_timer >= HOVER_DURATION:
+			_show_item_info()
+	else:
+		# Reset timer when not hovering
+		hover_timer = 0.0
+		if item_info:
+			item_info.visible = false
+			item_info_panel.visible = false
+
+func _on_mouse_entered() -> void:
+	if is_dragging:
+		modulate = Color(1.3, 1.3, 1.3)
+	
+	# Start hover detection (timer starts in _process)
+	is_hovering = true
+	hover_timer = 0.0
+
+func _on_mouse_exited() -> void:
+	# Stop hover detection
+	is_hovering = false
+	hover_timer = 0.0
+	if item_info:
+		item_info.visible = false
+		item_info_panel.visible = false
+
+func _show_item_info() -> void:
+	"""Display the item info tooltip"""
+	if not item_info:
+		return
+	
+	var slot = inventory.get_slot_by_index(slot_index)
+	if not slot or not slot.item:
+		item_info.visible = false
+		item_info_panel.visible = false
+		return
+	
+	var item = slot.item
+	var item_type_name = _get_item_type_name(item)
+	
+	# Format the info text
+	var info_text = "Name: %s\nType: %s\nDescription: %s" % [
+		item.name,
+		item_type_name,
+		item.description
+	]
+	
+	item_info.text = info_text
+	item_info.visible = true
+	item_info_panel.visible = true
+
+func _get_item_type_name(item: InvItem) -> String:
+	"""Convert item type enum to readable name"""
+	match item.item_type:
+		InvItem.ItemType.CONSUMABLE:
+			return "Consumable"
+		InvItem.ItemType.MATERIAL:
+			return "Material"
+		InvItem.ItemType.WEAPON:
+			return "Weapon"
+		InvItem.ItemType.ARTIFACT:
+			return "Artifact"
+		_:
+			return "Unknown"
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -93,10 +179,6 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		_handle_right_click()
 		get_viewport().set_input_as_handled()
-
-func _on_mouse_entered() -> void:
-	if is_dragging:
-		modulate = Color(1.3, 1.3, 1.3)
 
 func _handle_drop() -> void:
 	var target = SlotRegistry.find_slot_at(get_global_mouse_position(), self)

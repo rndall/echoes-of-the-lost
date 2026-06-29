@@ -57,6 +57,24 @@ mouse_filter = 2
 
 [node name="item_display" type="Sprite2D" parent="CenterContainer/Panel" unique_id=384025773]
 
+[node name="Panel" type="Panel" parent="CenterContainer/Panel/item_display" unique_id=1847700984]
+visible = false
+z_index = 3
+offset_top = -59.0
+offset_right = 120.0
+offset_bottom = 1.0
+
+[node name="item_info" type="Label" parent="CenterContainer/Panel/item_display/Panel" unique_id=2031822172]
+custom_maximum_size = Vector2(400, 200)
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 200.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=1307452966]
 light_mask = 2
 visibility_layer = 2
