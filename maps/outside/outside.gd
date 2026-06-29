@@ -80,3 +80,7 @@ func _is_on_ground(pos: Vector2) -> bool:
 	
 	# If the raycast hits something below, it's valid ground
 	return result != null
+
+
+func _on_axe_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

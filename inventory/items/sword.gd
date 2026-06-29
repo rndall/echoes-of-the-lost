@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var item: InvItem = preload("res://inventory/resources/inventory_items/axe.tres")
+@export var item: InvItem = preload("res://inventory/resources/inventory_items/sword.tres")
 
 var player = null
 
