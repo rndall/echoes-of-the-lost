@@ -10,22 +10,28 @@ var instance_id: String
 func _enter_tree() -> void:
 	if instance_id.is_empty():
 		return
-	
-	var value = GameManager.get_data_value(instance_id, "pos")
-	if not value:
-		return
-	
-	global_position = value
-
-
-func _exit_tree() -> void:
-	if not instance_id.is_empty() and not is_queued_for_deletion():
-		GameManager.store_data_value(instance_id, "pos", global_position)
+	var saved_pos = GameManager.get_data_value(instance_id, "pos")
+	if saved_pos:
+		global_position = saved_pos
 
 
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)
+
+	if not instance_id.is_empty():
+		var saved_hp = GameManager.get_data_value(instance_id, "hp")
+		if saved_hp:
+			health_component.health = saved_hp
+			if health_component.health <= 0:
+				health_component.die()
+
+
+func _exit_tree() -> void:
+	if instance_id.is_empty():
+		return
+	GameManager.store_data_value(instance_id, "pos", global_position)
+	GameManager.store_data_value(instance_id, "hp", health_component.health)
 
 
 func _physics_process(_delta: float) -> void:
@@ -37,9 +43,6 @@ func _on_health_changed(_current_health: float, _attack: Attack) -> void:
 
 
 func _on_death() -> void:
-	print("dead")
 	GameManager.remove_data_entry(instance_id)
-	health_component.instance_id = ""
 	instance_id = ""
 	queue_free()
-	pass
