@@ -47,12 +47,9 @@ func _manage_spawner_state() -> void:
 
 
 func _restore_saved_enemies() -> void:
-	if not enemy_scene:
-		return
-		
 	# Loop through up to your max cap to check if data entries exist in the GameManager dictionary
 	for i in range(1, max_enemies + 1):
-		var check_id = "night_enemy_%s_%d" % [get_tree().current_scene.name, i]
+		var check_id = "night_enemy_%d" % i
 		
 		# If this specific slot has a saved position, it means they are alive in file storage!
 		if GameManager.has_data_value(check_id, "pos"):
@@ -78,7 +75,7 @@ func spawn_single_enemy() -> void:
 		return # Try again next interval tick
 		
 	unique_id_counter += 1
-	var spawn_id = "night_enemy_%s_%d" % [get_tree().current_scene.name, unique_id_counter]
+	var spawn_id = "night_enemy_%d" % unique_id_counter
 	
 	_instantiate_enemy_at_pos(spawn_id, spawn_pos, false)
 
@@ -110,9 +107,12 @@ func _instantiate_enemy_at_pos(spawn_id: String, spawn_pos: Vector2, use_saved_p
 
 func despawn_all_enemies() -> void:
 	for spawn_id in spawned_enemies.keys():
+		GameManager.remove_data_entry(spawn_id)
 		var enemy = spawned_enemies[spawn_id]
-		if is_instance_valid(enemy):
-			enemy.queue_free() 
+		var health_comp = enemy.get_node_or_null("HealthComponent")
+		if health_comp:
+			health_comp.instance_id = ""
+		enemy.queue_free() 
 	spawned_enemies.clear()
 
 
