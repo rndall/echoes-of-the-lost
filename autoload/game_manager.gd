@@ -14,6 +14,7 @@ var anting_anting_collected: bool = false
 var player_weapon: WeaponItem
 var phase: PHASE
 var map: Events.Map
+var day: int
 
 
 func _generated_entry_name(node_path_identifier: String) -> String:
