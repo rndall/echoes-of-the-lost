@@ -184,7 +184,12 @@ func _handle_drop() -> void:
 	var target = SlotRegistry.find_slot_at(get_global_mouse_position(), self)
 	if target == null:
 		return
-	
+
+	# Artifact slots are fully sealed — nothing can be dragged to or from them.
+	if target is ArtifactSlotUI or self is ArtifactSlotUI:
+		_deselect()
+		return
+
 	# Validate if dropping to a weapon slot
 	if target is WeaponSlotUI:
 		var source_slot = inventory.get_slot_by_index(slot_index)

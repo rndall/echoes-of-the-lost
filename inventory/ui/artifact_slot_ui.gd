@@ -30,41 +30,35 @@ func update(slot: InvSlot) -> void:
 		is_locked = true
 
 # ── Input overrides ───────────────────────────────────────────────────────────
+# NOTE: We do NOT override _on_gui_input here.
+# The base class connects _on_gui_input via signal in _ready(), so overriding
+# the method would cause both to run. Instead, we block at the three callsites
+# the base class delegates to: _handle_drop, _handle_right_click, and drag
+# initiation (guarded below via mouse_pressed block in _on_gui_input override).
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			# Always allow selection (for future item-info panel).
-			_select()
-
-			# Block dragging if locked or empty.
-			if is_locked:
+	# If locked, suppress all mouse button events except left-click select.
+	if is_locked:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				_select()
+				get_viewport().set_input_as_handled()
 				return
+			# Consume right-click and release events so base class never sees them.
+			get_viewport().set_input_as_handled()
+			return
+		if event is InputEventMouseMotion:
+			# Swallow motion events too — prevents the base threshold check from
+			# ever setting mouse_pressed = true path into drag_started.
+			return
 
-			var slot = inventory.get_slot_by_index(slot_index)
-			if slot == null or slot.item == null:
-				return
-
-			# Only allow dragging FROM this slot if it's not yet locked.
-			is_dragging = true
-			drag_offset = get_local_mouse_position()
-			modulate = Color(1.2, 1.2, 1.2)
-			DragGhost.start(slot.item.texture, get_global_mouse_position())
-
-		else:
-			if is_dragging:
-				is_dragging = false
-				modulate = Color.WHITE
-				DragGhost.stop()
-				_handle_drop()
-
-	# Right-click: fully blocked (no drop/remove).
-	# We intentionally do nothing here.
+	# Not locked — delegate to base class for normal behaviour (pre-lock drag-in).
+	super._on_gui_input(event)
 
 # ── Drop target overrides ─────────────────────────────────────────────────────
 
 func _handle_drop() -> void:
-	# This slot is locked — can't drag anything out.
+	# Locked slot — nothing can be dragged out.
 	if is_locked:
 		return
 
@@ -72,8 +66,8 @@ func _handle_drop() -> void:
 	if target == null:
 		return
 
-	# Only allow dropping onto another artifact slot (pre-lock).
-	if target is not ArtifactSlotUI:
+	# Pre-lock: only allow dropping onto another (empty) artifact slot.
+	if not (target is ArtifactSlotUI):
 		_deselect()
 		return
 
@@ -82,7 +76,7 @@ func _handle_drop() -> void:
 	target._select()
 
 # Override to validate incoming drops FROM other slot types.
-# Called by the SOURCE slot's _perform_slot_action when it targets us.
+# Called by the source slot's _perform_slot_action when it targets us.
 func _accept_drop_from(source: InventorySlotUI) -> void:
 	# Locked slots reject everything.
 	if is_locked:
@@ -116,12 +110,7 @@ func _cross_inventory_move_from(source: InventorySlotUI) -> void:
 	source.inventory.update.emit()
 	inventory.update.emit()
 
-# ── Block Q-drop from inventory_ui._input ────────────────────────────────────
-# inventory_ui.gd checks hovered.inventory; artifact_inv is a separate
-# resource so the Q-drop branch there won't match it. No extra override needed
-# unless you later route artifact_inv through inventory_ui's _input handler.
-
 # ── Block right-click drop ───────────────────────────────────────────────────
 func _handle_right_click() -> void:
-	# Intentionally empty — no dropping from artifact slots.
+	# Intentionally empty — no dropping from artifact slots ever.
 	pass
