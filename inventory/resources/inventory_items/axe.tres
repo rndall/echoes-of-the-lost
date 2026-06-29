@@ -10,5 +10,6 @@ target = 1
 id = "4"
 name = "Axe"
 texture = ExtResource("2_lrana")
+description = "A tool worn by countless hands, its blade still keen. It bites deep where steel is needed most."
 item_type = 1
 metadata/_custom_type_script = "uid://c2kjv2djbb0ny"

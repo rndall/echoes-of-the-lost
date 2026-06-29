@@ -9,5 +9,6 @@ damage = 5
 id = "6"
 name = "Sword"
 texture = ExtResource("2_hdk02")
+description = "A blade that has seen better days, yet still thirsts for purpose. Its edge glints with fading memory."
 item_type = 1
 metadata/_custom_type_script = "uid://c2kjv2djbb0ny"

@@ -10,4 +10,5 @@ id = "1"
 name = "Apple"
 texture = ExtResource("2_itd72")
 max_stack = 64
+description = "A crisp, ruby-red fruit plucked from ancient branches. Its sweetness offers a moment of respite in the shadows."
 metadata/_custom_type_script = "uid://bwncfogr4i5ed"

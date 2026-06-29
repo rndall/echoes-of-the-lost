@@ -65,7 +65,6 @@ script = ExtResource("1_sr3ci")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2106785865]
 position = Vector2(9, 8)
 sprite_frames = SubResource("SpriteFrames_dutb6")
-animation = &"selected"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=146855137]
 layout_mode = 0

@@ -9,5 +9,6 @@ id = "5"
 name = "Log"
 texture = ExtResource("2_sh8bp")
 max_stack = 64
+description = "Weathered timber from the world's forgotten trees. Solid, steadfast—a foundation for something new."
 item_type = 2
 metadata/_custom_type_script = "uid://bt73fxi71tjnc"
