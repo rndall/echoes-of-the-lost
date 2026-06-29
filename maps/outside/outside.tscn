@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bp5ugko3xdxxh" path="res://inventory/scenes/pickup_items/sword.tscn" id="7_f1t0a"]
 [ext_resource type="Script" uid="uid://bfcg8k1d17qnv" path="res://maps/outside/enemy_spawner.gd" id="8_kh3qa"]
 [ext_resource type="PackedScene" uid="uid://buckmemkx0asn" path="res://characters/enemies/manananggal/manananggal.tscn" id="8_y1hac"]
+[ext_resource type="Script" uid="uid://bm4d8kvxeua6m" path="res://inventory/managers/item_drop_manager.gd" id="10_f1t0a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdwuj"]
 texture = ExtResource("1_0lnqv")
@@ -346,3 +347,6 @@ position = Vector2(213, 374)
 script = ExtResource("8_kh3qa")
 enemy_scene = ExtResource("8_y1hac")
 tilemap_layer = NodePath("../Layers/Ground")
+
+[node name="item_drop_manager" type="Node" parent="." unique_id=508252894]
+script = ExtResource("10_f1t0a")

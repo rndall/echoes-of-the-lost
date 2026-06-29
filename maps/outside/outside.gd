@@ -9,7 +9,7 @@ const RAYCAST_LENGTH = 100.0  # How far to raycast downward
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
 @onready var player_spawn: Marker2D = $Spawns/DefaultStartPoint
-
+@onready var item_drop_manager: ItemDropManager = $item_drop_manager
 
 func _ready() -> void:
 	if GameManager.anting_anting_collected:
@@ -21,6 +21,13 @@ func _ready() -> void:
 		print("[Spawn] Restored anting_anting at saved pos: ", GameManager.anting_anting_saved_pos)
 	else:
 		_spawn_anting_anting()
+	
+	await get_tree().process_frame
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		_connect_inventory_signals(player.inv)
+	else:
+		push_error("[Outside] Player not found — inventory drop signal not connected")
 
 
 func _spawn_anting_anting() -> void:
@@ -82,5 +89,14 @@ func _is_on_ground(pos: Vector2) -> bool:
 	return result != null
 
 
-func _on_axe_body_entered(body: Node2D) -> void:
+func _on_axe_body_entered(_body: Node2D) -> void:
 	pass # Replace with function body.
+	
+func _connect_inventory_signals(player_inventory: Inventory) -> void:
+	player_inventory.item_dropped.connect(_on_item_dropped)
+
+func _on_item_dropped(item: InvItem, amount: int) -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	print(player.global_position)
+	var offset = Vector2(randf_range(-32, 32), randf_range(-32, 32)).normalized() * randf_range(24, 40)
+	item_drop_manager.spawn_item_drop(item, amount, player.global_position + offset)

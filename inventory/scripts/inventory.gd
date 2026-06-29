@@ -138,6 +138,7 @@ func drop_item(slot_index: int, amount: int = 1) -> bool:
 		return false
 	
 	var drop_amount = mini(amount, slot.amount)
+	var dropped_item = slot.item
 	print("🔴 [DROP_ITEM] Slot %d - %s x%d (CALLED FROM:)" % [slot_index, slot.item.name, drop_amount])  # ← ADD THIS
 	print_stack()
 	slot.amount -= drop_amount
@@ -145,7 +146,7 @@ func drop_item(slot_index: int, amount: int = 1) -> bool:
 	if slot.amount <= 0:
 		slot.clear()
 	
-	item_dropped.emit(slot.item, drop_amount)
+	item_dropped.emit(dropped_item, drop_amount)
 	update.emit()
 	return true
 

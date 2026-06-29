@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 
 func _ready() -> void:
+	add_to_group("player")
 	health_component.health = GameManager.player_health
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)
