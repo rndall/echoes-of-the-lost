@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ddec742yofrsg"]
 
 [ext_resource type="Script" uid="uid://cv13se4jlyddr" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://bjnhi7uc63e83" path="res://main/world_container.gd" id="2_4dugh"]
 [ext_resource type="Script" uid="uid://cu47cgnlk8f54" path="res://day_night/day_night_cycle.gd" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://day_night/day_night_cycle_gradient_texture.tres" id="3_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://ceolcwatpaicu" path="res://day_night/ui/day_night_cycle_ui.tscn" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://wmmb64bnb3pn" path="res://day_night/audio/sound_machine.tscn" id="5_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="6_kfbq2"]
+[ext_resource type="Script" uid="uid://bm4d8kvxeua6m" path="res://inventory/managers/item_drop_manager.gd" id="8_67ri8"]
 
 [node name="Main" type="Node2D" unique_id=1144406930]
 y_sort_enabled = true
@@ -14,6 +16,7 @@ initial_scene = "uid://c5g3ll83gblw0"
 
 [node name="WorldContainer" type="Node2D" parent="." unique_id=994377854]
 y_sort_enabled = true
+script = ExtResource("2_4dugh")
 
 [node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
 
@@ -29,3 +32,6 @@ mouse_filter = 2
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
 process_mode = 3
+
+[node name="item_drop_manager" type="Node" parent="." unique_id=887579969]
+script = ExtResource("8_67ri8")
