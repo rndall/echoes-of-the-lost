@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://vpla1yntpiai"]
 
+[ext_resource type="Script" uid="uid://dloi248ldtv80" path="res://tasks/ui_scripts/task_ui.gd" id="1_84471"]
 [ext_resource type="Texture2D" uid="uid://bvwqp5dc4i5xj" path="res://inventory/assets/task_checkbox.png" id="2_xmfmb"]
 [ext_resource type="Texture2D" uid="uid://btgavy8rddr6b" path="res://inventory/assets/task_checkbox_crossed.png" id="3_84471"]
 
@@ -35,6 +36,7 @@ self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 15)
 offset_right = 90.0
 offset_bottom = 15.0
+script = ExtResource("1_84471")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1255041683]
 custom_minimum_size = Vector2(90, 15)

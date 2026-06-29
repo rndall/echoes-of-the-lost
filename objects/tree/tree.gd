@@ -97,6 +97,7 @@ func _on_died() -> void:
 		_spawn_drop(apple_scene, apple_drop)
 
 	queue_free()
+	DailyTaskManager.update_task_progress("3", 1)
 	
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton \
@@ -122,6 +123,7 @@ func _try_collect() -> void:
 	GameManager.store_data_value(get_path(), "last_collection_day", current_day)
 	_inv.insert(_item, collected_amount)
 	print("🍎 Collected %d apples! Come back tomorrow for more." % collected_amount)
+	DailyTaskManager.update_task_progress("1", collected_amount)
 	
 func _on_mouse_entered() -> void:
 	_hovered = true
