@@ -18,6 +18,9 @@ initial_scene = "uid://c5g3ll83gblw0"
 y_sort_enabled = true
 script = ExtResource("2_4dugh")
 
+[node name="DropsContainer" type="Node2D" parent="." unique_id=2052306593]
+y_sort_enabled = true
+
 [node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=669445507]
@@ -33,5 +36,6 @@ mouse_filter = 2
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
 process_mode = 3
 
-[node name="item_drop_manager" type="Node" parent="." unique_id=887579969]
+[node name="item_drop_manager" type="Node" parent="." unique_id=887579969 node_paths=PackedStringArray("spawn_root")]
 script = ExtResource("8_67ri8")
+spawn_root = NodePath("../DropsContainer")

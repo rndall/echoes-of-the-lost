@@ -1,6 +1,8 @@
+class_name ItemDropManager
 extends Node
 
-class_name ItemDropManager
+@export var spawn_root: Node2D
+
 
 func spawn_item_drop(item: InvItem, amount: int, position: Vector2) -> void:
 	var packed = ItemSceneRegistry.get_scene(item)
@@ -14,4 +16,4 @@ func spawn_item_drop(item: InvItem, amount: int, position: Vector2) -> void:
 		drop.setup(item, amount)
 
 	drop.global_position = position
-	get_tree().current_scene.add_child(drop)
+	spawn_root.add_child(drop)

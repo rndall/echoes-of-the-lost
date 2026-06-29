@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
 
 [node name="HouseMap" type="Node2D" unique_id=1696503527]
+y_sort_enabled = true
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=796460343]
 z_index = -1
