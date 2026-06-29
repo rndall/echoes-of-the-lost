@@ -94,6 +94,8 @@ func _on_axe_body_entered(_body: Node2D) -> void:
 	
 func _connect_inventory_signals(player_inventory: Inventory) -> void:
 	player_inventory.item_dropped.connect(_on_item_dropped)
+	var weapon_inv: Inventory = load("res://inventory/resources/weapon_inv.tres")
+	weapon_inv.item_dropped.connect(_on_item_dropped)
 
 func _on_item_dropped(item: InvItem, amount: int) -> void:
 	var player = get_tree().get_first_node_in_group("player")
