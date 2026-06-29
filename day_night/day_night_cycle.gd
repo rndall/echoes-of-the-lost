@@ -40,8 +40,8 @@ func _recalculate_time() -> void:
 	
 	if past_minute != minute:
 		past_minute = minute
+		GameManager.day = day + 1
 		Events.time_tick.emit(day, hour, minute)
-		
 		_update_game_phase(hour)
 
 
@@ -52,8 +52,7 @@ func _update_game_phase(hour: int) -> void:
 		current_phase = GameManager.PHASE.DAY
 	else:
 		current_phase = GameManager.PHASE.NIGHT
-		
-	# Only trigger updates if the phase actually changed
+	
 	if GameManager.phase != current_phase:
 		GameManager.phase = current_phase
 		print("Phase changed to: ", "DAY" if current_phase == GameManager.PHASE.DAY else "NIGHT")
