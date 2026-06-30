@@ -4,6 +4,7 @@ var is_open: bool = false
 var current_tab: String = "inventory"
 
 @export var hotbar_ui: Control
+@export var player: Player  # Optional: assign in inspector, or auto-found
 
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
 @onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
@@ -14,17 +15,31 @@ var current_tab: String = "inventory"
 @onready var inv_ui = $inventory
 @onready var crafting_ui = $crafting
 @onready var settings_ui = $settings
+@onready var player_sprite_animated: AnimatedSprite2D = $inventory/player_view/player_sprite/AnimatedSprite2D
 
 func _ready() -> void:
 	if hotbar_ui == null:
 		var nodes = get_tree().get_nodes_in_group("hotbar")
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
+	
+	# Auto-find player if not assigned
+	if player == null:
+		var player_nodes = get_tree().get_nodes_in_group("player")
+		if player_nodes.size() > 0:
+			player = player_nodes[0]
+	
+	# Connect to player state changes
+	if player:
+		player.state_changed.connect(_on_player_state_changed)
+	else:
+		push_error("MenuUI: Player not found! Assign it in the inspector or add Player to 'player' group.")
 
 	_setup_artifact_slots()
 	_setup_tabs()
 
 	close()
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -32,6 +47,36 @@ func _process(_delta: float) -> void:
 			close()
 		else:
 			open()
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# Player State Sync
+# ────────────────────────────────────────────────────────────────────────────
+
+func _on_player_state_changed(state_name: String) -> void:
+	"""Update the menu sprite when player state changes."""
+	match state_name.to_lower():
+		"idle":
+			player_sprite_animated.play("idle")
+		"walking", "walk":
+			player_sprite_animated.play("walk")
+		"action":
+			# Determine which action animation based on weapon
+			if player and GameManager.player_weapon:
+				if GameManager.player_weapon.target == WeaponItem.Target.ENEMY:
+					player_sprite_animated.play("attack")
+				elif GameManager.player_weapon.target == WeaponItem.Target.OBJECT:
+					# You can play "chop" if you have that animation, or "attack"
+					player_sprite_animated.play("attack")
+			else:
+				player_sprite_animated.play("idle")
+		_:
+			player_sprite_animated.play("idle")
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# Menu Open/Close
+# ────────────────────────────────────────────────────────────────────────────
 
 func open() -> void:
 	visible = true
@@ -45,7 +90,10 @@ func close() -> void:
 	if hotbar_ui:
 		hotbar_ui.visible = true
 
-# ── Tab Management ────────────────────────────────────────────────────────
+
+# ────────────────────────────────────────────────────────────────────────────
+# Tab Management
+# ────────────────────────────────────────────────────────────────────────────
 
 func _setup_tabs() -> void:
 	inventory_tab.gui_input.connect(_on_tab_clicked.bindv([inventory_tab, "inventory"]))
@@ -75,9 +123,11 @@ func switch_tabs(tab_name: String) -> void:
 		inv_ui.visible = false
 		crafting_ui.visible = false
 		settings_ui.visible = true
-	
 
-# ── Artifact slot setup ───────────────────────────────────────────────────────
+
+# ────────────────────────────────────────────────────────────────────────────
+# Artifact slot setup
+# ────────────────────────────────────────────────────────────────────────────
 
 func _setup_artifact_slots() -> void:
 	for i in range(mini(artifact_inv.slots.size(), artifact_slot_nodes.size())):

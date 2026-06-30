@@ -2,6 +2,7 @@ extends PlayerState
 
 
 func enter(_previous_state_path: String, _data := {}) -> void:
+	player.notify_state_change("idle")
 	player.animation_state.travel("Idle")
 
 
