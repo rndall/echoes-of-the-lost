@@ -38,3 +38,4 @@ func _on_body_entered(body: Node2D) -> void:
 			else:
 				GameManager.remove_data_value(tree_save_path, "drops")
 	queue_free()
+	DailyTaskManager.update_task_progress("1", 1)

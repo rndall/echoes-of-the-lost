@@ -41,10 +41,10 @@ func initialize_tasks() -> void:
 func _create_default_tasks() -> void:
 	# Load task resources
 	var task_resources = [
-		preload("res://tasks/resources/dailytask1.tres"),
-		preload("res://tasks/resources/dailytask2.tres"),
-		preload("res://tasks/resources/dailytask3.tres"),
-		preload("res://tasks/resources/dailytask4.tres"),
+		load("res://tasks/resources/dailytask1.tres"),
+		load("res://tasks/resources/dailytask2.tres"),
+		load("res://tasks/resources/dailytask3.tres"),
+		load("res://tasks/resources/dailytask4.tres"),
 	]
 	
 	for task_resource in task_resources:
