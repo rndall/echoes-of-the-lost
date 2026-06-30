@@ -11,6 +11,9 @@ var current_tab: String = "inventory"
 @onready var crafting_tab = $tabs/crafting
 #@onready var unknown_tab = $tabs/
 @onready var settings_tab = $tabs/settings
+@onready var inv_ui = $inventory
+@onready var crafting_ui = $crafting
+@onready var settings_ui = $settings
 
 func _ready() -> void:
 	if hotbar_ui == null:
@@ -60,6 +63,18 @@ func switch_tabs(tab_name: String) -> void:
 	
 	print("Switching to tab: %s" % tab_name)
 	current_tab = tab_name
+	if current_tab == "inventory":
+		inv_ui.visible = true
+		crafting_ui.visible = false
+		settings_ui.visible = false
+	elif current_tab == "crafting":
+		inv_ui.visible = false
+		crafting_ui.visible = true
+		settings_ui.visible = false
+	elif current_tab == "settings":
+		inv_ui.visible = false
+		crafting_ui.visible = false
+		settings_ui.visible = true
 	
 	# For now, just print the tab name
 	# Later, show/hide the appropriate content
