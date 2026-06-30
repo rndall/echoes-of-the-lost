@@ -9,12 +9,14 @@ var player: Player
 
 func enter(previous_state_path: String, data := {}) -> void:
 	super(previous_state_path, data)
-
-	
 	player = get_tree().get_first_node_in_group("player")
 
 
 func physics_update(_delta: float) -> void:
+	if not player or player.health_component.dead:
+		finished.emit(WANDER)
+		return
+	
 	var direction = player.global_position - enemy.global_position
 	
 	if direction.length() > 10:

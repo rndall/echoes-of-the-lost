@@ -13,6 +13,7 @@ extends CharacterBody2D
 var walk_distance_accum: float = 0.0
 var facing_direction: Vector2 = Vector2.DOWN
 
+
 func _ready() -> void:
 	health_component.health = GameManager.player_health
 	health_component.health_changed.connect(_on_health_changed)
@@ -20,7 +21,7 @@ func _ready() -> void:
 	
 	animation_tree.set_active(true)
 	
-	animation_tree.set("parameters/Idle/blend_position", Vector2.DOWN)
+	animation_tree.set("parameters/Idle/blend_position", facing_direction)
 
 
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
@@ -33,7 +34,7 @@ func _on_health_changed(current_health: float, _attack: Attack) -> void:
 
 func _on_death() -> void:
 	print("dead")
-	#queue_free()
+	state_machine._transition_to_next_state(PlayerState.DEAD)
 	pass
 
 
@@ -49,7 +50,3 @@ func heal(amount: int) -> void:
 	health_component.health = health
 	Events.player_health_changed.emit(health)
 	print([amount, health])
-
-
-func get_facing_direction() -> Vector2:
-	return animation_tree.get("parameters/Idle/blend_position")

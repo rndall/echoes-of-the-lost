@@ -30,10 +30,10 @@ func update(delta: float) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	if not is_instance_valid(player):
-		player = get_tree().get_first_node_in_group("player")
-	
 	enemy.velocity = move_direction * speed
+	
+	if not player or player.health_component.dead:
+		return
 	
 	var direction = player.global_position - enemy.global_position
 	

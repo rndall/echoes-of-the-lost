@@ -18,7 +18,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)
-
+	
 	if not instance_id.is_empty():
 		var saved_hp = GameManager.get_data_value(instance_id, "hp")
 		if saved_hp:

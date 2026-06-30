@@ -9,6 +9,7 @@ signal died
 
 var health: float
 var can_take_damage: bool = true
+var dead: bool = false
 
 
 func _ready() -> void:
@@ -17,6 +18,8 @@ func _ready() -> void:
 
 func damage(attack: Attack, invincible_time: float = 0.0,
 		ignore_invincible: bool = false) -> void:
+	if dead:
+		return
 	if not can_take_damage and not ignore_invincible:
 		return
 
@@ -44,6 +47,9 @@ func _apply_invincibility(duration: float) -> void:
 
 
 func die() -> void:
+	dead = true
+	can_take_damage = false
+	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(sprite_2d, "modulate:a", 0.0, 0.2)
 	await tween.parallel().tween_property(sprite_2d, "scale", Vector2.ZERO, 0.2).finished

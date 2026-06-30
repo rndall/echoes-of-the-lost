@@ -4,6 +4,7 @@ extends State
 const IDLE = "Idle"
 const WALKING = "Walking"
 const ACTION = "Action"
+const DEAD = "Dead"
 
 var player: Player
 

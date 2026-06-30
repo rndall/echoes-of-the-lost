@@ -22,8 +22,8 @@ func _connect_inventory_signals(player_inventory: Inventory) -> void:
 	weapon_inv.item_dropped.connect(_on_item_dropped)
 
 func _on_item_dropped(item: InvItem, amount: int) -> void:
-	var player = get_tree().get_first_node_in_group("player")
+	var player = get_tree().get_first_node_in_group("player") as Player
 	print(player.global_position)
-	var facing = player.get_facing_direction().normalized()
+	var facing = player.facing_direction
 	var offset = facing * randf_range(24, 40)
 	item_drop_manager.spawn_item_drop(item, amount, player.global_position + offset)
