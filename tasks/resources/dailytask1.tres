@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_c66tq")
 task_id = "1"
-task_name = "Collect Apples"
+task_name = "Pick Apples from Trees"
 description = "Collect apples by clicking trees"
 target_amount = 10
 reward_item = ExtResource("1_4b6ea")
