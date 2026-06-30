@@ -46,7 +46,7 @@ offset_right = 334.0
 offset_bottom = 181.0
 mouse_force_pass_scroll_events = false
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1099475165]
+[node name="inventory" type="NinePatchRect" parent="." unique_id=1099475165]
 light_mask = 4
 visibility_layer = 4
 z_index = 2
@@ -57,14 +57,14 @@ offset_right = 161.0
 offset_bottom = 41.0
 texture = ExtResource("1_86ygs")
 
-[node name="inventory_ui" parent="NinePatchRect" unique_id=1659296847 instance=ExtResource("2_b5e6c")]
+[node name="inventory_ui" parent="inventory" unique_id=1659296847 instance=ExtResource("2_b5e6c")]
 layout_mode = 1
 offset_left = -119.0
 offset_top = 18.0
 offset_right = -159.0
 offset_bottom = -49.0
 
-[node name="player_view" type="NinePatchRect" parent="NinePatchRect" unique_id=521040755]
+[node name="player_view" type="NinePatchRect" parent="inventory" unique_id=521040755]
 z_index = 2
 layout_mode = 0
 offset_left = 20.0
@@ -73,19 +73,19 @@ offset_right = 60.0
 offset_bottom = 90.0
 texture = ExtResource("4_3y6qt")
 
-[node name="player_sprite" type="Node2D" parent="NinePatchRect/player_view" unique_id=779825736]
+[node name="player_sprite" type="Node2D" parent="inventory/player_view" unique_id=779825736]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NinePatchRect/player_view/player_sprite" unique_id=2014628820]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="inventory/player_view/player_sprite" unique_id=2014628820]
 position = Vector2(21, 36)
 sprite_frames = SubResource("SpriteFrames_pvt8j")
 autoplay = "default"
 
-[node name="HealthBarSprite" parent="NinePatchRect" unique_id=203065318 instance=ExtResource("7_wvcyl")]
+[node name="HealthBarSprite" parent="inventory" unique_id=203065318 instance=ExtResource("7_wvcyl")]
 z_index = 2
 position = Vector2(99, 85)
 scale = Vector2(1.05, 1.05)
 
-[node name="artifact_slots" type="GridContainer" parent="NinePatchRect" unique_id=651948238]
+[node name="artifact_slots" type="GridContainer" parent="inventory" unique_id=651948238]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,13 +100,13 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="artifact_slot_ui" parent="NinePatchRect/artifact_slots" unique_id=731823642 instance=ExtResource("7_sys31")]
+[node name="artifact_slot_ui" parent="inventory/artifact_slots" unique_id=731823642 instance=ExtResource("7_sys31")]
 layout_mode = 2
 
-[node name="artifact_slot_ui2" parent="NinePatchRect/artifact_slots" unique_id=1943478940 instance=ExtResource("7_sys31")]
+[node name="artifact_slot_ui2" parent="inventory/artifact_slots" unique_id=1943478940 instance=ExtResource("7_sys31")]
 layout_mode = 2
 
-[node name="task_list_ui" parent="NinePatchRect" unique_id=1010010946 instance=ExtResource("8_sys31")]
+[node name="task_list_ui" parent="inventory" unique_id=1010010946 instance=ExtResource("8_sys31")]
 layout_mode = 1
 offset_left = 158.0
 offset_top = 16.0

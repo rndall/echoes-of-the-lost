@@ -3,19 +3,16 @@ extends Control
 var is_open: bool = false
 var current_tab: String = "inventory"
 
-# Assign this in the Inspector to your hotbar_ui node,
-# or find it via group (add hotbar_ui to the "hotbar" group).
 @export var hotbar_ui: Control
 
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
-@onready var artifact_slot_nodes: Array = $NinePatchRect/artifact_slots.get_children()
+@onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
 @onready var inventory_tab = $tabs/inventory
 @onready var crafting_tab = $tabs/crafting
 #@onready var unknown_tab = $tabs/
 @onready var settings_tab = $tabs/settings
 
 func _ready() -> void:
-	# Fallback: find hotbar by group if not assigned in the Inspector.
 	if hotbar_ui == null:
 		var nodes = get_tree().get_nodes_in_group("hotbar")
 		if nodes.size() > 0:
