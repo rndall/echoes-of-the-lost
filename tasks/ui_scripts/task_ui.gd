@@ -34,6 +34,7 @@ func update_display() -> void:
 		label.add_theme_color_override("font_color", Color.GREEN)
 	else:
 		checkbox.play("default")
+		label.add_theme_color_override("font_color", Color.BLACK)
 	
 	# Update progress bar if it exists
 	if progress_bar:
