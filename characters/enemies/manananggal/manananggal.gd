@@ -19,3 +19,8 @@ func _physics_process(delta: float) -> void:
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
 	if current_health >= 0:
 		hurt.play(0.25)
+
+
+func _on_death() -> void:
+	DailyTaskManager.update_task_progress("2", 1)
+	super()
