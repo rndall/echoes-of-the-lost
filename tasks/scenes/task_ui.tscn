@@ -58,9 +58,23 @@ sprite_frames = SubResource("SpriteFrames_m2g58")
 [node name="Label" type="Label" parent="NinePatchRect" unique_id=2091515939]
 layout_mode = 0
 offset_left = 16.0
-offset_right = 240.24239
-offset_bottom = 45.45454
+offset_top = -1.0000001
+offset_right = 319.03027
+offset_bottom = 29.303028
 scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "lorem ipsum"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="reward" type="Label" parent="NinePatchRect" unique_id=640755800]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 8.729998
+offset_right = 241.24239
+offset_bottom = 27.729998
+scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "lorem ipsum"

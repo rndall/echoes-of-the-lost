@@ -5,6 +5,7 @@ class_name TaskUI
 @onready var checkbox = $NinePatchRect/Panel/AnimatedSprite2D
 @onready var label = $NinePatchRect/Label
 @onready var progress_bar = $NinePatchRect/ProgressBar if has_node("NinePatchRect/ProgressBar") else null
+@onready var reward = $NinePatchRect/reward
 
 var task: Task = null
 
@@ -23,7 +24,9 @@ func update_display() -> void:
 	
 	# Update label with task name and progress
 	var progress_text = "%s (%d/%d)" % [task.task_name, task.current_progress, task.target_amount]
+	var reward_text = "Reward: %s x%d" % [task.reward_item.name, task.reward_item_amount]
 	label.text = progress_text
+	reward.text = reward_text
 	
 	# Update checkbox animation state
 	if task.is_completed:

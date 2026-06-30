@@ -77,6 +77,7 @@ func update_task_progress(task_id: String, amount: int = 1) -> void:
 		task.is_completed = true
 		task.completed_on_day = current_day
 		task_completed.emit(task)
+		claim_reward(task_id)
 		print("[DailyTasks] Task completed: %s" % task.task_name)
 	
 	task_updated.emit(task)
