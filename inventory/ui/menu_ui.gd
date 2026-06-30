@@ -96,7 +96,7 @@ func _setup_tabs() -> void:
 	#unknown_tab.gui_input.connect(_on_tab_clicked.bindv([unknown_tab, "unknown"]))
 	settings_tab.gui_input.connect(_on_tab_clicked.bindv([settings_tab, "settings"]))
 
-func _on_tab_clicked(event: InputEvent, tab: Panel, tab_name: String) -> void:
+func _on_tab_clicked(event: InputEvent, _tab: Panel, tab_name: String) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		switch_tabs(tab_name)
 
