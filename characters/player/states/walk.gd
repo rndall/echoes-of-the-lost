@@ -6,6 +6,7 @@ var last_position: Vector2
 
 
 func enter(_previous_state_path: String, _data := {}) -> void:
+	player.notify_state_change("walk")
 	last_position = player.global_position
 	
 	player.animation_state.travel("Walk")
