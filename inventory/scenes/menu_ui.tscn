@@ -148,5 +148,3 @@ offset_left = 140.0
 offset_top = -89.0
 offset_right = 159.0
 offset_bottom = -72.0
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]

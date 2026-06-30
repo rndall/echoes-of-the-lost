@@ -83,6 +83,3 @@ func _update_artifact_slots() -> void:
 		var slot_node = artifact_slot_nodes[i]
 		if slot_node is ArtifactSlotUI:
 			slot_node.update(artifact_inv.get_slot_by_index(i))
-
-func _on_gui_input(event: InputEvent) -> void:
-	pass # Replace with function body.
