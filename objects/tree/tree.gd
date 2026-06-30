@@ -74,7 +74,7 @@ func _on_died() -> void:
 	
 	var last_collection_day = GameManager.get_data_value(get_path(), "last_collection_day")
 	var should_spawn_apples = last_collection_day != current_day
-	var apple_count = randi_range(3,5) if should_spawn_apples else 0
+	var apple_count = randi_range(3,4) if should_spawn_apples else 0
 	
 	for i in range(log_count):
 		var angle = randf() * TAU

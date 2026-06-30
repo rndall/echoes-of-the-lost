@@ -76,8 +76,6 @@ func switch_tabs(tab_name: String) -> void:
 		crafting_ui.visible = false
 		settings_ui.visible = true
 	
-	# For now, just print the tab name
-	# Later, show/hide the appropriate content
 
 # ── Artifact slot setup ───────────────────────────────────────────────────────
 

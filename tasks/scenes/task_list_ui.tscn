@@ -50,6 +50,7 @@ offset_right = 198.63634
 offset_bottom = 41.27272
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "lorem ipsum"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

@@ -113,6 +113,7 @@ texture = ExtResource("4_3y6qt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="inventory/player_view/player_sprite" unique_id=2014628820]
 position = Vector2(21, 36)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_pvt8j")
 autoplay = "default"
 
