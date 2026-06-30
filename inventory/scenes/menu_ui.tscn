@@ -36,6 +36,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qa6pt")
 
+[node name="dark_overlay" type="ColorRect" parent="." unique_id=1067121196]
+modulate = Color(0, 0, 0, 0.57254905)
+z_index = 1
+layout_mode = 0
+offset_left = -332.0
+offset_top = -276.0
+offset_right = 334.0
+offset_bottom = 181.0
+mouse_force_pass_scroll_events = false
+
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1099475165]
 light_mask = 4
 visibility_layer = 4
@@ -102,16 +112,6 @@ offset_left = 158.0
 offset_top = 16.0
 offset_right = -22.0
 offset_bottom = -24.0
-
-[node name="dark_overlay" type="ColorRect" parent="." unique_id=1067121196]
-modulate = Color(0, 0, 0, 0.57254905)
-z_index = 1
-layout_mode = 0
-offset_left = -332.0
-offset_top = -276.0
-offset_right = 334.0
-offset_bottom = 181.0
-mouse_force_pass_scroll_events = false
 
 [node name="tabs" type="Node2D" parent="." unique_id=635654932]
 z_index = 2
