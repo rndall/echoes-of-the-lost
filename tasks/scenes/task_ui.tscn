@@ -69,6 +69,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="task_info" type="Panel" parent="." unique_id=1901925021]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 z_index = 2
 layout_mode = 0
