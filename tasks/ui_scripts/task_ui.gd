@@ -5,13 +5,49 @@ class_name TaskUI
 @onready var checkbox = $NinePatchRect/Panel/AnimatedSprite2D
 @onready var label = $NinePatchRect/Label
 @onready var progress_bar = $NinePatchRect/ProgressBar if has_node("NinePatchRect/ProgressBar") else null
-@onready var reward = $NinePatchRect/reward
+@onready var reward = $task_info/reward
+@onready var description = $task_info/description as Label
+@onready var desc_panel = $task_info as Panel
 
 var task: Task = null
+
+var hover_timer: float = 0.0
+const HOVER_DURATION: float = 1.0  # Display tooltip after 1 second of hovering
+var is_hovering: bool = false
 
 func _ready() -> void:
 	if task:
 		update_display()
+		
+func _process(delta: float) -> void:
+	# Update hover timer if hovering
+	if is_hovering:
+		hover_timer += delta
+		if hover_timer >= HOVER_DURATION:
+			_show_task_description()
+	else:
+		# Reset timer when not hovering
+		hover_timer = 0.0
+		if description:
+			description.visible = false
+			desc_panel.visible = false
+		
+func _on_mouse_entered() -> void:
+	# Start hover detection (timer starts in _process)
+	is_hovering = true
+	hover_timer = 0.0
+
+func _on_mouse_exited() -> void:
+	# Stop hover detection
+	is_hovering = false
+	hover_timer = 0.0
+	if description:
+		description.visible = false
+		desc_panel.visible = false
+		
+func _show_task_description():
+	description.visible = true
+	desc_panel.visible = true
 
 func set_task(new_task: Task) -> void:
 	task = new_task
@@ -25,8 +61,10 @@ func update_display() -> void:
 	# Update label with task name and progress
 	var progress_text = "%s (%d/%d)" % [task.task_name, task.current_progress, task.target_amount]
 	var reward_text = "Reward: %s x%d" % [task.reward_item.name, task.reward_item_amount]
+	var desc_text = "Description: %s" % [task.description]
 	label.text = progress_text
 	reward.text = reward_text
+	description.text = desc_text
 	
 	# Update checkbox animation state
 	if task.is_completed:
@@ -51,3 +89,4 @@ func _on_gui_input(event: InputEvent) -> void:
 		if task and task.is_completed and not task.reward_claimed:
 			DailyTaskManager.claim_reward(task.task_id)
 			update_display()
+			

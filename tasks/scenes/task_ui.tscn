@@ -58,9 +58,9 @@ sprite_frames = SubResource("SpriteFrames_m2g58")
 [node name="Label" type="Label" parent="NinePatchRect" unique_id=2091515939]
 layout_mode = 0
 offset_left = 16.0
-offset_top = -1.0000001
+offset_top = 3.0
 offset_right = 319.03027
-offset_bottom = 29.303028
+offset_bottom = 33.30303
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
@@ -68,15 +68,38 @@ text = "lorem ipsum"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="reward" type="Label" parent="NinePatchRect" unique_id=640755800]
+[node name="task_info" type="Panel" parent="." unique_id=1901925021]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 2
 layout_mode = 0
-offset_left = 17.0
-offset_top = 8.729998
-offset_right = 241.24239
-offset_bottom = 27.729998
-scale = Vector2(0.25, 0.25)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 104.0
+offset_bottom = 48.0
+
+[node name="description" type="Label" parent="task_info" unique_id=1668310043]
+layout_mode = 0
+offset_right = 269.69696
+offset_bottom = 72.727264
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "lorem ipsum"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="reward" type="Label" parent="task_info" unique_id=640755800]
+layout_mode = 0
+offset_top = 25.000002
+offset_right = 356.0
+offset_bottom = 69.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "lorem ipsum"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
