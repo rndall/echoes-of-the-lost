@@ -31,7 +31,7 @@ func stop() -> void:
 # fading out on arrival, then frees itself. Independent of the cursor-following
 # `ghost` above — used for "item was crafted, here it goes into your inventory"
 # feedback rather than drag-and-drop.
-func fly_to(texture: Texture2D, from_pos: Vector2, to_pos: Vector2, duration: float = 1.0) -> void:
+func fly_to(texture: Texture2D, from_pos: Vector2, to_pos: Vector2, duration: float = 1.5) -> void:
 	var flying_ghost := TextureRect.new()
 	flying_ghost.texture = texture
 	flying_ghost.size = Vector2(32, 32)

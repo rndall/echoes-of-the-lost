@@ -114,6 +114,7 @@ func _craft() -> void:
 		if ingredient.material:
 			player_inv.remove(ingredient.material, ingredient.amount)
 
+	var product_display_pos = product_display.get_global_transform_with_canvas().origin
 	if current_recipe.product:
 		player_inv.insert(current_recipe.product, 1)
-		item_crafted.emit(current_recipe.product, product_display.global_position)
+		item_crafted.emit(current_recipe.product, product_display_pos)
