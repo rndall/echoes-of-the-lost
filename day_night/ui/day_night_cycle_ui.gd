@@ -1,11 +1,15 @@
 extends Control
 
-@onready var day_label_background: Label = %DayLabelBackground
-@onready var day_label: Label = %DayLabel
-@onready var time_label_background: Label = %TimeLabelBackground
-@onready var time_label: Label = %TimeLabel
+#@onready var day_label_background: Label = %DayLabelBackground
+#@onready var day_label: Label = %DayLabel
+#@onready var time_label_background: Label = %TimeLabelBackground
+#@onready var time_label: Label = %TimeLabel
 @onready var arrow: TextureRect = %Arrow
 
+@onready var day_label_background: Label = $Control/CenterContainerDay/DayLabelBackground
+@onready var day_label: Label = $Control/CenterContainerDay/DayLabelBackground/DayLabel
+@onready var time_label_background: Label = $Control/CenterContainerTime/TimeLabelBackground
+@onready var time_label: Label = $Control/CenterContainerTime/TimeLabelBackground/TimeLabel
 
 func _ready() -> void:
 	Events.time_tick.connect(set_daytime)
