@@ -23,13 +23,10 @@ func _ready() -> void:
 	
 	animation_tree.set_active(true)
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
-	
-	add_to_group("player")
 
 
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
 	GameManager.player_health = current_health
-	health_component.health = current_health
 	Events.player_health_changed.emit(current_health)
 	
 	if GameManager.player_health > 0:

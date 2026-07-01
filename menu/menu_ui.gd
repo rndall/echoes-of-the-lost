@@ -1,10 +1,10 @@
 extends Control
 
-var is_open: bool = false
-var current_tab: String = "inventory"
-
 @export var hotbar_ui: Control
-@export var player: Player  # Optional: assign in inspector, or auto-found
+
+var current_tab: String = "inventory"
+var is_open: bool = false
+var player: Player
 
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
 @onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
@@ -16,6 +16,8 @@ var current_tab: String = "inventory"
 @onready var crafting_ui = $crafting
 @onready var settings_ui = $settings
 @onready var player_sprite_animated: AnimatedSprite2D = $inventory/player_view/player_sprite/AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $inventory/player_view/AnimationPlayer
+
 
 func _ready() -> void:
 	if hotbar_ui == null:
@@ -23,21 +25,12 @@ func _ready() -> void:
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
 	
-	# Auto-find player if not assigned
-	if player == null:
-		var player_nodes = get_tree().get_nodes_in_group("player")
-		if player_nodes.size() > 0:
-			player = player_nodes[0]
+	player = get_tree().get_first_node_in_group("player")
+	player.state_changed.connect(_on_player_state_changed)
 	
-	# Connect to player state changes
-	if player:
-		player.state_changed.connect(_on_player_state_changed)
-	else:
-		push_error("MenuUI: Player not found! Assign it in the inspector or add Player to 'player' group.")
-
 	_setup_artifact_slots()
 	_setup_tabs()
-
+	
 	close()
 
 
@@ -57,16 +50,11 @@ func _on_player_state_changed(state_name: String) -> void:
 	"""Update the menu sprite when player state changes."""
 	match state_name.to_lower():
 		"idle":
-			player_sprite_animated.play("idle")
+			animation_player.play("idle")
 		"walking", "walk":
-			player_sprite_animated.play("walk")
+			animation_player.play("walk")
 		"action":
-			if player and GameManager.player_weapon:
-				player_sprite_animated.play("attack")
-			else:
-				player_sprite_animated.play("idle")
-		_:
-			player_sprite_animated.play("idle")
+			animation_player.play("attack")
 
 
 # ────────────────────────────────────────────────────────────────────────────
