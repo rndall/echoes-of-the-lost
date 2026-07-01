@@ -2,6 +2,8 @@ extends Control
 
 class_name RecipeListUI
 
+signal recipe_selected(recipe: Recipe)
+
 @onready var grid_container = $GridContainer
 
 var recipe_ui_instances: Array[RecipeUI] = []
@@ -22,6 +24,13 @@ func _setup_recipe_uis() -> void:
 		var recipe_ui = grid_container.get_child(i) as RecipeUI
 		if recipe_ui and i < all_recipes.size():
 			recipe_ui.set_recipe(all_recipes[i])
+			recipe_ui.recipe_selected.connect(_on_recipe_ui_selected)
 			recipe_ui_instances.append(recipe_ui)
 		elif recipe_ui:
 			recipe_ui.queue_free()
+
+
+func _on_recipe_ui_selected(recipe: Recipe) -> void:
+	for recipe_ui in recipe_ui_instances:
+		recipe_ui.set_selected(recipe_ui.recipe == recipe)
+	recipe_selected.emit(recipe)

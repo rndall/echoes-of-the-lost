@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://cexfxdkfqww4j"]
 
 [ext_resource type="Texture2D" uid="uid://dk1up28gog5pt" path="res://crafting/assets/ingredient_view.png" id="1_d1d6l"]
+[ext_resource type="Script" uid="uid://hswjwbnbc714" path="res://crafting/ui_scripts/ingredient_ui.gd" id="1_q575b"]
 
 [node name="ingredient_ui" type="Panel" unique_id=1115781863]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(17, 16)
 offset_right = 17.0
 offset_bottom = 16.0
+script = ExtResource("1_q575b")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1989943352]
 position = Vector2(9, 8)

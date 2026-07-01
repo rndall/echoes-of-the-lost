@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_81rr7")
 material = ExtResource("1_p73ha")
+amount = 2
 metadata/_custom_type_script = "uid://bd0uwms5htkhu"

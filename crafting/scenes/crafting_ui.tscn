@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://cx4lu8x5qonlj"]
 
+[ext_resource type="Script" uid="uid://b3m64soxj3bt7" path="res://crafting/ui_scripts/crafting_ui.gd" id="1_io8h8"]
 [ext_resource type="PackedScene" uid="uid://cexfxdkfqww4j" path="res://crafting/scenes/ingredient_ui.tscn" id="1_meftn"]
 [ext_resource type="Texture2D" uid="uid://b5r5xkac6d3rg" path="res://crafting/assets/product_view.png" id="1_mnya2"]
 [ext_resource type="Texture2D" uid="uid://cp5um6yju6wpk" path="res://crafting/assets/craft_button.png" id="3_raqar"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dutb6"]
-size = Vector2(72, 16)
 
 [node name="crafting_ui" type="Control" unique_id=567155504]
 custom_minimum_size = Vector2(109, 136)
@@ -13,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 106.0
 offset_bottom = 102.0
+script = ExtResource("1_io8h8")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=469571996]
 custom_minimum_size = Vector2(109, 136)
@@ -40,6 +39,8 @@ offset_right = 33.0
 offset_bottom = 33.0
 
 [node name="item_display" type="Sprite2D" parent="NinePatchRect/product_ui/CenterContainer" unique_id=1587478905]
+position = Vector2(17, 17)
+scale = Vector2(1.5, 1.5)
 
 [node name="ingredients_grid" type="GridContainer" parent="NinePatchRect" unique_id=91502898]
 layout_mode = 0
@@ -67,12 +68,6 @@ layout_mode = 2
 [node name="ingredient_ui2" parent="NinePatchRect/ingredients_grid" unique_id=1315766105 instance=ExtResource("1_meftn")]
 layout_mode = 2
 
-[node name="craft_button" type="Area2D" parent="NinePatchRect" unique_id=1530112066]
-
-[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/craft_button" unique_id=1854538875]
+[node name="craft_button" type="Sprite2D" parent="NinePatchRect" unique_id=1854538875]
 position = Vector2(55, 120)
 texture = ExtResource("3_raqar")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NinePatchRect/craft_button" unique_id=978101278]
-position = Vector2(55, 120)
-shape = SubResource("RectangleShape2D_dutb6")

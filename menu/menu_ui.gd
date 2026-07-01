@@ -14,6 +14,8 @@ var is_open: bool = false
 @onready var inv_ui = $inventory
 @onready var crafting_ui = $crafting
 @onready var settings_ui = $settings
+@onready var recipe_list_ui: RecipeListUI = $crafting/recipe_list_ui
+@onready var crafting_display: CraftingUI = $crafting/crafting_ui
 @onready var animation_player: AnimationPlayer = $inventory/player_view/AnimationPlayer
 
 
@@ -27,6 +29,7 @@ func _ready() -> void:
 	
 	_setup_artifact_slots()
 	_setup_tabs()
+	recipe_list_ui.recipe_selected.connect(crafting_display.display_recipe)
 	
 	close()
 
