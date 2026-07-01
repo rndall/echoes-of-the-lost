@@ -30,6 +30,7 @@ func _ready() -> void:
 	_setup_artifact_slots()
 	_setup_tabs()
 	recipe_list_ui.recipe_selected.connect(crafting_display.display_recipe)
+	crafting_display.item_crafted.connect(_on_item_crafted)
 	
 	close()
 
@@ -56,6 +57,21 @@ func _on_player_state_changed(state: PlayerState) -> void:
 			animation_player.play("attack")
 		_:
 			animation_player.play("idle")
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# Crafting feedback
+# ────────────────────────────────────────────────────────────────────────────
+
+func _on_item_crafted(product: InvItem, from_pos: Vector2) -> void:
+	# Only show the fly-to-inventory ghost when the crafting tab is the one
+	# currently open; if items ever get crafted through some other flow while
+	# this tab isn't visible, stay quiet.
+	if current_tab != "crafting" or not product or not product.texture:
+		return
+
+	var target_pos: Vector2 = inventory_tab.get_global_transform_with_canvas().origin + inventory_tab.size * inventory_tab.get_global_transform_with_canvas().get_scale() / 2.0
+	DragGhost.fly_to(product.texture, from_pos, target_pos)
 
 
 # ────────────────────────────────────────────────────────────────────────────

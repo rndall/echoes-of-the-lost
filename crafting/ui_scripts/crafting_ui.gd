@@ -2,6 +2,10 @@ extends Control
 
 class_name CraftingUI
 
+# Emitted after a successful craft. `from_pos` is where the ghost animation
+# should originate from (the product icon in this UI).
+signal item_crafted(product: InvItem, from_pos: Vector2)
+
 const IngredientUIScene: PackedScene = preload("res://crafting/scenes/ingredient_ui.tscn")
 
 const MAX_INGREDIENT_COLUMNS := 3
@@ -112,3 +116,4 @@ func _craft() -> void:
 
 	if current_recipe.product:
 		player_inv.insert(current_recipe.product, 1)
+		item_crafted.emit(current_recipe.product, product_display.global_position)
