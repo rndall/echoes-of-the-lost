@@ -5,8 +5,8 @@ const TILE_SIZE: float = 24
 var last_position: Vector2
 
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	player.notify_state_change("walk")
+func enter(previous_state_path: String, _data := {}) -> void:
+	super(previous_state_path)
 	last_position = player.global_position
 	
 	player.animation_state.travel("Walk")

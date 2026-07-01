@@ -15,3 +15,7 @@ func _ready() -> void:
 	player = owner as Player
 	assert(player != null, 
 			"The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
+
+
+func enter(_previous_state_path: String, _data := {}) -> void:
+	Events.player_state_changed.emit(self)

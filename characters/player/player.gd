@@ -3,8 +3,6 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 
-signal state_changed(state_name: String)
-
 @onready var hurt: AudioStreamPlayer2D = $Hurt
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -50,7 +48,3 @@ func heal(amount: int) -> void:
 	health_component.health = health
 	Events.player_health_changed.emit(health)
 	print([amount, health])
-
-
-func notify_state_change(state_name: String) -> void:
-	state_changed.emit(state_name)

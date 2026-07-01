@@ -1,9 +1,8 @@
 extends PlayerState
 
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	player.notify_state_change("action")
-	
+func enter(previous_state_path: String, _data := {}) -> void:
+	super(previous_state_path)
 	if GameManager.player_weapon.target == WeaponItem.Target.ENEMY:
 		player.animation_state.travel("Attack")
 		player.animation_tree.set("parameters/Attack/blend_position", player.facing_direction)

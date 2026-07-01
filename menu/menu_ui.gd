@@ -4,7 +4,6 @@ extends Control
 
 var current_tab: String = "inventory"
 var is_open: bool = false
-var player: Player
 
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
 @onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
@@ -15,7 +14,6 @@ var player: Player
 @onready var inv_ui = $inventory
 @onready var crafting_ui = $crafting
 @onready var settings_ui = $settings
-@onready var player_sprite_animated: AnimatedSprite2D = $inventory/player_view/player_sprite/AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $inventory/player_view/AnimationPlayer
 
 
@@ -25,8 +23,7 @@ func _ready() -> void:
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
 	
-	player = get_tree().get_first_node_in_group("player")
-	player.state_changed.connect(_on_player_state_changed)
+	Events.player_state_changed.connect(_on_player_state_changed)
 	
 	_setup_artifact_slots()
 	_setup_tabs()
@@ -46,15 +43,16 @@ func _process(_delta: float) -> void:
 # Player State Sync
 # ────────────────────────────────────────────────────────────────────────────
 
-func _on_player_state_changed(state_name: String) -> void:
-	"""Update the menu sprite when player state changes."""
-	match state_name.to_lower():
-		"idle":
+func _on_player_state_changed(state: PlayerState) -> void:
+	match state.name:
+		PlayerState.IDLE:
 			animation_player.play("idle")
-		"walking", "walk":
+		PlayerState.WALKING:
 			animation_player.play("walk")
-		"action":
+		PlayerState.ACTION:
 			animation_player.play("attack")
+		_:
+			animation_player.play("idle")
 
 
 # ────────────────────────────────────────────────────────────────────────────
