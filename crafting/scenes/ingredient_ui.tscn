@@ -35,5 +35,4 @@ offset_right = 60.000015
 offset_bottom = 22.999996
 scale = Vector2(0.25, 0.25)
 theme_override_font_sizes/font_size = 18
-text = "9"
 horizontal_alignment = 2
