@@ -1,15 +1,10 @@
 extends Control
 
-#@onready var day_label_background: Label = %DayLabelBackground
-#@onready var day_label: Label = %DayLabel
-#@onready var time_label_background: Label = %TimeLabelBackground
-#@onready var time_label: Label = %TimeLabel
-@onready var arrow: TextureRect = %Arrow
+@export var use_24_hour_time: bool = false
 
-@onready var day_label_background: Label = $Control/CenterContainerDay/DayLabelBackground
-@onready var day_label: Label = $Control/CenterContainerDay/DayLabelBackground/DayLabel
-@onready var time_label_background: Label = $Control/CenterContainerTime/TimeLabelBackground
-@onready var time_label: Label = $Control/CenterContainerTime/TimeLabelBackground/TimeLabel
+@onready var time_label: Label = %TimeLabel
+@onready var day_label: Label = %DayLabel
+
 
 func _ready() -> void:
 	Events.time_tick.connect(set_daytime)
@@ -17,15 +12,17 @@ func _ready() -> void:
 
 func set_daytime(day: int, hour: int, minute: int) -> void:
 	day_label.text = "Day " + str(day + 1)
-	day_label_background.text = day_label.text
 	
-	time_label.text = _amfm_hour(hour) + ":" + _minute(minute) + " " + _am_pm(hour)
-	time_label_background.text = time_label.text
-	
-	if hour <= 12:
-		arrow.rotation_degrees = _remap_rangef(hour, 0, 12, -90, 90)
+	if use_24_hour_time:
+		time_label.text = _hour_24(hour) + ":" + _minute(minute)
 	else:
-		arrow.rotation_degrees = _remap_rangef(hour, 13, 23, 90, -90)
+		time_label.text = _amfm_hour(hour) + ":" + _minute(minute) + " " + _am_pm(hour)
+
+
+func _hour_24(hour: int) -> String:
+	if hour < 10:
+		return "0" + str(hour)
+	return str(hour)
 
 
 func _amfm_hour(hour:int) -> String:

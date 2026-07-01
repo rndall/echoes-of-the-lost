@@ -1,22 +1,9 @@
 [gd_scene format=3 uid="uid://ceolcwatpaicu"]
 
 [ext_resource type="Script" uid="uid://b7m6hjgqp57xs" path="res://day_night/ui/day_night_cycle_ui.gd" id="1_altij"]
-[ext_resource type="Texture2D" uid="uid://bfji2my8t6txp" path="res://day_night/ui/day_night_cycle_ui.png" id="2_3qqwj"]
-[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="3_6qa0r"]
+[ext_resource type="FontFile" uid="uid://p275wobxhq4o" path="res://day_night/fonts/PixelifySans-VariableFont_wght.ttf" id="4_3ntpk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhbnj"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xwu1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5isbm"]
-atlas = ExtResource("2_3qqwj")
-region = Rect2(1, 1, 73, 43)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_14tbr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucvpk"]
-atlas = ExtResource("2_3qqwj")
-region = Rect2(2, 47, 16, 5)
 
 [node name="DayNightCycleUI" type="Control" unique_id=1929152440]
 material = SubResource("ShaderMaterial_qhbnj")
@@ -28,144 +15,31 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_altij")
+use_24_hour_time = true
 
-[node name="StardewValley" type="Control" parent="." unique_id=1302336728]
-visible = false
-anchors_preset = 0
-
-[node name="TextureRect" type="TextureRect" parent="StardewValley" unique_id=1633945676]
-material = SubResource("ShaderMaterial_8xwu1")
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1506590115]
 layout_mode = 0
-offset_right = 73.0
-offset_bottom = 43.0
-texture = SubResource("AtlasTexture_5isbm")
+offset_right = 67.0
+offset_bottom = 61.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
 
-[node name="CenterContainerDay" type="CenterContainer" parent="StardewValley" unique_id=899666808]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 9.0
-offset_right = 50.0
-offset_bottom = 20.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1908830153]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="DayLabelBackground" type="Label" parent="StardewValley/CenterContainerDay" unique_id=83657057]
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=881445379]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "Day 13"
-metadata/_edit_lock_ = true
+theme_override_fonts/font = ExtResource("4_3ntpk")
+theme_override_font_sizes/font_size = 20
+text = "Day 1"
+uppercase = true
 
-[node name="DayLabel" type="Label" parent="StardewValley/CenterContainerDay/DayLabelBackground" unique_id=349565484]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = -1.0
-offset_right = 33.0
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "Day 13"
-metadata/_edit_lock_ = true
-
-[node name="CenterContainerTime" type="CenterContainer" parent="StardewValley" unique_id=1063581302]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 29.0
-offset_right = 51.0
-offset_bottom = 40.0
-
-[node name="TimeLabelBackground" type="Label" parent="StardewValley/CenterContainerTime" unique_id=362399096]
+[node name="TimeLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1533350749]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.898039, 0.576471, 0.419608, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "12:00 am"
-metadata/_edit_lock_ = true
-
-[node name="TimeLabel" type="Label" parent="StardewValley/CenterContainerTime/TimeLabelBackground" unique_id=1457437259]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(0.490196, 0.219608, 0.2, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "12:00 am"
-metadata/_edit_lock_ = true
-
-[node name="Arrow" type="TextureRect" parent="StardewValley" unique_id=1933498069]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_14tbr")
-layout_mode = 0
-offset_left = 51.0
-offset_top = 19.0
-offset_right = 90.99999
-offset_bottom = 59.0
-rotation = -1.60047
-pivot_offset = Vector2(1, 2.5)
-texture = SubResource("AtlasTexture_ucvpk")
-stretch_mode = 2
-
-[node name="Control" type="Control" parent="." unique_id=1213523064]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CenterContainerDay" type="CenterContainer" parent="Control" unique_id=415301035]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 9.0
-offset_right = 50.0
-offset_bottom = 20.0
-
-[node name="DayLabelBackground" type="Label" parent="Control/CenterContainerDay" unique_id=2118615442]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.15686275, 0.20392157, 0.2627451, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "Day 13"
-metadata/_edit_lock_ = true
-
-[node name="DayLabel" type="Label" parent="Control/CenterContainerDay/DayLabelBackground" unique_id=1408173663]
-layout_mode = 0
-offset_top = -1.0
-offset_right = 33.0
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(0.78431374, 0.8235294, 0.8627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "Day 13"
-metadata/_edit_lock_ = true
-
-[node name="CenterContainerTime" type="CenterContainer" parent="Control" unique_id=2050435287]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 29.0
-offset_right = 51.0
-offset_bottom = 40.0
-
-[node name="TimeLabelBackground" type="Label" parent="Control/CenterContainerTime" unique_id=342756406]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.15686275, 0.20392157, 0.2627451, 1)
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "12:00 am"
-metadata/_edit_lock_ = true
-
-[node name="TimeLabel" type="Label" parent="Control/CenterContainerTime/TimeLabelBackground" unique_id=287530736]
-layout_mode = 0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(0.78431374, 0.8235294, 0.8627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3_6qa0r")
-theme_override_font_sizes/font_size = 8
-text = "12:00 am"
-metadata/_edit_lock_ = true
+theme_override_fonts/font = ExtResource("4_3ntpk")
+theme_override_font_sizes/font_size = 16
+text = "12:00"
+uppercase = true
