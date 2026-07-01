@@ -147,6 +147,7 @@ block={
 2d_physics/layer_5="Environment"
 2d_physics/layer_6="Pickup"
 2d_physics/layer_7="Environtment Attacks"
+2d_physics/layer_8="Stone Attacks"
 
 [physics]
 

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
 [ext_resource type="Script" uid="uid://cg5crbxbfkofa" path="res://characters/player/player_hitbox.gd" id="5_58jvb"]
+[ext_resource type="Script" path="res://characters/player/tool_hitbox.gd" id="6_thbx0"]
 [ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
 [ext_resource type="AudioStream" uid="uid://c41blxsnf72iu" path="res://characters/player/assets/sfx/character_attack.mp3" id="5_on558"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="5_rpf03"]
@@ -1742,7 +1743,7 @@ height = 10.0
 size = Vector2(12, 26)
 
 [node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
-collision_mask = 116
+collision_mask = 244
 script = ExtResource("1_dirf7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=393763556]
@@ -1789,11 +1790,10 @@ stream = ExtResource("5_on558")
 bus = &"SFX"
 
 [node name="AxeHitbox" parent="." unique_id=1456623044 instance=ExtResource("4_x5dtk")]
-visible = false
 position = Vector2(12, -23)
 rotation = 0.8425456
 collision_mask = 64
-script = ExtResource("5_58jvb")
+script = ExtResource("6_thbx0")
 knockback_force = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AxeHitbox" unique_id=2133235629]
