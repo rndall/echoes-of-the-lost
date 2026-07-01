@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1qgggbcr8kqn" path="res://inventory/scenes/artifact_slot_ui.tscn" id="7_sys31"]
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
 [ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
+[ext_resource type="Texture2D" uid="uid://dm86nn4addsws" path="res://crafting/assets/ui_bg.png" id="10_r2nwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65x4j"]
 atlas = ExtResource("5_sys31")
@@ -133,10 +134,10 @@ z_index = 2
 [node name="inventory" type="Panel" parent="tabs" unique_id=1718986918]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(19, 17)
-offset_left = 140.0
-offset_top = -147.0
-offset_right = 159.0
-offset_bottom = -130.0
+offset_left = -155.0
+offset_top = -141.0
+offset_right = -130.0
+offset_bottom = -124.0
 
 [node name="crafting" type="Panel" parent="tabs" unique_id=1298637866]
 self_modulate = Color(1, 1, 1, 0)
@@ -237,11 +238,11 @@ offset_bottom = -24.0
 visible = false
 z_index = 2
 layout_mode = 0
-offset_left = -145.0
-offset_top = -149.0
+offset_left = -152.0
+offset_top = -148.0
 offset_right = 161.0
 offset_bottom = 41.0
-texture = ExtResource("1_86ygs")
+texture = ExtResource("10_r2nwl")
 
 [node name="settings" type="NinePatchRect" parent="." unique_id=438510004]
 visible = false
