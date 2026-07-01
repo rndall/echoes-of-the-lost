@@ -3,8 +3,6 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 
-signal state_changed(state_name: String)
-
 @onready var hurt: AudioStreamPlayer2D = $Hurt
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -23,13 +21,10 @@ func _ready() -> void:
 	
 	animation_tree.set_active(true)
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
-	
-	add_to_group("player")
 
 
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
 	GameManager.player_health = current_health
-	health_component.health = current_health
 	Events.player_health_changed.emit(current_health)
 	
 	if GameManager.player_health > 0:
@@ -53,7 +48,3 @@ func heal(amount: int) -> void:
 	health_component.health = health
 	Events.player_health_changed.emit(health)
 	print([amount, health])
-
-
-func notify_state_change(state_name: String) -> void:
-	state_changed.emit(state_name)

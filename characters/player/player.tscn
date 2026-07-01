@@ -1750,7 +1750,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_dirf7")
 hframes = 4
 vframes = 4
-frame = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534997948]
 shape = SubResource("CapsuleShape2D_3onaq")

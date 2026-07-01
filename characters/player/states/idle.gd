@@ -1,8 +1,8 @@
 extends PlayerState
 
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	player.notify_state_change("idle")
+func enter(previous_state_path: String, _data := {}) -> void:
+	super(previous_state_path)
 	player.animation_state.travel("Idle")
 	player.animation_tree.set("parameters/Idle/blend_position", player.facing_direction)
 
