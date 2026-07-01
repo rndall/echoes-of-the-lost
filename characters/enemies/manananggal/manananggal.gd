@@ -16,8 +16,11 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("fly_up")
 
 
-func _on_health_changed(current_health: float, _attack: Attack) -> void:
-	if current_health >= 0:
+func _on_health_changed(current_health: float, attack: Attack) -> void:
+	if attack.attack_damage <= 0:
+		return
+	
+	if current_health > 0:
 		hurt.play(0.25)
 
 

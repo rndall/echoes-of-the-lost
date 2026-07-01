@@ -6,9 +6,11 @@ signal died
 
 @export var sprite_2d: Sprite2D
 @export var max_health: float = 10.0
+@export var block_hitbox: HitboxComponent
 
 var health: float
 var can_take_damage: bool = true
+var is_blocking: bool = false
 var dead: bool = false
 
 
@@ -22,7 +24,9 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 		return
 	if not can_take_damage and not ignore_invincible:
 		return
-
+	if is_blocking and block_hitbox.is_overlapping_attacker(attack.attacker):
+		return
+	
 	health -= attack.attack_damage
 	health_changed.emit(health, attack)
 
@@ -31,19 +35,7 @@ func damage(attack: Attack, invincible_time: float = 0.0,
 		return
 
 	if invincible_time > 0.0:
-		_apply_invincibility(invincible_time)
-
-
-func _apply_invincibility(duration: float) -> void:
-	can_take_damage = false
-	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	var step = duration / 4.0
-
-	tween.tween_property(sprite_2d, "modulate", Color(1, 0.2, 0.2), step)
-	tween.tween_property(sprite_2d, "modulate", Color(1, 1, 1), step)
-	tween.tween_property(sprite_2d, "modulate", Color(1, 0.2, 0.2), step)
-	tween.tween_property(sprite_2d, "modulate", Color(1, 1, 1), step)
-	tween.finished.connect(func(): can_take_damage = true)
+		_apply_invincibility(invincible_time, attack.attack_damage > 0)
 
 
 func die() -> void:
@@ -55,3 +47,19 @@ func die() -> void:
 	await tween.parallel().tween_property(sprite_2d, "scale", Vector2.ZERO, 0.2).finished
 	get_owner().set_physics_process(false)
 	died.emit()
+
+
+func _apply_invincibility(duration: float, should_flash: bool = true) -> void:
+	can_take_damage = false
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	var step = duration / 4.0
+
+	if should_flash:
+		tween.tween_property(sprite_2d, "modulate", Color(1, 0.2, 0.2), step)
+		tween.tween_property(sprite_2d, "modulate", Color(1, 1, 1), step)
+		tween.tween_property(sprite_2d, "modulate", Color(1, 0.2, 0.2), step)
+		tween.tween_property(sprite_2d, "modulate", Color(1, 1, 1), step)
+	else:
+		tween.tween_interval(duration)
+	
+	tween.finished.connect(func(): can_take_damage = true)
