@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ds8vpxu7dwye7" path="res://objects/cabin/cabin.tscn" id="2_0lnqv"]
 [ext_resource type="Texture2D" uid="uid://bjn1jwdb5uc6j" path="res://maps/outside/assets/forest_floor.png" id="2_hdwuj"]
 [ext_resource type="PackedScene" uid="uid://bikbcp5i10kqp" path="res://objects/tree/tree.tscn" id="3_0lnqv"]
-[ext_resource type="PackedScene" uid="uid://fq0rpqcft4tv" path="res://inventory/scenes/pickup_items/axe.tscn" id="6_kh3qa"]
-[ext_resource type="PackedScene" uid="uid://bp5ugko3xdxxh" path="res://inventory/scenes/pickup_items/sword.tscn" id="7_f1t0a"]
+[ext_resource type="PackedScene" uid="uid://c6ruyruebjijq" path="res://objects/stone/stone.tscn" id="5_f1t0a"]
 [ext_resource type="Script" uid="uid://bfcg8k1d17qnv" path="res://maps/outside/enemy_spawner.gd" id="8_kh3qa"]
 [ext_resource type="PackedScene" uid="uid://buckmemkx0asn" path="res://characters/enemies/manananggal/manananggal.tscn" id="8_y1hac"]
 
@@ -323,16 +322,84 @@ position = Vector2(182, 79)
 [node name="Tree3" parent="Trees" unique_id=382209589 instance=ExtResource("3_0lnqv")]
 position = Vector2(210, 141)
 
+[node name="Stones" type="Node2D" parent="." unique_id=798038600]
+
+[node name="stone" parent="Stones" unique_id=176890095 instance=ExtResource("5_f1t0a")]
+position = Vector2(698, 504)
+
+[node name="stone10" parent="Stones" unique_id=1957606918 instance=ExtResource("5_f1t0a")]
+position = Vector2(894, 447)
+
+[node name="stone11" parent="Stones" unique_id=870190937 instance=ExtResource("5_f1t0a")]
+position = Vector2(826, 593)
+
+[node name="stone12" parent="Stones" unique_id=1114395084 instance=ExtResource("5_f1t0a")]
+position = Vector2(1127, 445)
+
+[node name="stone13" parent="Stones" unique_id=1745805867 instance=ExtResource("5_f1t0a")]
+position = Vector2(1013, 351)
+
+[node name="stone14" parent="Stones" unique_id=381849287 instance=ExtResource("5_f1t0a")]
+position = Vector2(554, 539)
+
+[node name="stone15" parent="Stones" unique_id=799655865 instance=ExtResource("5_f1t0a")]
+position = Vector2(91, 577)
+
+[node name="stone16" parent="Stones" unique_id=644656098 instance=ExtResource("5_f1t0a")]
+position = Vector2(181, 743)
+
+[node name="stone17" parent="Stones" unique_id=976231976 instance=ExtResource("5_f1t0a")]
+position = Vector2(389, 743)
+
+[node name="stone18" parent="Stones" unique_id=662511080 instance=ExtResource("5_f1t0a")]
+position = Vector2(828, 732)
+
+[node name="stone19" parent="Stones" unique_id=1744409863 instance=ExtResource("5_f1t0a")]
+position = Vector2(1295, 640)
+
+[node name="stone20" parent="Stones" unique_id=594999636 instance=ExtResource("5_f1t0a")]
+position = Vector2(1323, 427)
+
+[node name="stone21" parent="Stones" unique_id=1267210066 instance=ExtResource("5_f1t0a")]
+position = Vector2(1278, 293)
+
+[node name="stone22" parent="Stones" unique_id=1881971148 instance=ExtResource("5_f1t0a")]
+position = Vector2(984, 131)
+
+[node name="stone23" parent="Stones" unique_id=881067258 instance=ExtResource("5_f1t0a")]
+position = Vector2(1282, 96)
+
+[node name="stone24" parent="Stones" unique_id=610336503 instance=ExtResource("5_f1t0a")]
+position = Vector2(861, 62)
+
+[node name="stone2" parent="Stones" unique_id=1105271592 instance=ExtResource("5_f1t0a")]
+position = Vector2(420, 427)
+
+[node name="stone3" parent="Stones" unique_id=659762711 instance=ExtResource("5_f1t0a")]
+position = Vector2(58, 340)
+
+[node name="stone4" parent="Stones" unique_id=771973201 instance=ExtResource("5_f1t0a")]
+position = Vector2(614, 113)
+
+[node name="stone5" parent="Stones" unique_id=2054927515 instance=ExtResource("5_f1t0a")]
+position = Vector2(793, 256)
+
+[node name="stone6" parent="Stones" unique_id=920793315 instance=ExtResource("5_f1t0a")]
+position = Vector2(136, 137)
+
+[node name="stone7" parent="Stones" unique_id=130830014 instance=ExtResource("5_f1t0a")]
+position = Vector2(201, 244)
+
+[node name="stone8" parent="Stones" unique_id=528829115 instance=ExtResource("5_f1t0a")]
+position = Vector2(391, 111)
+
+[node name="stone9" parent="Stones" unique_id=725564292 instance=ExtResource("5_f1t0a")]
+position = Vector2(518, 25)
+
 [node name="Objects" type="Node2D" parent="." unique_id=1863328188]
 
 [node name="Cabin" parent="Objects" unique_id=1945979290 instance=ExtResource("2_0lnqv")]
 position = Vector2(429, 258)
-
-[node name="sword" parent="Objects" unique_id=348671092 instance=ExtResource("7_f1t0a")]
-position = Vector2(186, 312)
-
-[node name="axe" parent="Objects" unique_id=1930831341 instance=ExtResource("6_kh3qa")]
-position = Vector2(266, 309)
 
 [node name="Spawns" type="Node2D" parent="." unique_id=597417931]
 

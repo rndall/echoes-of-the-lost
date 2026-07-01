@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy4qf0dq8xirt"
-path="res://.godot/imported/hammer16x16-1.png.png-e4f74bcfbaf6a2cc88b66f9758c9e94f.ctex"
+uid="uid://d1gv8qfkenx3q"
+path="res://.godot/imported/rock16X16-1.png-fa318a5f2a9e1f7ae6f28866be228160.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://inventory/assets/items/hammer16x16-1.png.png"
-dest_files=["res://.godot/imported/hammer16x16-1.png.png-e4f74bcfbaf6a2cc88b66f9758c9e94f.ctex"]
+source_file="res://inventory/assets/items/rock16X16-1.png"
+dest_files=["res://.godot/imported/rock16X16-1.png-fa318a5f2a9e1f7ae6f28866be228160.ctex"]
 
 [params]
 
