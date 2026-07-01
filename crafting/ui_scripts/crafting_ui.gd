@@ -8,7 +8,7 @@ const MAX_INGREDIENT_COLUMNS := 3
 
 @onready var product_display: Sprite2D = $NinePatchRect/product_ui/CenterContainer/item_display
 @onready var ingredients_grid: GridContainer = $NinePatchRect/ingredients_grid
-@onready var craft_button: Area2D = $NinePatchRect/craft_button
+@onready var craft_button: TextureButton = $NinePatchRect/craft_button
 
 var player_inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 
@@ -17,7 +17,7 @@ var current_recipe: Recipe
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	craft_button.input_event.connect(_on_craft_button_input_event)
+	craft_button.pressed.connect(_craft)
 	player_inv.update.connect(_on_player_inv_update)
 
 
@@ -112,8 +112,3 @@ func _craft() -> void:
 
 	if current_recipe.product:
 		player_inv.insert(current_recipe.product, 1)
-
-
-func _on_craft_button_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_craft()
