@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InvItem" format=3 uid="uid://tjqankqipfe7"]
 
-[ext_resource type="Script" uid="uid://bhamvq1lajjdf" path="res://inventory/scripts/inventory_item.gd" id="1_ikl7e"]
+[ext_resource type="Script" uid="uid://bhamvq1lajjdf" path="res://inventory/resource_scripts/inventory_item.gd" id="1_ikl7e"]
 [ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="2_up26n"]
 
 [resource]

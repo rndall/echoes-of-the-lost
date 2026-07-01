@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://edpxyxw2vqne"]
 
-[ext_resource type="Script" uid="uid://d2hm0h00dbkbd" path="res://inventory/ui/weapon_slot_ui.gd" id="1_sr3ci"]
+[ext_resource type="Script" uid="uid://d2hm0h00dbkbd" path="res://inventory/ui_scripts/weapon_slot_ui.gd" id="1_sr3ci"]
 [ext_resource type="Texture2D" uid="uid://cdpiww0i2e6cq" path="res://inventory/assets/weapon_slot.png" id="1_vl8da"]
 [ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="3_ia6k1"]
 [ext_resource type="Texture2D" uid="uid://cgr8joftgqomw" path="res://inventory/assets/inv_slot_selected.png" id="4_7cp0y"]

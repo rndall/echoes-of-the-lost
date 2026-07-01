@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bp5ugko3xdxxh"]
 
-[ext_resource type="Script" uid="uid://b34r6cfhdq2d" path="res://inventory/items/sword.gd" id="1_6wbwf"]
+[ext_resource type="Script" uid="uid://b34r6cfhdq2d" path="res://inventory/item_scripts/sword.gd" id="1_6wbwf"]
 [ext_resource type="Texture2D" uid="uid://bxfilcvb5vqbt" path="res://inventory/assets/items/sword.png" id="1_omuvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dutb6"]

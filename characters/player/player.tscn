@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://dgfbmjiwscke0" path="res://characters/player/states/walk.gd" id="6_idpv6"]
 [ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
 [ext_resource type="AudioStream" uid="uid://bixv11gfhfyp5" path="res://characters/player/assets/sfx/character_hurt.mp3" id="7_gqopd"]
-[ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://inventory/scenes/menu_ui.tscn" id="11_3t07l"]
+[ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="11_3t07l"]
 [ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="12_on558"]
 [ext_resource type="Script" uid="uid://dbwrxpqmdtmn0" path="res://characters/player/states/dead.gd" id="13_8l73k"]
 

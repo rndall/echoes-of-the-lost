@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpf0fj4b5xr03"]
 
-[ext_resource type="Script" uid="uid://kxds6cavu0pm" path="res://inventory/items/apple.gd" id="1_4lbrk"]
+[ext_resource type="Script" uid="uid://kxds6cavu0pm" path="res://inventory/item_scripts/apple.gd" id="1_4lbrk"]
 [ext_resource type="Texture2D" uid="uid://cbqr1km2llkhr" path="res://inventory/assets/items/apple-icon.png" id="2_1ohju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lbrk"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1w3xirxma8nw"]
 
-[ext_resource type="Script" uid="uid://ietxwguhoptf" path="res://inventory/ui/hotbar_ui.gd" id="1_dsadf"]
+[ext_resource type="Script" uid="uid://ietxwguhoptf" path="res://inventory/ui_scripts/hotbar_ui.gd" id="1_dsadf"]
 [ext_resource type="Texture2D" uid="uid://bcl0hrtsym4jx" path="res://inventory/assets/hotbar_bg.png" id="1_xe2sl"]
 [ext_resource type="PackedScene" uid="uid://dbpx0wkyll3hw" path="res://inventory/scenes/hotbar_slot_ui.tscn" id="2_jfdrg"]
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="4_dsadf"]

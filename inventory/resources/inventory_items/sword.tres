@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponItem" format=3 uid="uid://cd42opetmfuqv"]
 
-[ext_resource type="Script" uid="uid://c2kjv2djbb0ny" path="res://inventory/scripts/weapon_inv_item.gd" id="1_h5xki"]
+[ext_resource type="Script" uid="uid://c2kjv2djbb0ny" path="res://inventory/resource_scripts/weapon_inv_item.gd" id="1_h5xki"]
 [ext_resource type="PackedScene" uid="uid://bp5ugko3xdxxh" path="res://inventory/scenes/pickup_items/sword.tscn" id="1_hdk02"]
 [ext_resource type="Texture2D" uid="uid://bxfilcvb5vqbt" path="res://inventory/assets/items/sword.png" id="2_hdk02"]
 

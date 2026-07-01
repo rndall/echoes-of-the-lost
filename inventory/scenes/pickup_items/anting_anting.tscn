@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d17jlxhursebq"]
 
-[ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/items/anting_anting.gd" id="1_iimbc"]
+[ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/item_scripts/anting_anting.gd" id="1_iimbc"]
 [ext_resource type="Texture2D" uid="uid://d16tv11jeww5a" path="res://inventory/assets/items/ice_sparkles.png" id="2_iimbc"]
 [ext_resource type="AudioStream" uid="uid://b3kyeoqessag7" path="res://inventory/assets/sfx/Never Gonna Give You Up.mp3" id="3_003bj"]
 [ext_resource type="AudioStream" uid="uid://budr8dcgmudia" path="res://inventory/assets/sfx/artifact pickup sting.mp3" id="4_p83uf"]
