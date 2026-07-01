@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cx4lu8x5qonlj"]
+
+[node name="crafting_ui" type="Control" unique_id=567155504]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

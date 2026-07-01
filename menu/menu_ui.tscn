@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
 [ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
 [ext_resource type="Texture2D" uid="uid://dm86nn4addsws" path="res://crafting/assets/ui_bg.png" id="10_r2nwl"]
+[ext_resource type="PackedScene" uid="uid://djdctilgeiaxy" path="res://crafting/scenes/recipe_list_ui.tscn" id="11_cvuir"]
 
 [sub_resource type="Animation" id="Animation_dgai8"]
 resource_name = "attack"
@@ -193,6 +194,7 @@ offset_right = 159.0
 offset_bottom = -91.0
 
 [node name="settings" type="Panel" parent="tabs" unique_id=793585108]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(19, 17)
 offset_left = 140.0
@@ -284,6 +286,13 @@ offset_top = -148.0
 offset_right = 161.0
 offset_bottom = 41.0
 texture = ExtResource("10_r2nwl")
+
+[node name="recipe_list_ui" parent="crafting" unique_id=1259639000 instance=ExtResource("11_cvuir")]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 22.0
+offset_right = 138.0
+offset_bottom = 128.0
 
 [node name="settings" type="NinePatchRect" parent="." unique_id=438510004]
 visible = false

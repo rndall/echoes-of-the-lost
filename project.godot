@@ -28,6 +28,7 @@ SlotRegistry="*uid://eb7ueu1gxgkw"
 DragGhost="*uid://cy0ne5o10nmh8"
 ItemSceneRegistry="*uid://dasljscdfh2f"
 DailyTaskManager="*uid://b7i0u8kiiieng"
+RecipeManager="*uid://dhh6b6f3dim7i"
 
 [display]
 
