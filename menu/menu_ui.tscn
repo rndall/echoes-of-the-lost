@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
 [ext_resource type="Texture2D" uid="uid://dm86nn4addsws" path="res://crafting/assets/ui_bg.png" id="10_r2nwl"]
 [ext_resource type="PackedScene" uid="uid://djdctilgeiaxy" path="res://crafting/scenes/recipe_list_ui.tscn" id="11_cvuir"]
+[ext_resource type="PackedScene" uid="uid://cx4lu8x5qonlj" path="res://crafting/scenes/crafting_ui.tscn" id="12_dgai8"]
 
 [sub_resource type="Animation" id="Animation_dgai8"]
 resource_name = "attack"
@@ -293,6 +294,13 @@ offset_left = 31.0
 offset_top = 22.0
 offset_right = 138.0
 offset_bottom = 128.0
+
+[node name="crafting_ui" parent="crafting" unique_id=567155504 instance=ExtResource("12_dgai8")]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 18.0
+offset_right = 282.0
+offset_bottom = 154.0
 
 [node name="settings" type="NinePatchRect" parent="." unique_id=438510004]
 visible = false

@@ -6,8 +6,8 @@
 [node name="recipe_list_ui" type="Control" unique_id=1259639000]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 108.0
+offset_bottom = 111.0
 script = ExtResource("1_2riws")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1282285197]

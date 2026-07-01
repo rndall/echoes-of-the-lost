@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cexfxdkfqww4j"]
+
+[ext_resource type="Texture2D" uid="uid://dk1up28gog5pt" path="res://crafting/assets/ingredient_view.png" id="1_d1d6l"]
+
+[node name="ingredient_ui" type="Panel" unique_id=1115781863]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(17, 16)
+offset_right = 17.0
+offset_bottom = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1989943352]
+position = Vector2(9, 8)
+texture = ExtResource("1_d1d6l")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1503188932]
+custom_minimum_size = Vector2(17, 16)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 18.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1478954115]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel" unique_id=235655310]
+position = Vector2(1, 0)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=644860557]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 60.000015
+offset_bottom = 22.999996
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 18
+text = "9"
+horizontal_alignment = 2
