@@ -51,6 +51,8 @@ func _on_player_state_changed(state: PlayerState) -> void:
 			animation_player.play("walk")
 		PlayerState.ACTION:
 			animation_player.play("attack")
+		PlayerState.BLOCKING:
+			animation_player.play("block")
 		_:
 			animation_player.play("idle")
 
