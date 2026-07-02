@@ -11,6 +11,10 @@ const IngredientUIScene: PackedScene = preload("res://crafting/scenes/ingredient
 const MAX_INGREDIENT_COLUMNS := 3
 
 @onready var product_display: Sprite2D = $NinePatchRect/product_ui/CenterContainer/item_display
+@onready var product_name: Label = $NinePatchRect/product_ui/product_name
+@onready var description_scroll: ScrollContainer = $NinePatchRect/product_ui/ScrollContainer
+@onready var description_panel: Panel = $NinePatchRect/product_ui/ScrollContainer/Panel
+@onready var product_description: Label = $NinePatchRect/product_ui/ScrollContainer/Panel/product_description
 @onready var ingredients_grid: GridContainer = $NinePatchRect/ingredients_grid
 @onready var craft_button: TextureButton = $NinePatchRect/craft_button
 
@@ -18,11 +22,20 @@ var player_inv: Inventory = preload("res://inventory/resources/player_inv.tres")
 
 var current_recipe: Recipe
 
+# Vertical scrollbar for the description box. Kept invisible until the user
+# actually scrolls, then faded back out after a short idle period.
+var _description_scrollbar: VScrollBar
+var _scrollbar_fade_tween: Tween
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	craft_button.pressed.connect(_craft)
 	player_inv.update.connect(_on_player_inv_update)
+
+	_description_scrollbar = description_scroll.get_v_scroll_bar()
+	_description_scrollbar.modulate.a = 0.0
+	_description_scrollbar.value_changed.connect(_on_description_scrolled)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,8 +51,45 @@ func display_recipe(recipe: Recipe) -> void:
 
 	if recipe.product:
 		product_display.texture = recipe.product.texture
+		product_name.text = recipe.product.name
+		product_description.text = recipe.product.description
+		_update_description_size()
 
 	_populate_ingredients(recipe.ingredients)
+
+
+func _update_description_size() -> void:
+	# The Panel that wraps product_description is the ScrollContainer's
+	# scrollable content. Instead of a fixed height (which made it always
+	# scrollable, even for a one-line description), measure the actual
+	# wrapped text height and only let the panel grow that tall. The
+	# ScrollContainer then only allows scrolling once real content
+	# overflows its visible area.
+	var font: Font = product_description.get_theme_font("font")
+	var font_size: int = product_description.get_theme_font_size("font_size")
+	var wrap_width: float = product_description.offset_right - product_description.offset_left
+	var text_size: Vector2 = font.get_multiline_string_size(
+		product_description.text,
+		HORIZONTAL_ALIGNMENT_CENTER,
+		wrap_width,
+		font_size,
+	)
+	description_panel.custom_minimum_size.y = text_size.y * product_description.scale.y
+
+
+func _on_description_scrolled(_value: float) -> void:
+	_flash_description_scrollbar()
+
+
+func _flash_description_scrollbar() -> void:
+	# Briefly reveal the scrollbar, then fade it back out after a short
+	# idle period so it stays hidden unless the user is actively scrolling.
+	if _scrollbar_fade_tween:
+		_scrollbar_fade_tween.kill()
+	_scrollbar_fade_tween = create_tween()
+	_scrollbar_fade_tween.tween_property(_description_scrollbar, "modulate:a", 1.0, 0.1)
+	_scrollbar_fade_tween.tween_interval(0.8)
+	_scrollbar_fade_tween.tween_property(_description_scrollbar, "modulate:a", 0.0, 0.4)
 
 
 func _populate_ingredients(ingredients: Array[Ingredient]) -> void:
