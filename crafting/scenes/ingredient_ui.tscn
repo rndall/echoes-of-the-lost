@@ -27,6 +27,25 @@ layout_mode = 2
 [node name="item_display" type="Sprite2D" parent="CenterContainer/Panel" unique_id=235655310]
 position = Vector2(1, 0)
 
+[node name="Panel" type="Panel" parent="CenterContainer/Panel/item_display" unique_id=1812955436]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = -6.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 13.0
+
+[node name="ingredient_name" type="Label" parent="CenterContainer/Panel/item_display/Panel" unique_id=882686439]
+layout_mode = 0
+offset_right = 139.39392
+offset_bottom = 30.303024
+scale = Vector2(0.33, 0.33)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="Label" type="Label" parent="CenterContainer/Panel" unique_id=644860557]
 layout_mode = 0
 offset_left = -10.0
@@ -36,3 +55,6 @@ offset_bottom = 22.999996
 scale = Vector2(0.25, 0.25)
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
