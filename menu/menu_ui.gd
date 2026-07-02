@@ -9,10 +9,11 @@ var is_open: bool = false
 @onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
 @onready var inventory_tab = $tabs/inventory
 @onready var crafting_tab = $tabs/crafting
-#@onready var unknown_tab = $tabs/
+@onready var guide_tab = $tabs/guide
 @onready var settings_tab = $tabs/settings
 @onready var inv_ui = $inventory
 @onready var crafting_ui = $crafting
+@onready var guide_ui = $guide
 @onready var settings_ui = $settings
 @onready var recipe_list_ui: RecipeListUI = $crafting/recipe_list_ui
 @onready var crafting_display: CraftingUI = $crafting/crafting_ui
@@ -100,7 +101,7 @@ func close() -> void:
 func _setup_tabs() -> void:
 	inventory_tab.gui_input.connect(_on_tab_clicked.bindv([inventory_tab, "inventory"]))
 	crafting_tab.gui_input.connect(_on_tab_clicked.bindv([crafting_tab, "crafting"]))
-	#unknown_tab.gui_input.connect(_on_tab_clicked.bindv([unknown_tab, "unknown"]))
+	guide_tab.gui_input.connect(_on_tab_clicked.bindv([guide_tab, "guide"]))
 	settings_tab.gui_input.connect(_on_tab_clicked.bindv([settings_tab, "settings"]))
 
 func _on_tab_clicked(event: InputEvent, _tab: Panel, tab_name: String) -> void:
@@ -119,14 +120,22 @@ func switch_tabs(tab_name: String) -> void:
 	if current_tab == "inventory":
 		inv_ui.visible = true
 		crafting_ui.visible = false
+		guide_ui.visible = false
 		settings_ui.visible = false
 	elif current_tab == "crafting":
 		inv_ui.visible = false
 		crafting_ui.visible = true
+		guide_ui.visible = false
+		settings_ui.visible = false
+	elif current_tab == "guide":
+		inv_ui.visible = false
+		crafting_ui.visible = false
+		guide_ui.visible = true
 		settings_ui.visible = false
 	elif current_tab == "settings":
 		inv_ui.visible = false
 		crafting_ui.visible = false
+		guide_ui.visible = false
 		settings_ui.visible = true
 
 
