@@ -34,3 +34,8 @@ func _on_recipe_ui_selected(recipe: Recipe) -> void:
 	for recipe_ui in recipe_ui_instances:
 		recipe_ui.set_selected(recipe_ui.recipe == recipe)
 	recipe_selected.emit(recipe)
+
+
+func deselect_all() -> void:
+	for recipe_ui in recipe_ui_instances:
+		recipe_ui.set_selected(false)

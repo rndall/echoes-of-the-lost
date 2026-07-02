@@ -89,6 +89,8 @@ func close() -> void:
 	is_open = false
 	if hotbar_ui:
 		hotbar_ui.visible = true
+	recipe_list_ui.deselect_all()
+	crafting_display.reset_display()
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -110,6 +112,9 @@ func switch_tabs(tab_name: String) -> void:
 		return
 	
 	print("Switching to tab: %s" % tab_name)
+	if current_tab == "crafting":
+		recipe_list_ui.deselect_all()
+		crafting_display.reset_display()
 	current_tab = tab_name
 	if current_tab == "inventory":
 		inv_ui.visible = true

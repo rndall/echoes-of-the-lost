@@ -58,6 +58,15 @@ func display_recipe(recipe: Recipe) -> void:
 	_populate_ingredients(recipe.ingredients)
 
 
+func reset_display() -> void:
+	current_recipe = null
+	product_display.texture = null
+	product_name.text = ""
+	product_description.text = ""
+	_update_description_size()
+	_populate_ingredients([])
+
+
 func _update_description_size() -> void:
 	# The Panel that wraps product_description is the ScrollContainer's
 	# scrollable content. Instead of a fixed height (which made it always
