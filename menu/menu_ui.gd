@@ -17,6 +17,11 @@ var is_open: bool = false
 
 
 func _ready() -> void:
+	# Let this menu keep processing input/animations even while the
+	# SceneTree is paused, since it's the thing responsible for pausing
+	# and unpausing it.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	if hotbar_ui == null:
 		var nodes = get_tree().get_nodes_in_group("hotbar")
 		if nodes.size() > 0:
@@ -81,12 +86,14 @@ func _on_item_crafted(product: InvItem, from_pos: Vector2) -> void:
 func open() -> void:
 	visible = true
 	is_open = true
+	get_tree().paused = true
 	if hotbar_ui:
 		hotbar_ui.visible = false
 
 func close() -> void:
 	visible = false
 	is_open = false
+	get_tree().paused = false
 	if hotbar_ui:
 		hotbar_ui.visible = true
 	if current_tab == "guide":

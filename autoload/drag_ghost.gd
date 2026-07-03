@@ -5,6 +5,7 @@ var ghost: TextureRect = null
 var canvas: CanvasLayer
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	canvas = CanvasLayer.new()
 	canvas.layer = 100  # renders on top of everything
 	add_child(canvas)

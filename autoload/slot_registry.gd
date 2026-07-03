@@ -6,6 +6,9 @@ extends Node
  
 var _slots: Array[InventorySlotUI] = []
  
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func register(slot: InventorySlotUI) -> void:
 	if slot not in _slots:
 		_slots.append(slot)
