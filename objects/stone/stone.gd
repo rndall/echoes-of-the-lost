@@ -20,4 +20,5 @@ func _on_death() -> void:
 
 	var stone_count = randi_range(1, 2)
 	player_inv.insert(stone_item, stone_count)
+	DailyTaskManager.update_task_progress("5", stone_count)
 	queue_free()

@@ -45,6 +45,7 @@ func _create_default_tasks() -> void:
 		load("res://tasks/resources/dailytask2.tres"),
 		load("res://tasks/resources/dailytask3.tres"),
 		load("res://tasks/resources/dailytask4.tres"),
+		load("res://tasks/resources/dailytask5.tres")
 	]
 	
 	for task_resource in task_resources:
