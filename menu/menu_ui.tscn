@@ -224,7 +224,6 @@ offset_bottom = 181.0
 mouse_force_pass_scroll_events = false
 
 [node name="inventory" type="NinePatchRect" parent="." unique_id=1099475165]
-visible = false
 light_mask = 4
 visibility_layer = 4
 z_index = 2
@@ -382,6 +381,7 @@ offset_right = 313.0
 offset_bottom = 77.0
 
 [node name="guide" type="NinePatchRect" parent="." unique_id=438510004]
+visible = false
 z_index = 2
 layout_mode = 0
 offset_left = -150.5

@@ -5,6 +5,7 @@ class_name RecipeUI
 signal recipe_selected(recipe: Recipe)
 
 @onready var recipe_name_label = $NinePatchRect/Label
+@onready var item_display = $NinePatchRect/Panel/item_display
 @onready var animated_sprite: AnimatedSprite2D = $NinePatchRect/AnimatedSprite2D
 
 var recipe: Recipe
@@ -30,6 +31,7 @@ func update_display() -> void:
 		return
 
 	recipe_name_label.text = recipe.name
+	item_display.texture = recipe.product.texture
 
 
 func set_selected(selected: bool) -> void:
