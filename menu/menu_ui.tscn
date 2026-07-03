@@ -392,6 +392,11 @@ texture = ExtResource("13_ife3i")
 
 [node name="guide_ui" parent="guide" unique_id=2093522622 instance=ExtResource("14_oogfd")]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 881.58453
+offset_bottom = 539.0232
 
 [node name="tabs" type="Node2D" parent="guide" unique_id=1194333168]
 
