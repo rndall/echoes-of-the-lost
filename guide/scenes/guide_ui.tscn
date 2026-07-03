@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djdctilgeiaxy" path="res://crafting/scenes/recipe_list_ui.tscn" id="4_7ltk2"]
 [ext_resource type="PackedScene" uid="uid://hy5ntpcukv6r" path="res://guide/scenes/item_list_ui.tscn" id="4_xgym5"]
 [ext_resource type="PackedScene" uid="uid://dx7afhio8kuvi" path="res://guide/scenes/item_info_ui.tscn" id="6_xgym5"]
+[ext_resource type="PackedScene" uid="uid://cx4lu8x5qonlj" path="res://crafting/scenes/crafting_ui.tscn" id="7_qbiuk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iq1g"]
 atlas = ExtResource("1_lrurd")
@@ -196,6 +197,7 @@ offset_bottom = 203.30774
 scale = Vector2(4, 4)
 
 [node name="info_section" type="NinePatchRect" parent="." unique_id=1324914354]
+visible = false
 layout_mode = 0
 offset_left = 576.0
 offset_right = 1152.0
@@ -213,10 +215,19 @@ layout_mode = 1
 
 [node name="recipe_info" type="NinePatchRect" parent="info_section" unique_id=553357575]
 visible = false
+z_index = 2
 layout_mode = 0
 offset_left = 74.0
 offset_right = 500.9231
 offset_bottom = 648.0
+
+[node name="crafting_ui" parent="info_section/recipe_info" unique_id=567155504 instance=ExtResource("7_qbiuk")]
+z_index = 2
+layout_mode = 0
+offset_top = 50.000015
+offset_right = 109.0
+offset_bottom = 186.00002
+scale = Vector2(4, 4)
 
 [node name="back_button" type="TextureButton" parent="." unique_id=1336588071]
 layout_mode = 0

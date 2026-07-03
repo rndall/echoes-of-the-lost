@@ -12,6 +12,14 @@ func display(item: InvItem) -> void:
 		return
 	item_display.texture = item.texture
 	item_description.text = item.description
+	
+	if item.id == "3":
+		item_display.scale = Vector2(3.5, 3.5)
+		item_display.position = Vector2(65.538, 65.0)
+	else:
+		item_display.scale = Vector2(6.0, 6.0)
+		item_display.position = Vector2(55.538, 57.0)
+	
 	_update_stats(item)
 
 
@@ -24,6 +32,11 @@ func reset_display() -> void:
 
 func _update_stats(item: InvItem) -> void:
 	var stats_text := ""
+	
+	if item.name == "Axe" or item.name == "Hammer":
+		item_stats.visible = false
+		return
+	
 	if item is WeaponItem:
 		stats_text = "Attack: %d" % item.damage
 	elif item is ConsumableItem:

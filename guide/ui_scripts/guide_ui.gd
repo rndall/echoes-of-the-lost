@@ -24,6 +24,8 @@ const HEADER_MIN_FONT_SIZE := 20
 @onready var back_button: TextureButton = $back_button
 
 @onready var recipe_list_header: Label = $crafting_tab/recipe_list_ui.get_node("Label")
+@onready var crafting_ui: CraftingUI = $info_section/recipe_info/crafting_ui
+@onready var recipe_list_ui: RecipeListUI = $crafting_tab/recipe_list_ui
 
 
 func _ready() -> void:
@@ -35,6 +37,11 @@ func _ready() -> void:
 
 	back_button.pressed.connect(_go_to_categories)
 	item_list_ui.item_selected.connect(_on_item_selected)
+	recipe_list_ui.recipe_selected.connect(_on_recipe_selected)
+
+	# Reuse crafting_ui read-only, for reference — no crafting from the guide.
+	crafting_ui.craft_button.visible = false
+	crafting_ui.description_scroll.visible = false
 
 	_go_to_categories()
 
@@ -57,6 +64,9 @@ func _go_to_categories() -> void:
 
 	item_list_ui.deselect_all()
 	item_info_ui.reset_display()
+
+	recipe_list_ui.deselect_all()
+	crafting_ui.reset_display()
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -93,7 +103,11 @@ func _open_category(category: String) -> void:
 func _on_item_selected(item: InvItem) -> void:
 	item_info.visible = true
 	item_info_ui.display(item)
-	_set_header_text(item.name)
+
+
+func _on_recipe_selected(recipe: Recipe) -> void:
+	recipe_info.visible = true
+	crafting_ui.display_recipe(recipe)
 
 
 # ────────────────────────────────────────────────────────────────────────────

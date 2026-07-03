@@ -53,7 +53,6 @@ offset_right = 381.0
 offset_bottom = 300.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
-text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -61,19 +60,18 @@ autowrap_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect" unique_id=1714320847]
 custom_minimum_size = Vector2(328, 220)
 layout_mode = 0
-offset_left = 53.0
-offset_top = 310.0
-offset_right = 381.0
-offset_bottom = 530.0
-scroll_hint_mode = 2
+offset_top = 300.0
+offset_right = 436.0
+offset_bottom = 608.0
 horizontal_scroll_mode = 0
+scroll_hint_mode = 2
 
 [node name="content" type="MarginContainer" parent="NinePatchRect/ScrollContainer" unique_id=887060034]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 14
-theme_override_constants/margin_right = 14
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 10
 
 [node name="item_description" type="Label" parent="NinePatchRect/ScrollContainer/content" unique_id=1033437171]
@@ -82,5 +80,4 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
-vertical_alignment = 0
 autowrap_mode = 2
