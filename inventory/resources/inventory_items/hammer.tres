@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_7hyjt")
-damage = 10
+damage = 5
 target = 1
 id = "8"
 name = "Hammer"
