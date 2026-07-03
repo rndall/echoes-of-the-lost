@@ -4,11 +4,13 @@ extends Node2D
 
 const MIN_DIST_FROM_OBSTACLES = 48.0
 const RAYCAST_LENGTH = 100.0  # How far to raycast downward
+
 @onready var ground_layer: TileMapLayer = $Layers/Ground
 @onready var soil_layer: TileMapLayer = $Layers/Soil
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
 @onready var player_spawn: Marker2D = $Spawns/DefaultStartPoint
+
 
 func _ready() -> void:
 	if GameManager.anting_anting_collected:
@@ -20,7 +22,6 @@ func _ready() -> void:
 		print("[Spawn] Restored anting_anting at saved pos: ", GameManager.anting_anting_saved_pos)
 	else:
 		_spawn_anting_anting()
-	
 
 
 func _spawn_anting_anting() -> void:
