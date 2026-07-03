@@ -89,8 +89,18 @@ func close() -> void:
 	is_open = false
 	if hotbar_ui:
 		hotbar_ui.visible = true
+	if current_tab == "guide":
+		guide_ui.get_node("guide_ui").reset()
 	recipe_list_ui.deselect_all()
 	crafting_display.reset_display()
+
+	# Menu always reopens on the inventory tab — treat it as the "home" tab
+	# rather than restoring whatever tab was last open.
+	current_tab = "inventory"
+	inv_ui.visible = true
+	crafting_ui.visible = false
+	guide_ui.visible = false
+	settings_ui.visible = false
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -122,6 +132,8 @@ func switch_tabs(tab_name: String) -> void:
 	if current_tab == "crafting":
 		recipe_list_ui.deselect_all()
 		crafting_display.reset_display()
+	if current_tab == "guide":
+		guide_ui.get_node("guide_ui").reset()
 	current_tab = tab_name
 	if current_tab == "inventory":
 		inv_ui.visible = true
