@@ -7,10 +7,6 @@ var is_open: bool = false
 
 @onready var artifact_inv: Inventory = preload("res://inventory/resources/artifact_inv.tres")
 @onready var artifact_slot_nodes: Array = $inventory/artifact_slots.get_children()
-@onready var inventory_tab = $tabs/inventory
-@onready var crafting_tab = $tabs/crafting
-@onready var guide_tab = $tabs/guide
-@onready var settings_tab = $tabs/settings
 @onready var inv_ui = $inventory
 @onready var crafting_ui = $crafting
 @onready var guide_ui = $guide
@@ -73,6 +69,7 @@ func _on_item_crafted(product: InvItem, from_pos: Vector2) -> void:
 	if current_tab != "crafting" or not product or not product.texture:
 		return
 
+	var inventory_tab: Control = crafting_ui.get_node("tabs/inventory")
 	var target_pos: Vector2 = inventory_tab.get_global_transform_with_canvas().origin + inventory_tab.size * inventory_tab.get_global_transform_with_canvas().get_scale() / 2.0
 	DragGhost.fly_to(product.texture, from_pos, target_pos)
 
@@ -101,10 +98,17 @@ func close() -> void:
 # ────────────────────────────────────────────────────────────────────────────
 
 func _setup_tabs() -> void:
-	inventory_tab.gui_input.connect(_on_tab_clicked.bindv([inventory_tab, "inventory"]))
-	crafting_tab.gui_input.connect(_on_tab_clicked.bindv([crafting_tab, "crafting"]))
-	guide_tab.gui_input.connect(_on_tab_clicked.bindv([guide_tab, "guide"]))
-	settings_tab.gui_input.connect(_on_tab_clicked.bindv([settings_tab, "settings"]))
+	# Each ui panel (inventory/crafting/guide/settings) has its own "tabs" node
+	# with its own positioning, so the tab bar can be placed differently per ui.
+	# Each bar only lists the *other* panels — no need for a button back to the
+	# tab you're already on. Panels without a ui yet (like settings) may not
+	# have a "tabs" node at all, so skip those instead of erroring.
+	for ui_panel in [inv_ui, crafting_ui, guide_ui, settings_ui]:
+		if not ui_panel.has_node("tabs"):
+			continue
+		var tabs_node: Node = ui_panel.get_node("tabs")
+		for tab_button in tabs_node.get_children():
+			tab_button.gui_input.connect(_on_tab_clicked.bindv([tab_button, String(tab_button.name)]))
 
 func _on_tab_clicked(event: InputEvent, _tab: Panel, tab_name: String) -> void:
 	if event is InputEventMouseButton and event.pressed:
