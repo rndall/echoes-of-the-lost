@@ -26,4 +26,6 @@ func _on_item_dropped(item: InvItem, amount: int) -> void:
 	print(player.global_position)
 	var facing = player.facing_direction
 	var offset = facing * randf_range(24, 40)
-	item_drop_manager.spawn_item_drop(item, amount, player.global_position + offset)
+	var throw_origin = player.global_position
+	var landing_spot = player.global_position + offset
+	item_drop_manager.spawn_item_drop(item, amount, throw_origin, landing_spot)
