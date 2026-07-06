@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c78id6uo55m7u" path="res://characters/player/player.gd" id="1_dirf7"]
 [ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="2_dirf7"]
+[ext_resource type="PackedScene" uid="uid://q4c6xbqrtvlh" path="res://objects/shadow/shadow.tscn" id="3_fpo3a"]
 [ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/assets/sprites/attack.png" id="3_idpv6"]
 [ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="4_dirf7"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
 [ext_resource type="Script" uid="uid://cg5crbxbfkofa" path="res://characters/player/player_hitbox.gd" id="5_58jvb"]
-[ext_resource type="Script" path="res://characters/player/tool_hitbox.gd" id="6_thbx0"]
 [ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
 [ext_resource type="AudioStream" uid="uid://c41blxsnf72iu" path="res://characters/player/assets/sfx/character_attack.mp3" id="5_on558"]
 [ext_resource type="PackedScene" uid="uid://dlnflck3cqa14" path="res://components/hurtbox/hurtbox_component.tscn" id="5_rpf03"]
 [ext_resource type="Script" uid="uid://dgfbmjiwscke0" path="res://characters/player/states/walk.gd" id="6_idpv6"]
+[ext_resource type="Script" uid="uid://dtxeo4eme3xkc" path="res://characters/player/tool_hitbox.gd" id="6_thbx0"]
 [ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
 [ext_resource type="AudioStream" uid="uid://bixv11gfhfyp5" path="res://characters/player/assets/sfx/character_hurt.mp3" id="7_gqopd"]
 [ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="11_3t07l"]
@@ -1745,6 +1746,8 @@ size = Vector2(12, 26)
 [node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
 collision_mask = 244
 script = ExtResource("1_dirf7")
+
+[node name="Shadow" parent="." unique_id=96700984 instance=ExtResource("3_fpo3a")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=393763556]
 position = Vector2(0, -16)
