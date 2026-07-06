@@ -9,7 +9,7 @@ func enter(previous_state_path: String, _data := {}) -> void:
 
 
 func physics_update(_delta: float) -> void:
-	if Input.is_action_just_released("block"):
+	if not Input.is_action_pressed("block"):
 		finished.emit(IDLE)
 
 

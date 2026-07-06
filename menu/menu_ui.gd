@@ -86,6 +86,14 @@ func _on_item_crafted(product: InvItem, from_pos: Vector2) -> void:
 func open() -> void:
 	visible = true
 	is_open = true
+	
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		var player: Player = players[0]
+		var current_state: PlayerState = player.state_machine.state
+		if current_state.name != PlayerState.IDLE and current_state.name != PlayerState.WALKING:
+			player.state_machine._transition_to_next_state(PlayerState.IDLE)
+	
 	get_tree().paused = true
 	if hotbar_ui:
 		hotbar_ui.visible = false
