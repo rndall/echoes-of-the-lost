@@ -57,6 +57,7 @@ func _animate_throw(drop: Area2D, from_pos: Vector2, to_pos: Vector2) -> void:
 			shadow.scale = shadow_base_scale * lerp(1.0, 0.6, sin(PI * t))
 
 	var tween := create_tween()
+	tween.bind_node(drop)
 	tween.tween_method(update_frame, 0.0, 1.0, throw_duration).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_callback(func(): _land_impact(drop, visual, visual_base_y, shadow, shadow_base_scale))
 
@@ -83,9 +84,9 @@ func _land_impact(drop: Area2D, visual: Node2D, visual_base_y: float, shadow: No
 ## The node that visually lifts/spins during the throw. Matches your pickup
 ## scenes' "Sprite2D" child; falls back to the drop root if none is found.
 func _get_visual_node(drop: Node) -> Node2D:
-	for name in ["Sprite2D", "Visual", "Icon"]:
-		if drop.has_node(name):
-			return drop.get_node(name)
+	for node_name in ["Sprite2D", "Visual", "Icon"]:
+		if drop.has_node(node_name):
+			return drop.get_node(node_name)
 	if drop is Node2D:
 		return drop
 	return null
