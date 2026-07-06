@@ -17,5 +17,5 @@ func _ready() -> void:
 			"The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
 
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	Events.player_state_changed.emit(self)
+#func enter(_previous_state_path: String, _data := {}) -> void:
+	#Events.player_state_changed.emit(self)

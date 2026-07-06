@@ -13,7 +13,7 @@ var is_open: bool = false
 @onready var settings_ui = $settings
 @onready var recipe_list_ui: RecipeListUI = $crafting/recipe_list_ui
 @onready var crafting_display: CraftingUI = $crafting/crafting_ui
-@onready var animation_player: AnimationPlayer = $inventory/player_view/AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $inventory/player_view/AnimationPlayer
 
 
 func _ready() -> void:
@@ -27,7 +27,7 @@ func _ready() -> void:
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
 	
-	Events.player_state_changed.connect(_on_player_state_changed)
+	#Events.player_state_changed.connect(_on_player_state_changed)
 	
 	_setup_artifact_slots()
 	_setup_tabs()
@@ -49,18 +49,18 @@ func _process(_delta: float) -> void:
 # Player State Sync
 # ────────────────────────────────────────────────────────────────────────────
 
-func _on_player_state_changed(state: PlayerState) -> void:
-	match state.name:
-		PlayerState.IDLE:
-			animation_player.play("idle")
-		PlayerState.WALKING:
-			animation_player.play("walk")
-		PlayerState.ACTION:
-			animation_player.play("attack")
-		PlayerState.BLOCKING:
-			animation_player.play("block")
-		_:
-			animation_player.play("idle")
+#func _on_player_state_changed(state: PlayerState) -> void:
+	#match state.name:
+		#PlayerState.IDLE:
+			#animation_player.play("idle")
+		#PlayerState.WALKING:
+			#animation_player.play("walk")
+		#PlayerState.ACTION:
+			#animation_player.play("attack")
+		#PlayerState.BLOCKING:
+			#animation_player.play("block")
+		#_:
+			#animation_player.play("idle")
 
 
 # ────────────────────────────────────────────────────────────────────────────

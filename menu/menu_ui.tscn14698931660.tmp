@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://8nkl7g8r3t4j" path="res://menu/menu_ui.gd" id="1_qa6pt"]
 [ext_resource type="PackedScene" uid="uid://ddl00ardxj1k7" path="res://inventory/scenes/inventory_ui.tscn" id="2_b5e6c"]
 [ext_resource type="Texture2D" uid="uid://ep8phhbe3oya" path="res://inventory/assets/char_view_bg.png" id="4_3y6qt"]
-[ext_resource type="Texture2D" uid="uid://dwib4miphw4to" path="res://characters/player/assets/sprites/walk.png" id="5_wvcyl"]
+[ext_resource type="Texture2D" uid="uid://b0ud6liw56e0j" path="res://characters/player/assets/sprites/attack.png" id="5_sys31"]
 [ext_resource type="PackedScene" uid="uid://d1qgggbcr8kqn" path="res://inventory/scenes/artifact_slot_ui.tscn" id="7_sys31"]
 [ext_resource type="PackedScene" uid="uid://dc48ewx7anll3" path="res://inventory/scenes/health_bar_sprite.tscn" id="7_wvcyl"]
 [ext_resource type="PackedScene" uid="uid://bqwqui1yqmbc" path="res://tasks/scenes/task_list_ui.tscn" id="8_sys31"]
@@ -13,21 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cx4lu8x5qonlj" path="res://crafting/scenes/crafting_ui.tscn" id="12_dgai8"]
 [ext_resource type="Texture2D" uid="uid://bsa20o08gfvpa" path="res://guide/assets/bg.png" id="13_ife3i"]
 [ext_resource type="PackedScene" uid="uid://c2genglyom37o" path="res://guide/scenes/guide_ui.tscn" id="14_oogfd"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ife3i"]
-atlas = ExtResource("5_wvcyl")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dutb6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ife3i")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="menu_ui" type="Control" unique_id=885035941]
 z_index = 10
@@ -84,11 +69,13 @@ offset_right = 19.913998
 offset_bottom = 36.569996
 texture = ExtResource("4_3y6qt")
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="inventory/player_view" unique_id=258351825]
-position = Vector2(21.81308, 37)
+[node name="PlayerSprite" type="Sprite2D" parent="inventory/player_view" unique_id=1309779690]
+position = Vector2(23, 39)
 scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_dutb6")
-autoplay = "default"
+texture = ExtResource("5_sys31")
+hframes = 6
+vframes = 4
+frame = 1
 
 [node name="HealthBarSprite" parent="inventory" unique_id=203065318 instance=ExtResource("7_wvcyl")]
 z_index = 2
