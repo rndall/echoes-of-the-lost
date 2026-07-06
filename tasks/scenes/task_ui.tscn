@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dloi248ldtv80" path="res://tasks/ui_scripts/task_ui.gd" id="1_84471"]
 [ext_resource type="Texture2D" uid="uid://bvwqp5dc4i5xj" path="res://inventory/assets/task_checkbox.png" id="2_xmfmb"]
 [ext_resource type="Texture2D" uid="uid://btgavy8rddr6b" path="res://inventory/assets/task_checkbox_crossed.png" id="3_84471"]
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="4_rakbo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84471"]
 atlas = ExtResource("2_xmfmb")
@@ -63,7 +64,8 @@ offset_right = 319.03027
 offset_bottom = 47.484844
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_rakbo")
+theme_override_font_sizes/font_size = 16
 text = "lorem ipsum"
 vertical_alignment = 1
 autowrap_mode = 2
@@ -84,6 +86,8 @@ offset_right = 269.69696
 offset_bottom = 72.727264
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_rakbo")
+theme_override_font_sizes/font_size = 14
 text = "lorem ipsum"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -96,7 +100,8 @@ offset_right = 356.0
 offset_bottom = 69.0
 scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_rakbo")
+theme_override_font_sizes/font_size = 16
 text = "lorem ipsum"
 horizontal_alignment = 1
 vertical_alignment = 1

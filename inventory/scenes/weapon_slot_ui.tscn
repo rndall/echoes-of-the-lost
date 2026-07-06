@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c72bb2fwjmfer" path="res://inventory/assets/inv_slot.png" id="3_ia6k1"]
 [ext_resource type="Texture2D" uid="uid://cgr8joftgqomw" path="res://inventory/assets/inv_slot_selected.png" id="4_7cp0y"]
 [ext_resource type="Texture2D" uid="uid://dch8hhmus8mjw" path="res://inventory/assets/weapon_slot_selected.png" id="5_ellve"]
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="6_oy8f0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cp0y"]
 atlas = ExtResource("1_vl8da")
@@ -95,7 +96,8 @@ layout_mode = 0
 offset_right = 400.0
 offset_bottom = 200.0
 scale = Vector2(0.3, 0.3)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("6_oy8f0")
+theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

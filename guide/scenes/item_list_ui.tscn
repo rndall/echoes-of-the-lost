@@ -6,8 +6,8 @@
 [node name="item_list_ui" type="Control" unique_id=550080397]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 430.0
+offset_bottom = 500.0
 script = ExtResource("1_2hbgg")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1171964971]

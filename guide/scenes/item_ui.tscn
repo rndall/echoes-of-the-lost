@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4scajwct2pg6" path="res://crafting/assets/recipe_base.png" id="1_bu466"]
 [ext_resource type="Script" uid="uid://0r07mk52i16v" path="res://guide/ui_scripts/item_ui.gd" id="1_vtf2w"]
 [ext_resource type="Texture2D" uid="uid://bkyjba2qgn11q" path="res://crafting/assets/recipe_selected.png" id="2_vtf2w"]
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="4_ck6sf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck6sf"]
 atlas = ExtResource("1_bu466")
@@ -59,6 +60,7 @@ offset_right = 216.0
 offset_bottom = 32.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_ck6sf")
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 vertical_alignment = 1

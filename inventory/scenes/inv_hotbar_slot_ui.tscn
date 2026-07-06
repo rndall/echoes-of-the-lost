@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cuavis6l23e56" path="res://inventory/assets/inv_slot_hotbar.png" id="2_jbl8d"]
 [ext_resource type="Texture2D" uid="uid://djxuuwp5hexab" path="res://inventory/assets/inv_slot_hotbar_selected.png" id="3_r8fic"]
 [ext_resource type="FontFile" uid="uid://drjhmlb8cg30" path="res://inventory/fonts/Boiled Pasta.ttf" id="4_40xnj"]
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="4_jbl8d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gu5kx"]
 atlas = ExtResource("2_jbl8d")
@@ -78,7 +79,8 @@ layout_mode = 0
 offset_right = 400.0
 offset_bottom = 200.0
 scale = Vector2(0.3, 0.3)
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("4_jbl8d")
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
