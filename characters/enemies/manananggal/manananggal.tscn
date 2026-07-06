@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="5_073j3"]
 [ext_resource type="Script" uid="uid://b8myi4kv0x3ax" path="res://characters/enemies/manananggal/follow.gd" id="7_e53ke"]
 [ext_resource type="Script" uid="uid://bssnyx448430u" path="res://characters/enemies/manananggal/knocked_back.gd" id="8_vyl4s"]
+[ext_resource type="PackedScene" uid="uid://q4c6xbqrtvlh" path="res://objects/shadow/shadow.tscn" id="11_a0ep0"]
 
 [sub_resource type="Animation" id="Animation_ulp8i"]
 length = 0.001
@@ -136,3 +137,6 @@ metadata/_custom_type_script = "uid://bssnyx448430u"
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=556654894]
 stream = ExtResource("4_5kjqh")
+
+[node name="Shadow" parent="." unique_id=96700984 instance=ExtResource("11_a0ep0")]
+width_ratio = 0.4
