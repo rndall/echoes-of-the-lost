@@ -13,6 +13,7 @@ const HEADER_MIN_FONT_SIZE := 20
 
 @onready var items_tab: Control = $items_tab
 @onready var crafting_tab: Control = $crafting_tab
+@onready var monsters_tab = $monsters_tab
 
 @onready var info_section: Control = $info_section
 @onready var item_info: Control = $info_section/item_info
@@ -26,6 +27,10 @@ const HEADER_MIN_FONT_SIZE := 20
 @onready var recipe_list_header: Label = $crafting_tab/recipe_list_ui.get_node("Label")
 @onready var crafting_ui: CraftingUI = $info_section/recipe_info/crafting_ui
 @onready var recipe_list_ui: RecipeListUI = $crafting_tab/recipe_list_ui
+
+@onready var monster_list_ui = $monsters_tab/monster_list_ui
+@onready var monster_info = $info_section/monster_info
+@onready var monster_info_ui = $info_section/monster_info/monster_info_ui
 
 
 func _ready() -> void:
@@ -67,6 +72,7 @@ func _go_to_categories() -> void:
 
 	items_tab.visible = false
 	crafting_tab.visible = false
+	monsters_tab.visible = false
 	item_info.visible = false
 	recipe_info.visible = false
 
@@ -96,9 +102,11 @@ func _open_category(category: String) -> void:
 
 	items_tab.visible = category == "items"
 	crafting_tab.visible = category == "crafting"
+	monsters_tab.visible = category == "monsters"
 
 	item_info.visible = false
 	recipe_info.visible = false
+	monster_info.visible = false
 
 	if category == "items":
 		item_list_ui.populate()

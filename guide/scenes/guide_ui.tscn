@@ -8,7 +8,9 @@
 [ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="4_ketg8"]
 [ext_resource type="PackedScene" uid="uid://hy5ntpcukv6r" path="res://guide/scenes/item_list_ui.tscn" id="4_xgym5"]
 [ext_resource type="PackedScene" uid="uid://dx7afhio8kuvi" path="res://guide/scenes/item_info_ui.tscn" id="6_xgym5"]
+[ext_resource type="PackedScene" uid="uid://dv37bem447e5q" path="res://guide/scenes/monster_list_ui.tscn" id="7_gdogc"]
 [ext_resource type="PackedScene" uid="uid://cx4lu8x5qonlj" path="res://crafting/scenes/crafting_ui.tscn" id="7_qbiuk"]
+[ext_resource type="PackedScene" uid="uid://ctrjm4ixe0kwd" path="res://guide/scenes/monster_info_ui.tscn" id="10_rru8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iq1g"]
 atlas = ExtResource("1_lrurd")
@@ -62,6 +64,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="main_categories" type="NinePatchRect" parent="." unique_id=91043403]
+visible = false
 layout_mode = 0
 offset_left = 69.230774
 offset_right = 575.99994
@@ -200,8 +203,17 @@ offset_right = 146.46153
 offset_bottom = 203.30774
 scale = Vector2(4, 4)
 
-[node name="info_section" type="NinePatchRect" parent="." unique_id=1324914354]
+[node name="monsters_tab" type="NinePatchRect" parent="." unique_id=1679420573]
 visible = false
+layout_mode = 0
+offset_left = 69.231
+offset_right = 576.00006
+offset_bottom = 648.0
+
+[node name="monster_list_ui" parent="monsters_tab" unique_id=477262947 instance=ExtResource("7_gdogc")]
+layout_mode = 1
+
+[node name="info_section" type="NinePatchRect" parent="." unique_id=1324914354]
 layout_mode = 0
 offset_left = 576.0
 offset_right = 1152.0
@@ -231,6 +243,23 @@ layout_mode = 0
 offset_top = 50.000015
 offset_right = 109.0
 offset_bottom = 186.00002
+scale = Vector2(4, 4)
+
+[node name="monster_info" type="NinePatchRect" parent="info_section" unique_id=205858508]
+visible = false
+layout_mode = 0
+offset_left = 74.0
+offset_right = 500.923
+offset_bottom = 648.0
+
+[node name="monster_info_ui" parent="info_section/monster_info" unique_id=37030422 instance=ExtResource("10_rru8b")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.07700001
+anchor_bottom = 0.91700006
+offset_top = 0.10399628
+offset_right = -317.923
+offset_bottom = -408.21606
 scale = Vector2(4, 4)
 
 [node name="back_button" type="TextureButton" parent="." unique_id=1336588071]
