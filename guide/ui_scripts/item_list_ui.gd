@@ -19,6 +19,7 @@ func populate() -> void:
 		child.queue_free()
 
 	for item in ItemManager.get_all_items():
+		print(item)
 		var item_node: ItemUI = ITEM_UI_SCENE.instantiate()
 		grid.add_child(item_node)
 		item_node.setup(item)

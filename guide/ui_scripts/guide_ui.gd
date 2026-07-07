@@ -110,6 +110,8 @@ func _open_category(category: String) -> void:
 
 	if category == "items":
 		item_list_ui.populate()
+	elif category == "monsters":
+		monster_list_ui.populate()
 
 
 # ────────────────────────────────────────────────────────────────────────────

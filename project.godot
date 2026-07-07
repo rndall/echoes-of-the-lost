@@ -30,6 +30,7 @@ ItemSceneRegistry="*uid://dasljscdfh2f"
 DailyTaskManager="*uid://b7i0u8kiiieng"
 RecipeManager="*uid://dhh6b6f3dim7i"
 ItemManager="*uid://bdsxwh71efwr3"
+MonsterManager="*uid://bsa10vq06qhu5"
 
 [display]
 

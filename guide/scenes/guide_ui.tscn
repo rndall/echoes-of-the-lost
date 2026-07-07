@@ -64,7 +64,6 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="main_categories" type="NinePatchRect" parent="." unique_id=91043403]
-visible = false
 layout_mode = 0
 offset_left = 69.230774
 offset_right = 575.99994
@@ -212,6 +211,11 @@ offset_bottom = 648.0
 
 [node name="monster_list_ui" parent="monsters_tab" unique_id=477262947 instance=ExtResource("7_gdogc")]
 layout_mode = 1
+anchor_right = 1.0
+offset_left = 3.8459265
+offset_top = -30.769234
+offset_right = 12.461304
+offset_bottom = -101.84625
 
 [node name="info_section" type="NinePatchRect" parent="." unique_id=1324914354]
 layout_mode = 0
