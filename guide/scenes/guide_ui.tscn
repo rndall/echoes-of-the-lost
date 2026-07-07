@@ -211,6 +211,7 @@ offset_bottom = 648.0
 
 [node name="monster_list_ui" parent="monsters_tab" unique_id=477262947 instance=ExtResource("7_gdogc")]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 offset_left = 3.8459265
 offset_top = -30.769234
@@ -250,7 +251,6 @@ offset_bottom = 186.00002
 scale = Vector2(4, 4)
 
 [node name="monster_info" type="NinePatchRect" parent="info_section" unique_id=205858508]
-visible = false
 layout_mode = 0
 offset_left = 74.0
 offset_right = 500.923
@@ -258,13 +258,8 @@ offset_bottom = 648.0
 
 [node name="monster_info_ui" parent="info_section/monster_info" unique_id=37030422 instance=ExtResource("10_rru8b")]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.07700001
-anchor_bottom = 0.91700006
-offset_top = 0.10399628
-offset_right = -317.923
-offset_bottom = -408.21606
-scale = Vector2(4, 4)
+anchor_right = 1.0
+offset_right = 0.0
 
 [node name="back_button" type="TextureButton" parent="." unique_id=1336588071]
 layout_mode = 0

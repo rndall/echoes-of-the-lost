@@ -43,6 +43,8 @@ func _ready() -> void:
 	back_button.pressed.connect(_go_to_categories)
 	item_list_ui.item_selected.connect(_on_item_selected)
 	recipe_list_ui.recipe_selected.connect(_on_recipe_selected)
+	
+	monster_list_ui.monster_selected.connect(_on_monster_selected)
 
 	# Reuse crafting_ui read-only, for reference — no crafting from the guide.
 	crafting_ui.craft_button.visible = false
@@ -126,6 +128,10 @@ func _on_item_selected(item: InvItem) -> void:
 func _on_recipe_selected(recipe: Recipe) -> void:
 	recipe_info.visible = true
 	crafting_ui.display_recipe(recipe)
+	
+func _on_monster_selected(monster: Monster) -> void:
+	monster_info.visible = true
+	monster_info_ui.display(monster)
 
 
 # ────────────────────────────────────────────────────────────────────────────
