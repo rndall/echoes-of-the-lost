@@ -27,8 +27,7 @@ func _on_health_changed(current_health: float, _attack: Attack) -> void:
 	GameManager.player_health = current_health
 	Events.player_health_changed.emit(current_health)
 	
-	if GameManager.player_health > 0:
-		hurt.play()
+	hurt.play()
 
 
 func _on_death() -> void:

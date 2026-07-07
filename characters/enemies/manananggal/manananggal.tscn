@@ -78,6 +78,11 @@ size = Vector2(30, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtr1d"]
 size = Vector2(20, 31)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fpo3a"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("4_5kjqh")
+
 [node name="Manananggal" type="CharacterBody2D" unique_id=274057768]
 z_index = 5
 collision_layer = 0
@@ -136,7 +141,7 @@ script = ExtResource("8_vyl4s")
 metadata/_custom_type_script = "uid://bssnyx448430u"
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=556654894]
-stream = ExtResource("4_5kjqh")
+stream = SubResource("AudioStreamRandomizer_fpo3a")
 
 [node name="Shadow" parent="." unique_id=96700984 instance=ExtResource("11_a0ep0")]
 width_ratio = 0.4

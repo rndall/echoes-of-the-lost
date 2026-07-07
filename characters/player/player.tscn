@@ -1736,12 +1736,27 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t07l"]
 size = Vector2(4, 20.518051)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fpo3a"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("5_on558")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kyfeq"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("5_on558")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2agh"]
 radius = 5.0
 height = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpf03"]
 size = Vector2(12, 26)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5mkjs"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("7_gqopd")
 
 [node name="Player" type="CharacterBody2D" unique_id=526460507 groups=["player"]]
 collision_mask = 244
@@ -1754,6 +1769,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_dirf7")
 hframes = 4
 vframes = 4
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1534997948]
 shape = SubResource("CapsuleShape2D_3onaq")
@@ -1775,7 +1791,6 @@ parameters/Walk/blend_position = Vector2(0, 0)
 zoom = Vector2(3, 3)
 
 [node name="SwordHitbox" parent="." unique_id=1825321196 instance=ExtResource("4_x5dtk")]
-visible = false
 position = Vector2(12, -23)
 rotation = 0.8425456
 collision_mask = 8
@@ -1788,7 +1803,7 @@ rotation = 0.001550377
 shape = SubResource("RectangleShape2D_3t07l")
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="SwordHitbox" unique_id=928177923]
-stream = ExtResource("5_on558")
+stream = SubResource("AudioStreamRandomizer_fpo3a")
 bus = &"SFX"
 
 [node name="AxeHitbox" parent="." unique_id=1456623044 instance=ExtResource("4_x5dtk")]
@@ -1804,7 +1819,7 @@ rotation = 0.001550377
 shape = SubResource("RectangleShape2D_3t07l")
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="AxeHitbox" unique_id=430278276]
-stream = ExtResource("5_on558")
+stream = SubResource("AudioStreamRandomizer_kyfeq")
 bus = &"SFX"
 
 [node name="BlockHitbox" parent="." unique_id=534747182 instance=ExtResource("4_x5dtk")]
@@ -1875,4 +1890,5 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=1794402395]
-stream = ExtResource("7_gqopd")
+stream = SubResource("AudioStreamRandomizer_5mkjs")
+volume_db = -1.0
