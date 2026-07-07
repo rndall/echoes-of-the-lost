@@ -16,14 +16,16 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("fly_up")
 
 
-func _on_health_changed(current_health: float, attack: Attack) -> void:
+func _on_health_changed(_current_health: float, attack: Attack) -> void:
 	if attack.attack_damage <= 0:
 		return
 	
-	if current_health > 0:
-		hurt.play(0.25)
+	hurt.play(0.25)
 
 
 func _on_death() -> void:
 	DailyTaskManager.update_task_progress("2", 1)
+	hide()
+	$HitboxComponent.set_deferred("monitoring", false)
+	await hurt.finished
 	super()
