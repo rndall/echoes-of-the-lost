@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="12_on558"]
 [ext_resource type="Script" uid="uid://dbwrxpqmdtmn0" path="res://characters/player/states/dead.gd" id="13_8l73k"]
 [ext_resource type="Script" uid="uid://r86devc7c7k4" path="res://characters/player/states/blocking.gd" id="13_aqrcq"]
+[ext_resource type="PackedScene" uid="uid://xcgjcebok34j" path="res://components/interactions/interacting_component.tscn" id="20_kyfeq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3onaq"]
 radius = 6.0
@@ -1892,3 +1893,5 @@ grow_vertical = 1
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=1794402395]
 stream = SubResource("AudioStreamRandomizer_5mkjs")
 volume_db = -1.0
+
+[node name="InteractingComponent" parent="." unique_id=43951353 instance=ExtResource("20_kyfeq")]

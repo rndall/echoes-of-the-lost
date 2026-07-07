@@ -15,7 +15,6 @@ radius = 19.0
 height = 88.0
 
 [node name="Tree" type="StaticBody2D" unique_id=430900774]
-position = Vector2(0, 2)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_lhnm0")
