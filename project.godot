@@ -32,6 +32,7 @@ RecipeManager="*uid://dhh6b6f3dim7i"
 ItemManager="*uid://bdsxwh71efwr3"
 MonsterManager="*uid://bsa10vq06qhu5"
 Dialogic="*uid://ds2q0uclmolvu"
+MainQuestManager="*uid://jehttkg8ti56"
 
 [dialogic]
 

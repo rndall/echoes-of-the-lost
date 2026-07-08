@@ -11,12 +11,15 @@ signal content_bottom_changed(new_bottom: float)
 @onready var refresh_timer_label = $NinePatchRect/Header/refresh_timer
 @onready var header: Button = $NinePatchRect/Header
 @onready var body_clip: Control = $NinePatchRect/BodyClip
+@onready var indicator: TextureRect = $NinePatchRect/Header/accordion_indicator
 
 var is_open: bool = true
 var open_height: float = 0.0
 var toggle_tween: Tween
+var indicator_tween: Tween
 
 const TOGGLE_DURATION: float = 0.25
+const INDICATOR_FLIP_DURATION: float = 0.25
 
 var task_ui_prefab: PackedScene = preload("res://tasks/scenes/task_ui.tscn")
 var task_ui_instances: Array[TaskUI] = []
@@ -33,6 +36,7 @@ func _ready() -> void:
 	body_clip.resized.connect(_on_body_clip_resized)
 	_on_body_clip_resized()
 	header.pressed.connect(_on_header_pressed)
+	indicator.flip_h = is_open
 	# Initialize the task manager
 	if not DailyTaskManager.daily_tasks_initialized:
 		DailyTaskManager.initialize_tasks()
@@ -108,14 +112,35 @@ func set_open(value: bool, animate: bool = true) -> void:
 
 	if not animate:
 		body_clip.size.y = target_height
+		indicator.flip_h = is_open
 		return
 
 	toggle_tween = create_tween()
 	toggle_tween.set_trans(Tween.TRANS_CUBIC)
 	toggle_tween.set_ease(Tween.EASE_OUT)
 	toggle_tween.tween_property(body_clip, "size:y", target_height, TOGGLE_DURATION)
-	
+
+	_animate_indicator_flip(is_open)
+
 	print(["set_open_daily", is_open])
+
+func _animate_indicator_flip(target_flip_h: bool) -> void:
+	if indicator.flip_h == target_flip_h:
+		return
+
+	if indicator_tween and indicator_tween.is_valid():
+		indicator_tween.kill()
+
+	var original_scale_x: float = abs(indicator.scale.x)
+	var half_duration: float = INDICATOR_FLIP_DURATION * 0.5
+
+	indicator_tween = create_tween()
+	indicator_tween.set_trans(Tween.TRANS_CUBIC)
+	indicator_tween.set_ease(Tween.EASE_IN)
+	indicator_tween.tween_property(indicator, "scale:x", 0.0, half_duration)
+	indicator_tween.tween_callback(func(): indicator.flip_h = target_flip_h)
+	indicator_tween.set_ease(Tween.EASE_OUT)
+	indicator_tween.tween_property(indicator, "scale:x", original_scale_x, half_duration)
 
 func _is_open() -> bool:
 	return is_open
