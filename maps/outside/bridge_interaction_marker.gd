@@ -32,6 +32,8 @@ func _build_bridge() -> void:
 	bridge_finished.enabled = true
 	is_built = true
 	queue_free()
+	if is_built:
+		MainQuestManager.update_quest_progress("2", 1)
 
 
 func _on_interact() -> void:
