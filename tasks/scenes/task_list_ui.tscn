@@ -30,10 +30,17 @@ offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="NinePatchRect" unique_id=707524576]
+[node name="Header" type="Button" parent="NinePatchRect" unique_id=1822475629]
+layout_mode = 0
+offset_left = 13.0
+offset_right = 112.0
+offset_bottom = 21.0
+flat = true
+
+[node name="Label" type="Label" parent="NinePatchRect/Header" unique_id=707524576]
 layout_mode = 0
 offset_top = 5.0
-offset_right = 252.0
+offset_right = 198.0
 offset_bottom = 24.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -42,11 +49,11 @@ text = "Daily Quest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="refresh_timer" type="Label" parent="NinePatchRect" unique_id=278985965]
+[node name="refresh_timer" type="Label" parent="NinePatchRect/Header" unique_id=278985965]
 layout_mode = 0
-offset_left = 35.000004
-offset_top = 14.0
-offset_right = 198.63634
+offset_left = 23.000004
+offset_top = 14.000001
+offset_right = 186.63634
 offset_bottom = 41.27272
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -55,34 +62,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect" unique_id=390175694]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -49.5
-offset_right = 56.0
-offset_bottom = 81.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Body" type="VBoxContainer" parent="NinePatchRect" unique_id=1551214166]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 23.0
+offset_right = 93.0
+offset_bottom = 133.0
 
-[node name="task_ui" parent="NinePatchRect/GridContainer" unique_id=790355026 instance=ExtResource("2_dfesl")]
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/Body" unique_id=390175694]
 layout_mode = 2
 
-[node name="task_ui2" parent="NinePatchRect/GridContainer" unique_id=1596646956 instance=ExtResource("2_dfesl")]
+[node name="task_ui" parent="NinePatchRect/Body/GridContainer" unique_id=790355026 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui3" parent="NinePatchRect/GridContainer" unique_id=1028696241 instance=ExtResource("2_dfesl")]
+[node name="task_ui2" parent="NinePatchRect/Body/GridContainer" unique_id=1596646956 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui4" parent="NinePatchRect/GridContainer" unique_id=980898244 instance=ExtResource("2_dfesl")]
+[node name="task_ui3" parent="NinePatchRect/Body/GridContainer" unique_id=1028696241 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui5" parent="NinePatchRect/GridContainer" unique_id=1903370014 instance=ExtResource("2_dfesl")]
+[node name="task_ui4" parent="NinePatchRect/Body/GridContainer" unique_id=980898244 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui6" parent="NinePatchRect/GridContainer" unique_id=868639703 instance=ExtResource("2_dfesl")]
+[node name="task_ui5" parent="NinePatchRect/Body/GridContainer" unique_id=1903370014 instance=ExtResource("2_dfesl")]
+layout_mode = 2
+
+[node name="task_ui6" parent="NinePatchRect/Body/GridContainer" unique_id=868639703 instance=ExtResource("2_dfesl")]
 layout_mode = 2

@@ -2,9 +2,15 @@ extends Control
 
 class_name TaskListUI
 
-@onready var grid_container = $NinePatchRect/GridContainer
-@onready var label = $NinePatchRect/Label
-@onready var refresh_timer_label = $NinePatchRect/refresh_timer
+signal section_toggled(section: Control, is_open: bool)
+
+@onready var grid_container = $NinePatchRect/Body/GridContainer
+@onready var label = $NinePatchRect/Header/Label
+@onready var refresh_timer_label = $NinePatchRect/Header/refresh_timer
+@onready var header: Button = $NinePatchRect/Header
+@onready var body: VBoxContainer = $NinePatchRect/Body
+
+var is_open: bool = true
 
 var task_ui_prefab: PackedScene = preload("res://tasks/scenes/task_ui.tscn")
 var task_ui_instances: Array[TaskUI] = []
@@ -15,6 +21,9 @@ var current_hour: int = 0
 var current_minute: int = 0
 
 func _ready() -> void:
+	if not is_open:
+		body.visible = false
+	header.pressed.connect(_on_header_pressed)
 	# Initialize the task manager
 	if not DailyTaskManager.daily_tasks_initialized:
 		DailyTaskManager.initialize_tasks()
@@ -76,3 +85,11 @@ func _update_countdown_timer() -> void:
 	# Format as HH:MM
 	var timer_text = "Refresh in: %02d:%02d" % [hours_until_reset, minutes_until_reset]
 	refresh_timer_label.text = timer_text
+	
+func _on_header_pressed() -> void:
+	set_open(!is_open)
+	section_toggled.emit(self, is_open)
+
+func set_open(value: bool) -> void:
+	is_open = value
+	body.visible = is_open
