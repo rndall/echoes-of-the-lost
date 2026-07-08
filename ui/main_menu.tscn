@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cssgo4awamqw0"]
+
+[ext_resource type="Script" uid="uid://cvapbe7wroxmo" path="res://ui/main_menu.gd" id="1_0dkrt"]
+[ext_resource type="Texture2D" uid="uid://ddp2ifnry03jb" path="res://ui/assets/Echoes of the Lost Title.png" id="1_t7e0r"]
+
+[node name="MainMenu" type="Control" unique_id=1721133168]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0dkrt")
+
+[node name="Background" type="TextureRect" parent="." unique_id=569078041]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1276731082]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -72
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=339779578]
+layout_mode = 2
+theme_override_constants/separation = -44
+alignment = 1
+
+[node name="TitleImage" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1367631823]
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_t7e0r")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=323135757]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer" unique_id=180801788]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer" unique_id=97578448]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]

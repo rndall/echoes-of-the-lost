@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://wmmb64bnb3pn" path="res://day_night/audio/sound_machine.tscn" id="5_3wy1v"]
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="6_kfbq2"]
 [ext_resource type="Script" uid="uid://bm4d8kvxeua6m" path="res://inventory/managers/item_drop_manager.gd" id="8_67ri8"]
+[ext_resource type="PackedScene" uid="uid://cssgo4awamqw0" path="res://ui/main_menu.tscn" id="9_grrlh"]
 
 [node name="Main" type="Node2D" unique_id=1144406930]
 y_sort_enabled = true
 script = ExtResource("1_53q0u")
-initial_scene = "uid://c5g3ll83gblw0"
 
 [node name="WorldContainer" type="Node2D" parent="." unique_id=994377854]
 y_sort_enabled = true
@@ -23,7 +23,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=526460507 instance=ExtResource("6_kfbq2")]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=669445507]
+[node name="DayNightCycle" type="CanvasModulate" parent="." unique_id=669445507]
 color = Color(0.13333334, 0.14901961, 0.25882354, 1)
 script = ExtResource("2_pjrb6")
 gradient = ExtResource("3_xwkvk")
@@ -32,6 +32,8 @@ gradient = ExtResource("3_xwkvk")
 
 [node name="DayNightCycleUI" parent="CanvasLayer" unique_id=1929152440 instance=ExtResource("4_c651c")]
 mouse_filter = 2
+
+[node name="MainMenu" parent="CanvasLayer" unique_id=1721133168 instance=ExtResource("9_grrlh")]
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
 process_mode = 3
