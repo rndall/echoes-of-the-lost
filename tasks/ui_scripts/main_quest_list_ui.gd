@@ -4,7 +4,7 @@ class_name MainQuestListUI
 
 signal section_toggled(section: Control, is_open: bool)
 
-@onready var header: ColorRect = $ColorRect
+@onready var header: Button = $Header
 @onready var body_clip: Control = $BodyClip
 
 var is_open: bool = false
