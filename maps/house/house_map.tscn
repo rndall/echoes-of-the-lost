@@ -16,9 +16,12 @@ texture = ExtResource("1_0mefl")
 [node name="SceneTransitionTrigger" parent="." unique_id=60058399 instance=ExtResource("3_tpley")]
 position = Vector2(0, 10)
 target_map = 1
+target_spawn = "HouseEntranceSpawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionTrigger" unique_id=899105112]
 shape = SubResource("RectangleShape2D_3onaq")
 
-[node name="ExitDoorSpawn" type="Marker2D" parent="." unique_id=1138525894]
+[node name="Spawns" type="Node2D" parent="." unique_id=1510513195]
+
+[node name="ExitDoorSpawn" type="Marker2D" parent="Spawns" unique_id=1138525894]
 position = Vector2(0, -21)

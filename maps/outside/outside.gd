@@ -9,7 +9,7 @@ const RAYCAST_LENGTH = 100.0  # How far to raycast downward
 @onready var soil_layer: TileMapLayer = $Layers/Soil
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
-@onready var player_spawn: Marker2D = $Spawns/DefaultStartPoint
+@onready var player_spawn: Marker2D = $Spawns/Default
 
 
 func _ready() -> void:

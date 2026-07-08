@@ -17,7 +17,7 @@ func _on_scene_progress_changed(_new_value: float) -> void:
 	pass
 
 
-func _on_scene_load_finished() -> void:
+func _on_scene_load_finished(_loaded_map: PackedScene) -> void:
 	animation_player.play_backwards("transition")
 	await animation_player.animation_finished
 	queue_free()
