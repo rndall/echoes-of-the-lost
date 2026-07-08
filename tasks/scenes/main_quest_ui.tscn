@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://edkap041664w"]
+
+[node name="main_quest_ui" type="Panel" unique_id=1348139072]
+offset_right = 40.0
+offset_bottom = 40.0

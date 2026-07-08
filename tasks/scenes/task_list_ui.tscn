@@ -16,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_1yfln")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=264928995]
-custom_minimum_size = Vector2(126, 150)
+custom_minimum_size = Vector2(126, 23)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Header" type="Button" parent="NinePatchRect" unique_id=1822475629]
+custom_minimum_size = Vector2(99, 21)
 layout_mode = 0
 offset_left = 13.0
 offset_right = 112.0
@@ -62,30 +63,34 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Body" type="VBoxContainer" parent="NinePatchRect" unique_id=1551214166]
-layout_mode = 0
+[node name="BodyClip" type="Control" parent="NinePatchRect" unique_id=1690835674]
+clip_contents = true
+anchors_preset = 0
 offset_left = 3.0
 offset_top = 23.0
-offset_right = 93.0
-offset_bottom = 133.0
+offset_right = 127.0
+offset_bottom = 116.0
 
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect/Body" unique_id=390175694]
+[node name="Body" type="VBoxContainer" parent="NinePatchRect/BodyClip" unique_id=1551214166]
+custom_minimum_size = Vector2(90, 93)
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 93.0
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/BodyClip/Body" unique_id=390175694]
 layout_mode = 2
 
-[node name="task_ui" parent="NinePatchRect/Body/GridContainer" unique_id=790355026 instance=ExtResource("2_dfesl")]
+[node name="task_ui" parent="NinePatchRect/BodyClip/Body/GridContainer" unique_id=790355026 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui2" parent="NinePatchRect/Body/GridContainer" unique_id=1596646956 instance=ExtResource("2_dfesl")]
+[node name="task_ui2" parent="NinePatchRect/BodyClip/Body/GridContainer" unique_id=1596646956 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui3" parent="NinePatchRect/Body/GridContainer" unique_id=1028696241 instance=ExtResource("2_dfesl")]
+[node name="task_ui3" parent="NinePatchRect/BodyClip/Body/GridContainer" unique_id=1028696241 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui4" parent="NinePatchRect/Body/GridContainer" unique_id=980898244 instance=ExtResource("2_dfesl")]
+[node name="task_ui4" parent="NinePatchRect/BodyClip/Body/GridContainer" unique_id=980898244 instance=ExtResource("2_dfesl")]
 layout_mode = 2
 
-[node name="task_ui5" parent="NinePatchRect/Body/GridContainer" unique_id=1903370014 instance=ExtResource("2_dfesl")]
-layout_mode = 2
-
-[node name="task_ui6" parent="NinePatchRect/Body/GridContainer" unique_id=868639703 instance=ExtResource("2_dfesl")]
+[node name="task_ui5" parent="NinePatchRect/BodyClip/Body/GridContainer" unique_id=1903370014 instance=ExtResource("2_dfesl")]
 layout_mode = 2

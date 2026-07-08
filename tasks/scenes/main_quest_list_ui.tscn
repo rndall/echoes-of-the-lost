@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://diug3y6pi3rto"]
+
+[ext_resource type="Script" uid="uid://yuq2fwecd1ne" path="res://tasks/ui_scripts/main_quest_list_ui.gd" id="1_jmbyc"]
+
+[node name="main_quest_list_ui" type="Control" unique_id=189941952]
+modulate = Color(1, 1, 1, 0.446)
+custom_minimum_size = Vector2(126, 150)
+layout_mode = 3
+anchor_right = 0.109000005
+anchor_bottom = 0.231
+offset_right = 0.43199158
+offset_bottom = 0.31199646
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmbyc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1012819353]
+custom_minimum_size = Vector2(126, 25)
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 25.0
+
+[node name="BodyClip" type="Control" parent="." unique_id=380306401]
+anchors_preset = 0
+offset_top = 25.0
+offset_right = 127.0
+offset_bottom = 153.0
+
+[node name="Body" type="VBoxContainer" parent="BodyClip" unique_id=1849770789]
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 128.0
+
+[node name="Panel" type="Panel" parent="BodyClip/Body" unique_id=994749047]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2

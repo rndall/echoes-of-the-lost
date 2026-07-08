@@ -3,14 +3,20 @@ extends Control
 class_name TaskListUI
 
 signal section_toggled(section: Control, is_open: bool)
+signal content_bottom_changed(new_bottom: float)
 
-@onready var grid_container = $NinePatchRect/Body/GridContainer
+@onready var panel: NinePatchRect = $NinePatchRect
+@onready var grid_container = $NinePatchRect/BodyClip/Body/GridContainer
 @onready var label = $NinePatchRect/Header/Label
 @onready var refresh_timer_label = $NinePatchRect/Header/refresh_timer
 @onready var header: Button = $NinePatchRect/Header
-@onready var body: VBoxContainer = $NinePatchRect/Body
+@onready var body_clip: Control = $NinePatchRect/BodyClip
 
 var is_open: bool = true
+var open_height: float = 0.0
+var toggle_tween: Tween
+
+const TOGGLE_DURATION: float = 0.25
 
 var task_ui_prefab: PackedScene = preload("res://tasks/scenes/task_ui.tscn")
 var task_ui_instances: Array[TaskUI] = []
@@ -21,8 +27,11 @@ var current_hour: int = 0
 var current_minute: int = 0
 
 func _ready() -> void:
-	if not is_open:
-		body.visible = false
+	body_clip.clip_contents = true
+	open_height = body_clip.size.y
+	body_clip.size.y = open_height if is_open else 0.0
+	body_clip.resized.connect(_on_body_clip_resized)
+	_on_body_clip_resized()
 	header.pressed.connect(_on_header_pressed)
 	# Initialize the task manager
 	if not DailyTaskManager.daily_tasks_initialized:
@@ -90,6 +99,32 @@ func _on_header_pressed() -> void:
 	set_open(!is_open)
 	section_toggled.emit(self, is_open)
 
-func set_open(value: bool) -> void:
+func set_open(value: bool, animate: bool = true) -> void:
 	is_open = value
-	body.visible = is_open
+	var target_height: float = open_height if is_open else 0.0
+
+	if toggle_tween and toggle_tween.is_valid():
+		toggle_tween.kill()
+
+	if not animate:
+		body_clip.size.y = target_height
+		return
+
+	toggle_tween = create_tween()
+	toggle_tween.set_trans(Tween.TRANS_CUBIC)
+	toggle_tween.set_ease(Tween.EASE_OUT)
+	toggle_tween.tween_property(body_clip, "size:y", target_height, TOGGLE_DURATION)
+	
+	print(["set_open_daily", is_open])
+
+func _is_open() -> bool:
+	return is_open
+
+func get_content_bottom() -> float:
+	return panel.position.y + panel.size.y
+
+func _on_body_clip_resized() -> void:
+	# Panel hugs however much of the body is currently visible,
+	# so the whole card shrinks/grows along with the animation.
+	panel.size.y = body_clip.position.y + body_clip.size.y
+	content_bottom_changed.emit(get_content_bottom())
