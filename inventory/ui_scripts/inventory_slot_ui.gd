@@ -114,16 +114,30 @@ func _show_item_info() -> void:
 	var item = slot.item
 	var item_type_name = _get_item_type_name(item)
 	
-	# Format the info text
-	var info_text = "Name: %s\nType: %s\nDescription: %s" % [
+	var info_text = "Name: %s\nType: %s\nDescription: %s\n" % [
 		item.name,
 		item_type_name,
 		item.description
 	]
-	
+
+	if item is ArtifactItem:
+		var buff_lines: Array[String] = []
+		if item.health_buff != 0.0:
+			buff_lines.append("+%s Max Health" % _format_buff(item.health_buff))
+		if item.attack_buff != 0.0:
+			buff_lines.append("+%s Attack" % _format_buff(item.attack_buff))
+		if buff_lines.size() > 0:
+			info_text += "\n" + "\n".join(buff_lines)
+
 	item_info.text = info_text
 	item_info.visible = true
 	item_info_panel.visible = true
+
+func _format_buff(value: float) -> String:
+	"""Format a buff value without a trailing '.0' for whole numbers"""
+	if value == int(value):
+		return str(int(value))
+	return str(value)
 
 func _get_item_type_name(item: InvItem) -> String:
 	"""Convert item type enum to readable name"""

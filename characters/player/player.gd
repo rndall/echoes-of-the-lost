@@ -9,18 +9,40 @@ extends CharacterBody2D
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var state_machine: StateMachine = $StateMachine
 @onready var inv: Inventory = preload("res://inventory/resources/player_inv.tres")
+@onready var artifact_inv = preload("res://inventory/resources/artifact_inv.tres")
 
 var walk_distance_accum: float = 0.0
 var facing_direction: Vector2 = Vector2.DOWN
 
 
 func _ready() -> void:
-	health_component.health = GameManager.player_health
+	print(health_component.health)
+	artifact_inv.update.connect(_on_artifact_inv_updated)
+	_on_artifact_inv_updated()  # apply buffs from whatever artifacts are already owned, and sync health_component
+
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)
 	
 	animation_tree.set_active(true)
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
+
+func _on_artifact_inv_updated() -> void:
+	# Sum buffs across every artifact currently owned. Only one of each
+	# artifact can ever exist and the artifact slot can't be emptied once
+	# filled, so this never double-counts or needs to handle removal —
+	# but it stays generic so it scales cleanly when more artifacts exist.
+	var total_health_buff: float = 0.0
+	var total_attack_buff: float = 0.0
+	for slot in artifact_inv.slots:
+		if slot.item and slot.item is ArtifactItem:
+			total_health_buff += slot.item.health_buff
+			total_attack_buff += slot.item.attack_buff
+
+	GameManager.apply_artifact_buffs(total_health_buff, total_attack_buff)
+
+	health_component.max_health = GameManager.MAX_PLAYER_HEALTH
+	health_component.health = GameManager.player_health
+	Events.player_health_changed.emit(GameManager.player_health)
 
 
 func _on_health_changed(current_health: float, _attack: Attack) -> void:
