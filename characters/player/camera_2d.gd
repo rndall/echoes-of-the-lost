@@ -10,3 +10,4 @@ func _on_map_changed(map: Events.Map) -> void:
 			limit_left = 3
 			limit_top = 3
 			limit_right = 1405
+			limit_bottom = 1340
