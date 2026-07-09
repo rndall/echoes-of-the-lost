@@ -26,6 +26,19 @@ var map: Events.Map
 var day: int
 
 
+func _ready() -> void:
+	# Keep `map` in sync with whatever Main actually loads, so SaveManager
+	# (which reads GameManager.map at save time) always writes the map the
+	# player is really standing on, instead of whatever `map` happened to
+	# be left at (previously: nothing ever wrote to it after the initial
+	# declaration, so every save recorded the wrong/default map).
+	Events.map_changed.connect(_on_map_changed)
+
+
+func _on_map_changed(new_map: Events.Map) -> void:
+	map = new_map
+
+
 func _generated_entry_name(node_path_identifier: String) -> String:
 	return str(get_tree().current_scene.get_path(), "/", node_path_identifier)
 

@@ -6,6 +6,23 @@ signal quest_completed(quest: MainQuest)
 var quests: Dictionary[String, MainQuest] = {}
 var main_quests_initialized: bool = false
 
+func _ready() -> void:
+	SaveManager.game_loaded.connect(reload_from_save)
+
+func reload_from_save() -> void:
+	if not main_quests_initialized:
+		initialize_quests()
+		return
+
+	var saved_data = GameManager.get_data_entry("MainQuests")
+	if saved_data.is_empty():
+		return
+
+	for quest_id in quests.keys():
+		var quest_data = saved_data.get(quest_id, {})
+		if quest_data:
+			quests[quest_id].from_dict(quest_data)
+
 func initialize_quests() -> void:
 	if main_quests_initialized:
 		return

@@ -26,6 +26,15 @@ func _ready() -> void:
 		var nodes = get_tree().get_nodes_in_group("hotbar")
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
+
+	# Close FIRST, before any setup below that could throw. GDScript aborts
+	# the rest of a function on an unhandled error, so if close() were the
+	# last line and something above it (tab wiring, artifact slots, signal
+	# connects) threw, the menu would be left open/paused on startup with
+	# no way to close it. Calling close() up front means the menu is
+	# guaranteed to start hidden and unpaused regardless of what happens
+	# in the rest of _ready().
+	close()
 	
 	#Events.player_state_changed.connect(on_player_state_changed)
 	
@@ -33,6 +42,15 @@ func _ready() -> void:
 	_setup_tabs()
 	recipe_list_ui.recipe_selected.connect(crafting_display.display_recipe)
 	crafting_display.item_crafted.connect(_on_item_crafted)
+	
+	# main.gd doesn't tear down/recreate menu_ui on a save load (it only
+	# swaps the map inside world_container), so this node's _ready() never
+	# re-fires after a load and current_tab/visibility would otherwise be
+	# stuck on whatever they were when Load was pressed (e.g. left sitting
+	# open on the settings tab). Closing here — rather than leaving it to
+	# settings_ui to hide itself — properly resets the whole menu: tab,
+	# visibility, and pause state together.
+	SaveManager.game_loaded.connect(close)
 	
 	close()
 

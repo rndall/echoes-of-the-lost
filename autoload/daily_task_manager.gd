@@ -10,6 +10,23 @@ var daily_tasks_initialized: bool = false
 
 func _ready() -> void:
 	Events.time_tick.connect(_on_time_tick)
+	SaveManager.game_loaded.connect(reload_from_save)
+
+func reload_from_save() -> void:
+	if not daily_tasks_initialized:
+		initialize_tasks()
+		return
+
+	var saved_data = GameManager.get_data_entry("DailyTasks")
+	if saved_data.is_empty():
+		return
+
+	current_day = saved_data.get("day", current_day)
+	for task_id in tasks.keys():
+		var task_data = saved_data.get(task_id, {})
+		if task_data:
+			tasks[task_id].from_dict(task_data)
+	tasks_reset.emit()
 
 func _on_time_tick(day: int, _hour: int, _minute: int) -> void:
 	if current_day != day:

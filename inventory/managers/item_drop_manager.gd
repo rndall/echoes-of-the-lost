@@ -8,25 +8,112 @@ extends Node
 @export var throw_height: float = 24.0       # peak arc height in pixels
 @export var throw_spins: float = 1.0        # full rotations while airborne
 
+## Tracks every drop currently sitting in the world so it can be written to a
+## save file and respawned on load — see get_save_data()/load_save_data().
+## Keyed by the drop node's instance id so an entry can be cleanly removed the
+## moment the node leaves the tree (picked up, despawned, whatever) without
+## this manager needing to know *why* it left.
+## Value shape: {"item_id": String, "amount": int, "position": Vector2}
+var _active_drops: Dictionary = {}
+
+
+func _ready() -> void:
+	# Not an autoload (it's scoped to the Main scene instance), so
+	# SaveManager finds it via group lookup rather than an autoload path.
+	add_to_group("item_drop_manager")
+
 
 ## from_position: usually the player's global_position (throw origin)
 ## target_position: where it should land (your existing offset-in-facing-direction spot)
-func spawn_item_drop(item: InvItem, amount: int, from_position: Vector2, target_position: Vector2) -> void:
-	var packed = ItemSceneRegistry.get_scene(item)
+func spawn_item_drop(item: InvItem, amount: int, from_position: Vector2, target_position: Vector2) -> Node:
+	var drop: Node = _instantiate_drop(item, amount, from_position)
+	if drop == null:
+		return null
+
+	_register_drop(drop, item, amount, target_position)
+
+	_set_pickup_enabled(drop, false)
+	_animate_throw(drop, from_position, target_position)
+	return drop
+
+
+## Places a drop directly at its resting position with no throw animation.
+## Used to restore drops that were already sitting in the world when a save
+## was made — they should be exactly where they were, not re-thrown.
+func restore_item_drop(item: InvItem, amount: int, position: Vector2) -> Node:
+	var drop: Node = _instantiate_drop(item, amount, position)
+	if drop == null:
+		return null
+
+	_register_drop(drop, item, amount, position)
+	_set_pickup_enabled(drop, true)
+	return drop
+
+
+func _instantiate_drop(item: InvItem, amount: int, position: Vector2) -> Node:
+	var packed: PackedScene = ItemSceneRegistry.get_scene(item)
 	if packed == null:
 		push_error("No pickup scene registered for item: ", item.name)
-		return
+		return null
 
 	var drop = packed.instantiate()
 
 	if drop.has_method("setup"):
 		drop.setup(item, amount)
 
-	drop.global_position = from_position
+	drop.global_position = position
 	spawn_root.add_child(drop)
+	return drop
 
-	_set_pickup_enabled(drop, false)
-	_animate_throw(drop, from_position, target_position)
+
+func _register_drop(drop: Node, item: InvItem, amount: int, resting_position: Vector2) -> void:
+	var key: int = drop.get_instance_id()
+	_active_drops[key] = {
+		"item_id": item.id,
+		"amount": amount,
+		"position": resting_position,
+	}
+	# One-shot: as soon as this node leaves the tree (picked up, freed,
+	# whatever), drop it from the registry. Works regardless of how the
+	# pickup scenes themselves are implemented internally.
+	drop.tree_exited.connect(_on_drop_removed.bind(key), CONNECT_ONE_SHOT)
+
+
+func _on_drop_removed(key: int) -> void:
+	_active_drops.erase(key)
+
+
+## Removes every currently-tracked drop from the world (used before restoring
+## a save so stale drops from the current session don't linger alongside the
+## ones being loaded in).
+func clear_all_drops() -> void:
+	for child in spawn_root.get_children():
+		child.queue_free()
+	_active_drops.clear()
+
+
+func get_save_data() -> Dictionary:
+	var drops: Array = []
+	for entry in _active_drops.values():
+		var pos: Vector2 = entry.position
+		drops.append({
+			"item_id": entry.item_id,
+			"amount": entry.amount,
+			"position": [pos.x, pos.y],
+		})
+	return {"drops": drops}
+
+
+func load_save_data(data: Dictionary) -> void:
+	clear_all_drops()
+	for entry: Dictionary in data.get("drops", []):
+		var item: InvItem = ItemManager.get_item_by_id(entry.get("item_id", ""))
+		if item == null:
+			push_warning("ItemDropManager: skipped save drop with unknown item id '%s'" % entry.get("item_id", ""))
+			continue
+		var pos_arr: Array = entry.get("position", [0.0, 0.0])
+		var pos := Vector2(pos_arr[0], pos_arr[1])
+		restore_item_drop(item, entry.get("amount", 1), pos)
 
 
 func _animate_throw(drop: Area2D, from_pos: Vector2, to_pos: Vector2) -> void:

@@ -33,6 +33,7 @@ ItemManager="*uid://bdsxwh71efwr3"
 MonsterManager="*uid://bsa10vq06qhu5"
 Dialogic="*uid://ds2q0uclmolvu"
 MainQuestManager="*uid://jehttkg8ti56"
+SaveManager="*uid://bewrxl1sxi7av"
 
 [dialogic]
 

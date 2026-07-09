@@ -37,8 +37,6 @@ func insert(item: InvItem, amount: int = 1):
 	update.emit()
 
 func remove(item: InvItem, amount: int = 1):
-	print("🟡 [REMOVE] %s x%d (CALLED FROM:)" % [item.name, amount])  # ← ADD THIS
-	print_stack()
 	for slot in slots:
 		if slot.item and slot.item.id == item.id:
 			slot.amount -= amount
@@ -139,8 +137,6 @@ func drop_item(slot_index: int, amount: int = 1) -> bool:
 	
 	var drop_amount = mini(amount, slot.amount)
 	var dropped_item = slot.item
-	print("🔴 [DROP_ITEM] Slot %d - %s x%d (CALLED FROM:)" % [slot_index, slot.item.name, drop_amount])  # ← ADD THIS
-	print_stack()
 	slot.amount -= drop_amount
 	
 	if slot.amount <= 0:
@@ -171,6 +167,31 @@ func count_item(item_id: String) -> int:
 			total += slot.amount
 	return total
 	
+func to_save_dict() -> Dictionary:
+	"""Serialize this inventory to a JSON-safe dictionary (item ids + amounts only)."""
+	var slot_data: Array = []
+	for slot in slots:
+		if slot.item == null:
+			slot_data.append({})
+		else:
+			slot_data.append({"item_id": slot.item.id, "amount": slot.amount})
+	return {"slots": slot_data}
+
+func load_from_save_dict(data: Dictionary) -> void:
+	"""Restore this inventory from a dict produced by to_save_dict().
+	Looks up items by id via ItemManager — adjust the lookup call below if
+	your item database lives elsewhere or has a different method name."""
+	var slot_data: Array = data.get("slots", [])
+	for i in range(mini(slot_data.size(), slots.size())):
+		var entry: Dictionary = slot_data[i]
+		if entry.is_empty():
+			slots[i].clear()
+		else:
+			var item: InvItem = ItemManager.get_item_by_id(entry.get("item_id", ""))
+			slots[i].item = item
+			slots[i].amount = entry.get("amount", 0)
+	update.emit()
+
 func use_item(slot_index: int, player: Node) -> bool:
 	var slot = get_slot_by_index(slot_index)
 	if slot == null or slot.item == null:
@@ -183,8 +204,6 @@ func use_item(slot_index: int, player: Node) -> bool:
 	# Also confirm it's actually a ConsumableItem script
 	if not slot.item is ConsumableItem:
 		return false
-		
-	print("🟢 [USE_ITEM] Slot %d - %s" % [slot_index, slot.item.name])
 
 	var consumed: bool = (slot.item as ConsumableItem).use(player)
 	if consumed:
