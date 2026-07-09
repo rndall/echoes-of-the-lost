@@ -537,10 +537,7 @@ position = Vector2(429, 258)
 [node name="HouseEntranceSpawn" type="Marker2D" parent="Spawns" unique_id=1355594249]
 position = Vector2(458, 270)
 
-[node name="Default" type="Marker2D" parent="Spawns" unique_id=1879102444]
-position = Vector2(288, 1239)
-
-[node name="Default2" type="Marker2D" parent="Spawns" unique_id=1064579209]
+[node name="Default" type="Marker2D" parent="Spawns" unique_id=1064579209]
 position = Vector2(213, 374)
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=806440033 node_paths=PackedStringArray("tilemap_layer")]
