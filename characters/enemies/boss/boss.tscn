@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bssnyx448430u" path="res://characters/enemies/manananggal/knocked_back.gd" id="9_ktgx2"]
 [ext_resource type="AudioStream" uid="uid://edjifmrqltcg" path="res://characters/enemies/manananggal/assets/sfx/manananggal_hurt.mp3" id="10_ckmoc"]
 [ext_resource type="PackedScene" uid="uid://q4c6xbqrtvlh" path="res://objects/shadow/shadow.tscn" id="11_1obtl"]
-[ext_resource type="PackedScene" uid="uid://0rtls0t01f03" path="res://ui/health_bar.tscn" id="12_d103n"]
+[ext_resource type="PackedScene" uid="uid://bj2mwyphx04fo" path="res://ui/health_bar.tscn" id="12_d103n"]
 
 [sub_resource type="Animation" id="Animation_ulp8i"]
 length = 0.001
@@ -166,6 +166,7 @@ stream = SubResource("AudioStreamRandomizer_fpo3a")
 width_ratio = 0.4
 
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=683720870]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="HealthUI" unique_id=1587410884]
 anchors_preset = 5
