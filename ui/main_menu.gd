@@ -1,15 +1,14 @@
 extends Control
 
-const MAPS = {
-	"outside": "uid://c5g3ll83gblw0",
-	"house": "uid://3s5rfvjydnns"
-}
+@export var hud: CanvasLayer
 
 
 func _on_play_button_pressed() -> void:
-	var map = MAPS["outside"]
+	# Get map from save if implemented
+	var map = Events.Map.OUTSIDE
 	get_tree().current_scene.switch_map(map)
 	await Events.scene_load_finished
+	hud.show()
 	queue_free()
 
 

@@ -3,7 +3,7 @@ extends Control
 const HOTBAR_SLOT_COUNT = 6
 
 @onready var player_inv: Inventory = preload("res://inventory/resources/player_inv.tres")
-@onready var slot_nodes: Array = $hotbar_items/GridContainer.get_children()
+@onready var slot_nodes: Array = $MarginContainer/VBoxContainer/hotbar_items/MarginContainer/GridContainer.get_children()
 
 var selected_index: int = 0
 

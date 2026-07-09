@@ -1,11 +1,16 @@
 extends Node
 
+const TARGET_SCENE: Dictionary[Events.Map, String] = {
+	Events.Map.HOUSE: "uid://3s5rfvjydnns", 
+	Events.Map.OUTSIDE: "uid://c5g3ll83gblw0", 
+}
+
+var next_spawn: String = "Default"
+
 @onready var player: Player = $Player
 @onready var day_night_cycle_ui: Control = $CanvasLayer/DayNightCycleUI
 @onready var day_night_cycle: CanvasModulate = $DayNightCycle
 @onready var world_container = $WorldContainer
-
-var next_spawn: String = "Default"
 
 
 func _ready() -> void:
@@ -18,10 +23,11 @@ func _ready() -> void:
 	Events.scene_load_finished.connect(_on_scene_load_finished)
 
 
-func switch_map(new_map_path: String, spawn_name: String = "Default") -> void:
+func switch_map(new_map: Events.Map, spawn_name: String = "Default") -> void:
 	next_spawn = spawn_name
 	get_tree().paused = true
-	SceneLoader.load_scene(new_map_path)
+	SceneLoader.load_scene(TARGET_SCENE[new_map])
+	Events.map_changed.emit(new_map)
 
 
 func _position_player(current_map: Node2D) -> void:
