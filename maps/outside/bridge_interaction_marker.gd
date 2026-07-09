@@ -1,4 +1,6 @@
-extends Marker2D
+extends Node2D
+
+signal bridge_built
 
 const PLAYER_INV = preload("uid://bn2stjinnsiyq")
 const LOG = preload("uid://cnkt4rivm68pq")
@@ -31,6 +33,7 @@ func _build_bridge() -> void:
 	bridge_uncomplete.enabled = false
 	bridge_finished.enabled = true
 	is_built = true
+	bridge_built.emit()
 	queue_free()
 	if is_built:
 		MainQuestManager.update_quest_progress("2", 1)

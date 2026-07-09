@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var anting_anting_scene: PackedScene = preload("res://inventory/scenes/pickup_items/anting_anting.tscn")
+const ANTING_ANTING = preload("uid://d17jlxhursebq")
+const BOSS = preload("uid://bi7bu6gcsxqgl")
 
 const MIN_DIST_FROM_OBSTACLES = 48.0
 const RAYCAST_LENGTH = 100.0  # How far to raycast downward
@@ -10,9 +11,12 @@ const RAYCAST_LENGTH = 100.0  # How far to raycast downward
 @onready var objects_node: Node2D = $Objects
 @onready var trees_node: Node2D = $Trees
 @onready var player_spawn: Marker2D = $Spawns/Default
+@onready var bridge_interaction_marker: Node2D = $BridgeInteractionMarker
 
 
 func _ready() -> void:
+	bridge_interaction_marker.bridge_built.connect(_on_bridge_built)
+	
 	if GameManager.anting_anting_collected:
 		print("[Spawn] Anting-anting already collected. Skipping spawn.")
 		return
@@ -57,7 +61,7 @@ func _spawn_anting_anting() -> void:
 
 
 func _instantiate_item(pos: Vector2) -> void:
-	var item = anting_anting_scene.instantiate()
+	var item = ANTING_ANTING.instantiate()
 	item.position = pos
 	objects_node.add_child(item)
 
@@ -83,5 +87,7 @@ func _is_on_ground(pos: Vector2) -> bool:
 	return result != null
 
 
-func _on_axe_body_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
+func _on_bridge_built() -> void:
+	var boss_scene = BOSS.instantiate()
+	boss_scene.global_position = $Spawns/BossSpawn.global_position
+	add_child(boss_scene)
