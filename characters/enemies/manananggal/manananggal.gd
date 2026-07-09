@@ -1,4 +1,7 @@
+class_name Manananggal
 extends Enemy
+
+@export var stats: Monster
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hurt: AudioStreamPlayer2D = $Hurt
