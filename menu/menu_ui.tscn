@@ -37,30 +37,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 script = ExtResource("1_qa6pt")
 metadata/_edit_horizontal_guides_ = [258.0]
+metadata/_edit_vertical_guides_ = [988.0]
 
 [node name="dark_overlay" type="ColorRect" parent="." unique_id=1067121196]
 modulate = Color(0, 0, 0, 0.57254905)
 z_index = 1
-layout_mode = 0
-offset_left = -332.0
-offset_top = -276.0
-offset_right = 334.0
-offset_bottom = 181.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -228.5
+offset_right = 333.0
+offset_bottom = 228.5
+grow_horizontal = 2
+grow_vertical = 2
 mouse_force_pass_scroll_events = false
 
 [node name="inventory" type="NinePatchRect" parent="." unique_id=1099475165]
 light_mask = 4
 visibility_layer = 4
 z_index = 2
-layout_mode = 0
-offset_left = -144.8
-offset_top = -149.0
-offset_right = 161.09999
-offset_bottom = 41.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.95
+offset_top = -95.0
+offset_right = 152.95
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_86ygs")
 
 [node name="inventory_ui" parent="inventory" unique_id=1659296847 instance=ExtResource("2_b5e6c")]
@@ -165,11 +183,18 @@ offset_bottom = 78.0
 [node name="crafting" type="NinePatchRect" parent="." unique_id=1070109932]
 visible = false
 z_index = 2
-layout_mode = 0
-offset_left = -151.0
-offset_top = -148.0
-offset_right = 159.9
-offset_bottom = 41.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.45
+offset_top = -94.5
+offset_right = 155.45
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("10_r2nwl")
 
 [node name="recipe_list_ui" parent="crafting" unique_id=1259639000 instance=ExtResource("11_cvuir")]
@@ -202,7 +227,6 @@ offset_right = 314.0
 offset_bottom = 58.0
 
 [node name="settings" type="Panel" parent="crafting/tabs" unique_id=68101426]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 291.0
 offset_top = 58.0
@@ -212,11 +236,18 @@ offset_bottom = 77.0
 [node name="guide" type="NinePatchRect" parent="." unique_id=438510004]
 visible = false
 z_index = 2
-layout_mode = 0
-offset_left = -150.5
-offset_top = -147.0
-offset_right = 158.29999
-offset_bottom = 40.899994
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.4
+offset_top = -93.95
+offset_right = 154.4
+offset_bottom = 93.95
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("13_ife3i")
 
 [node name="guide_ui" parent="guide" unique_id=2093522622 instance=ExtResource("14_oogfd")]
@@ -254,9 +285,16 @@ offset_bottom = 76.0
 [node name="settings" type="NinePatchRect" parent="." unique_id=14314597]
 visible = false
 z_index = 2
-layout_mode = 0
-offset_left = -145.0
-offset_top = -149.0
-offset_right = 161.0
-offset_bottom = 41.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -95.0
+offset_right = 153.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_86ygs")

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dp3mcwv8k6n5f" path="res://components/state_machine/state_machine.gd" id="4_dirf7"]
 [ext_resource type="PackedScene" uid="uid://b1f0lb50hrd31" path="res://components/health/health_component.tscn" id="4_rpf03"]
 [ext_resource type="PackedScene" uid="uid://ujqj0ltkv4rr" path="res://components/hitbox/hitbox_component.tscn" id="4_x5dtk"]
+[ext_resource type="Script" uid="uid://b1bph8jb4vmnq" path="res://characters/player/camera_2d.gd" id="5_5mkjs"]
 [ext_resource type="Script" uid="uid://cg5crbxbfkofa" path="res://characters/player/player_hitbox.gd" id="5_58jvb"]
 [ext_resource type="Script" uid="uid://clep8b7ots1yx" path="res://characters/player/states/idle.gd" id="5_dirf7"]
 [ext_resource type="AudioStream" uid="uid://c41blxsnf72iu" path="res://characters/player/assets/sfx/character_attack.mp3" id="5_on558"]
@@ -15,8 +16,6 @@
 [ext_resource type="Script" uid="uid://dtxeo4eme3xkc" path="res://characters/player/tool_hitbox.gd" id="6_thbx0"]
 [ext_resource type="Script" uid="uid://b81s2i5w4i0tm" path="res://characters/player/states/action.gd" id="7_dirf7"]
 [ext_resource type="AudioStream" uid="uid://bixv11gfhfyp5" path="res://characters/player/assets/sfx/character_hurt.mp3" id="7_gqopd"]
-[ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="11_3t07l"]
-[ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="12_on558"]
 [ext_resource type="Script" uid="uid://dbwrxpqmdtmn0" path="res://characters/player/states/dead.gd" id="13_8l73k"]
 [ext_resource type="Script" uid="uid://r86devc7c7k4" path="res://characters/player/states/blocking.gd" id="13_aqrcq"]
 [ext_resource type="PackedScene" uid="uid://xcgjcebok34j" path="res://components/interactions/interacting_component.tscn" id="20_kyfeq"]
@@ -1790,6 +1789,7 @@ parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=505558297]
 zoom = Vector2(3, 3)
+script = ExtResource("5_5mkjs")
 
 [node name="SwordHitbox" parent="." unique_id=1825321196 instance=ExtResource("4_x5dtk")]
 position = Vector2(12, -23)
@@ -1870,25 +1870,6 @@ metadata/_custom_type_script = "uid://o12jg021ygoa"
 script = ExtResource("13_8l73k")
 hurtbox_component = NodePath("../../HurtboxComponent")
 metadata/_custom_type_script = "uid://o12jg021ygoa"
-
-[node name="menu_ui" parent="." unique_id=885035941 node_paths=PackedStringArray("hotbar_ui") instance=ExtResource("11_3t07l")]
-visible = false
-offset_top = 55.0
-offset_bottom = 55.0
-hotbar_ui = NodePath("../hotbar_ui")
-
-[node name="hotbar_ui" parent="." unique_id=385176462 instance=ExtResource("12_on558")]
-visible = false
-z_index = 10
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -182.0
-offset_top = 71.0
-offset_right = -182.0
-offset_bottom = 71.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=1794402395]
 stream = SubResource("AudioStreamRandomizer_5mkjs")

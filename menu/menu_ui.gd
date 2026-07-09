@@ -27,7 +27,7 @@ func _ready() -> void:
 		if nodes.size() > 0:
 			hotbar_ui = nodes[0]
 	
-	#Events.player_state_changed.connect(_on_player_state_changed)
+	#Events.player_state_changed.connect(on_player_state_changed)
 	
 	_setup_artifact_slots()
 	_setup_tabs()

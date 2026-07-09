@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://pbocopymbreb" path="res://characters/player/player.tscn" id="6_kfbq2"]
 [ext_resource type="Script" uid="uid://bm4d8kvxeua6m" path="res://inventory/managers/item_drop_manager.gd" id="8_67ri8"]
 [ext_resource type="PackedScene" uid="uid://cssgo4awamqw0" path="res://ui/main_menu.tscn" id="9_grrlh"]
+[ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="10_bsumw"]
+[ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="11_fwcvl"]
 
 [node name="Main" type="Node2D" unique_id=1144406930]
 y_sort_enabled = true
@@ -33,7 +35,8 @@ gradient = ExtResource("3_xwkvk")
 [node name="DayNightCycleUI" parent="CanvasLayer" unique_id=1929152440 instance=ExtResource("4_c651c")]
 mouse_filter = 2
 
-[node name="MainMenu" parent="CanvasLayer" unique_id=1721133168 instance=ExtResource("9_grrlh")]
+[node name="MainMenu" parent="CanvasLayer" unique_id=1721133168 node_paths=PackedStringArray("hud") instance=ExtResource("9_grrlh")]
+hud = NodePath("../../HUD")
 
 [node name="SoundMachine" parent="." unique_id=650265235 instance=ExtResource("5_3wy1v")]
 process_mode = 3
@@ -41,3 +44,11 @@ process_mode = 3
 [node name="item_drop_manager" type="Node" parent="." unique_id=887579969 node_paths=PackedStringArray("spawn_root")]
 script = ExtResource("8_67ri8")
 spawn_root = NodePath("../DropsContainer")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=362309350]
+visible = false
+
+[node name="menu_ui" parent="HUD" unique_id=885035941 node_paths=PackedStringArray("hotbar_ui") instance=ExtResource("10_bsumw")]
+hotbar_ui = NodePath("../hotbar_ui")
+
+[node name="hotbar_ui" parent="HUD" unique_id=385176462 instance=ExtResource("11_fwcvl")]
