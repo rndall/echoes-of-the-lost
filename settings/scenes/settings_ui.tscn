@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://cjiognj6crq3e"]
+
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="2_7w0hj"]
+[ext_resource type="Texture2D" uid="uid://gnqv6tbdafto" path="res://settings/assets/slider_button.png" id="3_mvk7f"]
+[ext_resource type="Texture2D" uid="uid://cx58dw3lx82po" path="res://settings/assets/slider_button_hovered.png" id="4_013mv"]
+[ext_resource type="Script" uid="uid://iden24fv70q0" path="res://settings/ui_scripts/h_slider_master.gd" id="4_mvk7f"]
+[ext_resource type="Script" uid="uid://c1bygsmyyutru" path="res://settings/ui_scripts/h_slider_music.gd" id="5_1smri"]
+[ext_resource type="Script" uid="uid://dtm6iv45ga7ch" path="res://settings/ui_scripts/h_slider_sfx.gd" id="6_013mv"]
+
+[node name="settings_ui" type="Control" unique_id=445130079]
+custom_minimum_size = Vector2(140, 178)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1012.0
+offset_bottom = -470.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=623814126]
+custom_minimum_size = Vector2(140, 178)
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 178.0
+
+[node name="header" type="Label" parent="NinePatchRect" unique_id=1904319203]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 7.0
+offset_right = 105.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1702765499]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 140.0
+offset_bottom = 130.0
+
+[node name="Panel" type="Panel" parent="NinePatchRect/VBoxContainer" unique_id=429795076]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Panel" unique_id=1928805042]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.9999998
+offset_right = 262.0
+offset_bottom = 37.0
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7w0hj")
+theme_override_font_sizes/font_size = 27
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/Panel" unique_id=288280725]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 121.0
+offset_bottom = 28.0
+theme_override_icons/grabber = ExtResource("3_mvk7f")
+theme_override_icons/grabber_highlight = ExtResource("4_013mv")
+rounded = true
+tick_count = 1
+ticks_on_borders = true
+script = ExtResource("4_mvk7f")
+
+[node name="Panel2" type="Panel" parent="NinePatchRect/VBoxContainer" unique_id=1924857225]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Panel2" unique_id=1943957486]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.9999998
+offset_right = 262.0
+offset_bottom = 37.0
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7w0hj")
+theme_override_font_sizes/font_size = 27
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/Panel2" unique_id=368153077]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 121.0
+offset_bottom = 28.0
+theme_override_icons/grabber = ExtResource("3_mvk7f")
+theme_override_icons/grabber_highlight = ExtResource("4_013mv")
+rounded = true
+tick_count = 1
+ticks_on_borders = true
+script = ExtResource("5_1smri")
+
+[node name="Panel3" type="Panel" parent="NinePatchRect/VBoxContainer" unique_id=448611946]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/Panel3" unique_id=758476436]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 2.9999998
+offset_right = 262.0
+offset_bottom = 37.0
+scale = Vector2(0.33, 0.33)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7w0hj")
+theme_override_font_sizes/font_size = 27
+text = "SFX"
+
+[node name="HSlider" type="HSlider" parent="NinePatchRect/VBoxContainer/Panel3" unique_id=469357281]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 121.0
+offset_bottom = 28.0
+theme_override_icons/grabber = ExtResource("3_mvk7f")
+theme_override_icons/grabber_highlight = ExtResource("4_013mv")
+rounded = true
+tick_count = 1
+ticks_on_borders = true
+script = ExtResource("6_013mv")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=1641488028]
+custom_minimum_size = Vector2(140, 178)
+layout_mode = 0
+offset_left = 141.0
+offset_right = 281.0
+offset_bottom = 178.0
+
+[node name="header" type="Label" parent="NinePatchRect2" unique_id=600578704]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 7.0
+offset_right = 121.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Save / Load"

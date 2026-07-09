@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://djdctilgeiaxy" path="res://crafting/scenes/recipe_list_ui.tscn" id="11_cvuir"]
 [ext_resource type="PackedScene" uid="uid://cx4lu8x5qonlj" path="res://crafting/scenes/crafting_ui.tscn" id="12_dgai8"]
 [ext_resource type="Texture2D" uid="uid://bsa20o08gfvpa" path="res://guide/assets/bg.png" id="13_ife3i"]
+[ext_resource type="Texture2D" uid="uid://5h0y7t4b5sil" path="res://settings/assets/settings_bg.png" id="14_ewbfs"]
 [ext_resource type="PackedScene" uid="uid://c2genglyom37o" path="res://guide/scenes/guide_ui.tscn" id="14_oogfd"]
+[ext_resource type="PackedScene" uid="uid://cjiognj6crq3e" path="res://settings/scenes/settings_ui.tscn" id="15_ewbfs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ife3i"]
 atlas = ExtResource("5_wvcyl")
@@ -44,7 +46,7 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 script = ExtResource("1_qa6pt")
 metadata/_edit_horizontal_guides_ = [44.0]
-metadata/_edit_vertical_guides_ = [1004.0]
+metadata/_edit_vertical_guides_ = [128.0]
 
 [node name="dark_overlay" type="ColorRect" parent="." unique_id=1067121196]
 modulate = Color(0, 0, 0, 0.57254905)
@@ -173,7 +175,6 @@ offset_right = 306.0
 offset_bottom = 58.0
 
 [node name="settings" type="Panel" parent="inventory/tabs" unique_id=1920476322]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 284.0
 offset_top = 59.0
@@ -275,7 +276,6 @@ offset_right = 19.0
 offset_bottom = 40.0
 
 [node name="settings" type="Panel" parent="guide/tabs" unique_id=205163715]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 290.0
 offset_top = 57.0
@@ -291,10 +291,43 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.66667
-offset_top = -95.0
-offset_right = 153.33333
-offset_bottom = 95.0
+offset_left = -161.0
+offset_top = -93.333336
+offset_right = 151.33334
+offset_bottom = 93.666664
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_86ygs")
+texture = ExtResource("14_ewbfs")
+
+[node name="tabs" type="Node2D" parent="settings" unique_id=17113993]
+
+[node name="inventory" type="Panel" parent="settings/tabs" unique_id=985283694]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 19.0
+offset_bottom = 20.0
+
+[node name="crafting" type="Panel" parent="settings/tabs" unique_id=422942296]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -1.0
+offset_top = 21.0
+offset_right = 19.0
+offset_bottom = 40.0
+
+[node name="guide" type="Panel" parent="settings/tabs" unique_id=27564099]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -0.33333337
+offset_top = 38.333332
+offset_right = 19.666666
+offset_bottom = 57.333332
+
+[node name="settings_ui" parent="settings" unique_id=445130079 instance=ExtResource("15_ewbfs")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.057000004
+anchor_right = 0.95500004
+anchor_bottom = 0.952
+offset_left = -0.13633537
+offset_right = 0.054992676
+offset_bottom = -0.024002075
