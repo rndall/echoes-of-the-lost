@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_ikl7e")
+health_buff = 5.0
 id = "3"
 name = "Anting-Anting"
 texture = ExtResource("2_up26n")
