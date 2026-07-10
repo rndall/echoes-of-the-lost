@@ -71,7 +71,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="quest_info" type="Panel" parent="." unique_id=2022145666]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 z_index = 2
 layout_mode = 0
@@ -81,9 +80,14 @@ offset_right = 104.0
 offset_bottom = 48.0
 
 [node name="description" type="Label" parent="quest_info" unique_id=1837856574]
-layout_mode = 0
-offset_right = 269.69696
-offset_bottom = 72.727264
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 180.69696
+offset_bottom = 35.727264
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.33, 0.33)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_j4jn5")
@@ -102,7 +106,6 @@ scale = Vector2(0.25, 0.25)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_j4jn5")
 theme_override_font_sizes/font_size = 16
-text = "lorem ipsum"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

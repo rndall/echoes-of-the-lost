@@ -61,10 +61,17 @@ func update_display() -> void:
 	# Update label with quest name and progress
 	var display_progress = min(quest.current_progress, quest.target_amount)
 	var progress_text = "%s (%d/%d)" % [quest.quest_name, display_progress, quest.target_amount]
-	var reward_text = "Reward: %s x%d" % [quest.reward_item.name, quest.reward_amount]
+	var reward_text: String
+	if quest.reward_item:
+		reward_text = "Reward: %s x%d" % [quest.reward_item.name, quest.reward_amount]
 	var desc_text = "Description: %s" % [quest.description]
 	label.text = progress_text
-	reward.text = reward_text
+	if reward_text:
+		reward.text = reward_text
+		description.set_position(Vector2.ZERO)
+	else:
+		desc_panel.remove_child(reward)
+		description.set_position(Vector2(2.0, 6.0))
 	description.text = desc_text
 
 	# Update checkbox animation state

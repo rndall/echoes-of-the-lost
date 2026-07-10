@@ -34,6 +34,9 @@ layout_mode = 2
 [node name="main_quest_ui2" parent="BodyClip/Body" unique_id=399130126 instance=ExtResource("2_uib2n")]
 layout_mode = 2
 
+[node name="main_quest_ui3" parent="BodyClip/Body" unique_id=1938696630 instance=ExtResource("2_uib2n")]
+layout_mode = 2
+
 [node name="Header" type="Button" parent="." unique_id=49167257]
 custom_minimum_size = Vector2(99, 21)
 layout_mode = 0

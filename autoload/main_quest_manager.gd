@@ -43,6 +43,7 @@ func _create_default_quests() -> void:
 	var quest_resources = [
 		load("res://tasks/resources/mainquest1.tres"),
 		load("res://tasks/resources/mainquest2.tres"),
+		load("res://tasks/resources/mainquest3.tres"),
 	]
 
 	for quest_resource in quest_resources:
