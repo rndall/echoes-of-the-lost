@@ -121,3 +121,30 @@ func _enter_gameplay() -> void:
 		main_menu.hide()
 	if hud:
 		hud.show()
+
+
+## Called from settings_ui's "Quit to Main Menu" button (inside the pause
+## menu). Mirror image of _enter_gameplay()/_on_scene_load_finished(): tears
+## down the current session and hands control back to the MainMenu overlay,
+## which main_menu.gd now hide()s rather than queue_free()s on Play so it's
+## still here to show again.
+func quit_to_main_menu() -> void:
+	for child in world_container.get_children():
+		child.queue_free()
+
+	player.hide()
+	player.set_physics_process(false)
+
+	day_night_cycle_ui.hide()
+	day_night_cycle.hide()
+	day_night_cycle.process_mode = Node.PROCESS_MODE_DISABLED
+
+	if menu_ui and menu_ui.has_method("close"):
+		menu_ui.close()
+	if hud:
+		hud.hide()
+	if main_menu:
+		main_menu.show()
+
+	pending_load_position = Vector2.INF
+	get_tree().paused = false

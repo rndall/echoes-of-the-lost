@@ -7,6 +7,8 @@ const PANEL_PATHS: Array[String] = [
 	"NinePatchRect2/VBoxContainer/Panel3",
 ]
 
+@onready var quit_button: TextureButton = $NinePatchRect2/quit_button
+
 var _slot_nodes: Array[Dictionary] = []
 
 ## Delete is destructive, so it's armed with one press ("Delete?") and
@@ -26,6 +28,8 @@ func _ready() -> void:
 		nodes.save_button.pressed.connect(_on_save_pressed.bind(slot_index))
 		nodes.load_button.pressed.connect(_on_load_pressed.bind(slot_index))
 		nodes.delete_button.pressed.connect(_on_delete_pressed.bind(slot_index))
+
+	quit_button.pressed.connect(_on_quit_pressed)
 
 	_refresh_all_slots()
 
@@ -126,6 +130,18 @@ func _on_delete_pressed(slot_index: int) -> void:
 	_disarm_delete()
 	SaveManager.delete_save(slot_index)
 	_refresh_slot(slot_index)
+
+
+## Main owns gameplay teardown (world, player, day/night, HUD) and the
+## MainMenu overlay, the same way it owns switch_map() — see main_menu.gd's
+## _on_play_button_pressed() for the mirror-image call on the way back in.
+func _on_quit_pressed() -> void:
+	_disarm_delete()
+	var main: Node = get_tree().current_scene
+	if main and main.has_method("quit_to_main_menu"):
+		main.quit_to_main_menu()
+	else:
+		push_error("settings_ui: current scene has no quit_to_main_menu() — can't return to the main menu.")
 
 
 ## First press on a slot's delete button: arm it and dim the icon as a

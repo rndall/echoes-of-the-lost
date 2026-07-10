@@ -58,7 +58,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		if main_menu:
+		if main_menu.visible:
 			return
 		if is_open:
 			close()

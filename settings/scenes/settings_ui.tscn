@@ -456,3 +456,26 @@ offset_bottom = 522.4
 scale = Vector2(0.015, 0.015)
 texture_normal = ExtResource("13_axk6n")
 texture_pressed = ExtResource("14_c2mom")
+
+[node name="quit_button" type="TextureButton" parent="NinePatchRect2" unique_id=2044436143]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 152.0
+offset_right = 79.0
+offset_bottom = 163.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("11_c2mom")
+
+[node name="Label" type="Label" parent="NinePatchRect2/quit_button" unique_id=1582669072]
+layout_mode = 0
+offset_left = 2.9999998
+offset_top = 1.9999999
+offset_right = 213.0
+offset_bottom = 65.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("2_7w0hj")
+theme_override_font_sizes/font_size = 30
+text = "Quit to Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
