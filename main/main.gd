@@ -172,6 +172,8 @@ func quit_to_main_menu() -> void:
 		hud.hide()
 	if main_menu:
 		main_menu.show()
+		if main_menu.has_method("close_load_panel"):
+			main_menu.close_load_panel()
 
 	pending_load_position = Vector2.INF
 	get_tree().paused = false

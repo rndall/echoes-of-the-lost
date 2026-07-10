@@ -97,7 +97,7 @@ func _format_real_time(info: Dictionary) -> String:
 		return ""
 	var unix_time: int = int(info.get("real_time_unix", 0))
 	var dt: Dictionary = Time.get_datetime_dict_from_unix_time(unix_time)
-	return "%04d,%02d,%02d %02d:%02d:%02d" % [
+	return "%04d/%02d/%02d %02d:%02d:%02d" % [
 		dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second
 	]
 
