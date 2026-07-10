@@ -13,29 +13,28 @@ radius = 5.0
 radius = 8.0
 
 [node name="stone" type="StaticBody2D" unique_id=176890095]
-position = Vector2(0, -4)
 collision_layer = 64
 script = ExtResource("1_jg0gd")
 
 [node name="Shadow" parent="." unique_id=96700984 instance=ExtResource("3_t0vo2")]
-position = Vector2(0, 4)
+position = Vector2(0, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1277039953]
-position = Vector2(0, -3)
+position = Vector2(0, -4)
 texture = ExtResource("1_gk8i1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=442508433]
 z_index = 1
-position = Vector2(0, -3)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_dutb6")
 
 [node name="HealthComponent" parent="." unique_id=1155988396 node_paths=PackedStringArray("sprite_2d") instance=ExtResource("2_health")]
-position = Vector2(0, -3)
+position = Vector2(0, -4)
 sprite_2d = NodePath("../Sprite2D")
 max_health = 20.0
 
 [node name="HurtboxComponent" parent="." unique_id=435084209 node_paths=PackedStringArray("health_component") instance=ExtResource("3_hurtbox")]
-position = Vector2(0, -3)
+position = Vector2(0, -4)
 collision_layer = 128
 health_component = NodePath("../HealthComponent")
 

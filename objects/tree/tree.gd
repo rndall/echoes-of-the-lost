@@ -76,7 +76,7 @@ func _on_died() -> void:
 	has_died = true
 	spawned_drops = []
 	
-	var log_count = randi_range(1,2)
+	var log_count = randi_range(1, 3)
 	
 	var last_collection_day = GameManager.get_data_value(get_path(), "last_collection_day")
 	var should_spawn_apples = last_collection_day != current_day
