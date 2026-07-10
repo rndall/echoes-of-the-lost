@@ -3,6 +3,7 @@ extends Control
 @export var hud: CanvasLayer
 
 @onready var load_panel: NinePatchRect = $NinePatchRect
+@onready var help_panel: NinePatchRect = $controls_help
 ## Slot TextureButtons, in slot order. Each has three child Labels —
 ## "slot_number", "game_time", "real_time" (see main_menu.tscn) — that
 ## _refresh_slot() rewrites individually.
@@ -122,9 +123,19 @@ func close_load_panel() -> void:
 ## _unhandled_input would NOT work here, since this root Control's default
 ## mouse_filter is STOP and swallows any click as GUI input first.)
 func _gui_input(event: InputEvent) -> void:
-	if not load_panel.visible:
+	if not load_panel.visible and not help_panel.visible:
 		return
 	if event is InputEventMouseButton and event.pressed:
 		if not load_panel.get_global_rect().has_point(event.global_position):
 			load_panel.hide()
 			accept_event()
+		if not help_panel.get_global_rect().has_point(event.global_position):
+			help_panel.hide()
+			accept_event()
+
+
+func _on_help_button_pressed() -> void:
+	if help_panel.visible:
+		help_panel.hide()
+		return
+	help_panel.show()
