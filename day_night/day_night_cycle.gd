@@ -65,3 +65,33 @@ func reset() -> void:
 	color = gradient.gradient.sample(value)
 
 	_recalculate_time()
+
+
+# ---------------------------------------------------------------------------
+# Save / Load
+# ---------------------------------------------------------------------------
+
+## `time` alone fully determines day/hour/minute/phase/color (they're all
+## derived from it in _process()/_recalculate_time()), so it's the only
+## value SaveManager needs to persist for the clock to resume correctly.
+func get_save_data() -> Dictionary:
+	return {"time": time}
+
+
+## Restores the saved clock and immediately re-derives color/phase/day from
+## it, rather than waiting for the next _process() frame — otherwise the
+## loaded scene would flash the default initial_hour lighting for a frame,
+## and GameManager.phase/day could briefly disagree with the restored time.
+func load_save_data(data: Dictionary) -> void:
+	time = data.get("time", time)
+
+	# Force _recalculate_time() to treat this as a fresh minute so it
+	# re-emits Events.time_tick and re-syncs GameManager.day/phase instead
+	# of silently no-opping because past_minute already equals the new
+	# minute by coincidence.
+	past_minute = -1.0
+
+	var value = (sin(time - PI / 2) + 1.0) / 2.0
+	color = gradient.gradient.sample(value)
+
+	_recalculate_time()

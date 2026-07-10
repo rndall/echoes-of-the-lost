@@ -73,6 +73,7 @@ func get_save_info(slot: int) -> Dictionary:
 func save_game(slot: int) -> void:
 	var player_pos: Vector2 = _get_player_position()
 	var drop_manager: Node = _get_item_drop_manager()
+	var day_night_cycle: Node = _get_day_night_cycle()
 
 	var save_data: Dictionary = {
 		"meta": {
@@ -94,6 +95,12 @@ func save_game(slot: int) -> void:
 		# GameManager.data since ItemDropManager isn't an autoload — see
 		# _get_item_drop_manager().
 		"item_drops": drop_manager.get_save_data() if drop_manager else {},
+		# The in-game clock (DayNightCycle.time). Kept separate from
+		# GameManager.data since DayNightCycle isn't an autoload — see
+		# _get_day_night_cycle(), which reads it directly off Main. Without
+		# this, loading a save always resumed the clock from wherever it
+		# happened to already be ticking, instead of the saved time.
+		"day_night_cycle": day_night_cycle.get_save_data() if day_night_cycle else {},
 	}
 
 	for singleton_name: String in SAVEABLE_SINGLETONS:
@@ -132,6 +139,15 @@ func load_game(slot: int) -> bool:
 	if drop_manager and save_data.has("item_drops"):
 		drop_manager.load_save_data(save_data["item_drops"])
 
+	# Sync the in-game clock to the saved time. This must happen before
+	# game_loaded.emit() below, since load_save_data() re-emits
+	# Events.time_tick (which updates Events._current_hour/_minute and
+	# GameManager.phase/day) — anything that reacts to game_loaded should
+	# see an already-consistent clock/phase/day.
+	var day_night_cycle: Node = _get_day_night_cycle()
+	if day_night_cycle and save_data.has("day_night_cycle"):
+		day_night_cycle.load_save_data(save_data["day_night_cycle"])
+
 	for singleton_name: String in SAVEABLE_SINGLETONS:
 		if not save_data.has(singleton_name):
 			continue
@@ -169,6 +185,20 @@ func load_game(slot: int) -> bool:
 ## it's found by group instead of by absolute path.
 func _get_item_drop_manager() -> Node:
 	return get_tree().get_first_node_in_group("item_drop_manager")
+
+
+## DayNightCycle is a sibling of WorldContainer under Main (not inside it),
+## so it survives map swaps and Main already holds a direct reference to it
+## (main.gd: @onready var day_night_cycle). Read it straight off Main rather
+## than via a group tag — a group needs to be manually added to the node in
+## the editor and is easy to forget (which is exactly what silently broke
+## save/load of the clock: the node was never tagged, so this always
+## returned null and the clock was never captured or restored).
+func _get_day_night_cycle() -> Node:
+	var main: Node = get_tree().current_scene
+	if main and ("day_night_cycle" in main):
+		return main.day_night_cycle
+	return null
 
 
 ## Main owns the live Player node; grabbing its position directly at save
