@@ -1,6 +1,6 @@
 extends NinePatchRect
 
-@onready var main_menu: Control = $".."
+@export var main_menu: Control   # assign the MainMenu node in the Inspector
 
 @onready var help_panel: NinePatchRect = $"."
 

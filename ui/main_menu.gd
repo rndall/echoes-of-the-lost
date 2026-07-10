@@ -2,8 +2,8 @@ extends Control
 
 @export var hud: CanvasLayer
 
+@onready var help_panel: NinePatchRect = $"../controls_help"
 @onready var load_panel: NinePatchRect = $NinePatchRect
-@onready var help_panel: NinePatchRect = $controls_help
 ## Slot TextureButtons, in slot order. Each has three child Labels —
 ## "slot_number", "game_time", "real_time" (see main_menu.tscn) — that
 ## _refresh_slot() rewrites individually.
