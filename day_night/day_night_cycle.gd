@@ -17,6 +17,7 @@ var past_minute: float = -1.0
 
 func _ready() -> void:
 	time = INGAME_TO_REAL_MINUTE_DURATION * initial_hour * MINUTES_PER_HOUR
+	Events.sleep_requested.connect(_on_sleep_requested)
 
 
 func _process(delta: float) -> void:
@@ -95,3 +96,25 @@ func load_save_data(data: Dictionary) -> void:
 	color = gradient.gradient.sample(value)
 
 	_recalculate_time()
+
+
+func _on_sleep_requested(wake_hour: int) -> void:
+	var total_minutes = int(time / INGAME_TO_REAL_MINUTE_DURATION)
+	var current_day_minutes = total_minutes % MINUTES_PER_DAY
+	var current_hour = int(float(current_day_minutes) / MINUTES_PER_HOUR)
+
+	var minutes_to_add = 0
+
+	if current_hour < wake_hour:
+		minutes_to_add = (wake_hour * MINUTES_PER_HOUR) - current_day_minutes
+	else:
+		var minutes_left_today = MINUTES_PER_DAY - current_day_minutes
+		var minutes_tomorrow = wake_hour * MINUTES_PER_HOUR
+		minutes_to_add = minutes_left_today + minutes_tomorrow
+	
+	time += minutes_to_add * INGAME_TO_REAL_MINUTE_DURATION
+
+	_recalculate_time()
+
+	var value = (sin(time - PI / 2) + 1.0) / 2.0
+	color = gradient.gradient.sample(value)

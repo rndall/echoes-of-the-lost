@@ -7,9 +7,9 @@
 script = ExtResource("2_7gftq")
 task_id = "4"
 task_name = "Go for a Walk"
-description = "Walk 500 units"
+description = "Walk 200 units"
 task_type = 3
-target_amount = 500
+target_amount = 200
 reward_item = ExtResource("1_beint")
 reward_item_amount = 1
 metadata/_custom_type_script = "uid://b6dk4cvvnwlv7"

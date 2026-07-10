@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://3s5rfvjydnns"]
 
 [ext_resource type="Texture2D" uid="uid://dmqihlplc502b" path="res://maps/house/assets/cabin_inside.jpg" id="2_frhdl"]
+[ext_resource type="PackedScene" uid="uid://bg56qrcw4qyi0" path="res://components/interactions/interactable.tscn" id="3_0mefl"]
+[ext_resource type="Script" uid="uid://c3cu1la4um177" path="res://maps/house/bed.gd" id="3_mhr02"]
 [ext_resource type="PackedScene" uid="uid://bqj31sewmuvba" path="res://components/triggers/scene_transition_trigger.tscn" id="3_tpley"]
+[ext_resource type="FontFile" uid="uid://tig3jhgl6ohj" path="res://day_night/fonts/pixelmix.ttf" id="4_k7ipq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3onaq"]
 
@@ -23,6 +26,14 @@ size = Vector2(31, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtr1d"]
 size = Vector2(44, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxb3u"]
+radius = 31.016125
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpley"]
+font = ExtResource("4_k7ipq")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="HouseMap" type="Node2D" unique_id=1696503527]
 
@@ -79,3 +90,25 @@ shape = SubResource("RectangleShape2D_oxb3u")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Collisions" unique_id=1627482657]
 position = Vector2(-6, -93)
 shape = SubResource("RectangleShape2D_wtr1d")
+
+[node name="Bed" type="Node2D" parent="." unique_id=1022824335]
+position = Vector2(46, 61)
+script = ExtResource("3_mhr02")
+
+[node name="Interactable" parent="Bed" unique_id=808461377 node_paths=PackedStringArray("interact_label") instance=ExtResource("3_0mefl")]
+interact_label = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed/Interactable" unique_id=1362345440]
+shape = SubResource("CircleShape2D_oxb3u")
+
+[node name="Label" type="Label" parent="Bed/Interactable" unique_id=806033548]
+offset_left = -23.0
+offset_top = -27.0
+offset_right = 71.0
+offset_bottom = 8.0
+scale = Vector2(0.5, 0.5)
+text = "Press [E]
+to Sleep"
+label_settings = SubResource("LabelSettings_tpley")
+horizontal_alignment = 1
+vertical_alignment = 1

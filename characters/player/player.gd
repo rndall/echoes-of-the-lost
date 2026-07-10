@@ -62,11 +62,12 @@ func _on_artifact_inv_updated() -> void:
 	Events.player_health_changed.emit(GameManager.player_health)
 
 
-func _on_health_changed(current_health: float, _attack: Attack) -> void:
+func _on_health_changed(current_health: float, attack: Attack) -> void:
 	GameManager.player_health = current_health
 	Events.player_health_changed.emit(current_health)
 	
-	hurt.play()
+	if attack:
+		hurt.play()
 
 
 func _on_death() -> void:

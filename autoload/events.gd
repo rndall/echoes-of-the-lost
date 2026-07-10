@@ -8,6 +8,8 @@ signal scene_load_finished(loaded_map: PackedScene)
 signal map_changed(map: Map)
 
 signal time_tick(day: int, hour: int, minute: int)
+signal sleep_sequence_started(wake_hour: int)
+signal sleep_requested(wake_up_hour: int)
 
 signal player_health_changed(current_health: float)
 signal player_weapon_equipped(item: WeaponItem)

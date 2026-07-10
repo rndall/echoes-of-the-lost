@@ -41,7 +41,8 @@ directories/dch_directory={
 "player_character": "res://characters/player/player_character.dch"
 }
 directories/dtl_directory={
-"bridge_timeline": "res://dialogic/timelines/bridge_timeline.dtl"
+"bridge_timeline": "res://dialogic/timelines/bridge_timeline.dtl",
+"sleep_timeline": "res://dialogic/timelines/sleep_timeline.dtl"
 }
 layout/style_directory={}
 variables={
