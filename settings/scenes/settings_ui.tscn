@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cd4275bo0nuin" path="res://settings/assets/save_button_pressed.png" id="9_vywwe"]
 [ext_resource type="Texture2D" uid="uid://dtoo5hu81bcsi" path="res://settings/assets/load_button.png" id="10_axk6n"]
 [ext_resource type="Texture2D" uid="uid://bitbls4dvfwsm" path="res://settings/assets/load_button_pressed.png" id="11_c2mom"]
+[ext_resource type="Texture2D" uid="uid://bcwbghd0kityy" path="res://settings/assets/recycle-bin.png" id="13_axk6n"]
+[ext_resource type="Texture2D" uid="uid://b4kmnqpd1stwa" path="res://settings/assets/recycle-bin-pressed.png" id="14_c2mom"]
 
 [node name="settings_ui" type="Control" unique_id=445130079]
 custom_minimum_size = Vector2(140, 178)
@@ -211,9 +213,9 @@ text = "time"
 
 [node name="save_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel" unique_id=1172149382]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 2.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 13.0
 texture_normal = ExtResource("8_8owrw")
 texture_pressed = ExtResource("9_vywwe")
@@ -232,9 +234,9 @@ text = "Save State"
 
 [node name="load_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel" unique_id=147261185]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 14.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 25.0
 texture_normal = ExtResource("10_axk6n")
 texture_pressed = ExtResource("11_c2mom")
@@ -251,16 +253,26 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 23
 text = "Load State"
 
-[node name="Panel2" type="Panel" parent="NinePatchRect2/VBoxContainer" unique_id=1264440243]
+[node name="delete_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel" unique_id=1036620188]
+layout_mode = 0
+offset_left = 77.60156
+offset_top = 10.400024
+offset_right = 589.60156
+offset_bottom = 522.4
+scale = Vector2(0.015, 0.015)
+texture_normal = ExtResource("13_axk6n")
+texture_pressed = ExtResource("14_c2mom")
+
+[node name="Panel2" type="Panel" parent="NinePatchRect2/VBoxContainer" unique_id=1180035501]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(89, 29)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1396083850]
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=957273859]
 position = Vector2(45, 14)
 texture = ExtResource("7_nqlq4")
 
-[node name="save_slot" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1378602770]
+[node name="save_slot" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=134943129]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 2.9999998
@@ -272,7 +284,7 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 24
 text = "SLOT 2"
 
-[node name="save_time_real" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1677555032]
+[node name="save_time_real" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=692692185]
 layout_mode = 0
 offset_left = 4.799988
 offset_top = 20.800003
@@ -284,7 +296,7 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 18
 text = "time"
 
-[node name="save_time_game" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=870528845]
+[node name="save_time_game" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=25586097]
 layout_mode = 0
 offset_left = 4.8000183
 offset_top = 13.599998
@@ -296,17 +308,17 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 18
 text = "time"
 
-[node name="save_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=654455735]
+[node name="save_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1964696490]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 2.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 13.0
 texture_normal = ExtResource("8_8owrw")
 texture_pressed = ExtResource("9_vywwe")
 texture_focused = ExtResource("9_vywwe")
 
-[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2/save_button" unique_id=1603343698]
+[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2/save_button" unique_id=1162478013]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
@@ -317,17 +329,17 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 23
 text = "Save State"
 
-[node name="load_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1460159438]
+[node name="load_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=353406533]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 14.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 25.0
 texture_normal = ExtResource("10_axk6n")
 texture_pressed = ExtResource("11_c2mom")
 texture_focused = ExtResource("11_c2mom")
 
-[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2/load_button" unique_id=1610038553]
+[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel2/load_button" unique_id=1415473042]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
@@ -338,16 +350,26 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 23
 text = "Load State"
 
-[node name="Panel3" type="Panel" parent="NinePatchRect2/VBoxContainer" unique_id=611958618]
+[node name="delete_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel2" unique_id=1240620282]
+layout_mode = 0
+offset_left = 77.60156
+offset_top = 10.400024
+offset_right = 589.60156
+offset_bottom = 522.4
+scale = Vector2(0.015, 0.015)
+texture_normal = ExtResource("13_axk6n")
+texture_pressed = ExtResource("14_c2mom")
+
+[node name="Panel3" type="Panel" parent="NinePatchRect2/VBoxContainer" unique_id=798574596]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(89, 29)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1262569373]
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1686434656]
 position = Vector2(45, 14)
 texture = ExtResource("7_nqlq4")
 
-[node name="save_slot" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=98847749]
+[node name="save_slot" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=2088868110]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 2.9999998
@@ -359,7 +381,7 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 24
 text = "SLOT 3"
 
-[node name="save_time_real" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=175417456]
+[node name="save_time_real" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=281161952]
 layout_mode = 0
 offset_left = 4.799988
 offset_top = 20.800003
@@ -371,7 +393,7 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 18
 text = "time"
 
-[node name="save_time_game" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=673959893]
+[node name="save_time_game" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1370720833]
 layout_mode = 0
 offset_left = 4.8000183
 offset_top = 13.599998
@@ -383,17 +405,17 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 18
 text = "time"
 
-[node name="save_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1393094232]
+[node name="save_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=985236192]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 2.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 13.0
 texture_normal = ExtResource("8_8owrw")
 texture_pressed = ExtResource("9_vywwe")
 texture_focused = ExtResource("9_vywwe")
 
-[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3/save_button" unique_id=1322337159]
+[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3/save_button" unique_id=1883379806]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
@@ -404,17 +426,17 @@ theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 23
 text = "Save State"
 
-[node name="load_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1795022357]
+[node name="load_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=1034684924]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 48.199997
 offset_top = 14.0
-offset_right = 80.0
+offset_right = 75.2
 offset_bottom = 25.0
 texture_normal = ExtResource("10_axk6n")
 texture_pressed = ExtResource("11_c2mom")
 texture_focused = ExtResource("11_c2mom")
 
-[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3/load_button" unique_id=1103300254]
+[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/Panel3/load_button" unique_id=1582858720]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
@@ -424,3 +446,13 @@ scale = Vector2(0.125, 0.125)
 theme_override_fonts/font = ExtResource("2_7w0hj")
 theme_override_font_sizes/font_size = 23
 text = "Load State"
+
+[node name="delete_button" type="TextureButton" parent="NinePatchRect2/VBoxContainer/Panel3" unique_id=880595896]
+layout_mode = 0
+offset_left = 77.60156
+offset_top = 10.400024
+offset_right = 589.60156
+offset_bottom = 522.4
+scale = Vector2(0.015, 0.015)
+texture_normal = ExtResource("13_axk6n")
+texture_pressed = ExtResource("14_c2mom")

@@ -9,6 +9,13 @@ const PANEL_PATHS: Array[String] = [
 
 var _slot_nodes: Array[Dictionary] = []
 
+## Delete is destructive, so it's armed with one press ("Delete?") and
+## committed with a second press on the same slot within CONFIRM_TIMEOUT
+## seconds. Any other button press, or switching slots, disarms it.
+const CONFIRM_TIMEOUT := 3.0
+var _pending_delete_slot: int = -1
+var _confirm_timer: SceneTreeTimer
+
 
 func _ready() -> void:
 	for panel_path: String in PANEL_PATHS:
@@ -18,6 +25,7 @@ func _ready() -> void:
 		var nodes: Dictionary = _slot_nodes[slot_index]
 		nodes.save_button.pressed.connect(_on_save_pressed.bind(slot_index))
 		nodes.load_button.pressed.connect(_on_load_pressed.bind(slot_index))
+		nodes.delete_button.pressed.connect(_on_delete_pressed.bind(slot_index))
 
 	_refresh_all_slots()
 
@@ -32,6 +40,7 @@ func _collect_slot_nodes(panel_path: String) -> Dictionary:
 		"real_time_label": panel.get_node("save_time_real") as Label,
 		"save_button": panel.get_node("save_button") as TextureButton,
 		"load_button": panel.get_node("load_button") as TextureButton,
+		"delete_button": panel.get_node("delete_button") as TextureButton,
 	}
 
 
@@ -51,11 +60,20 @@ func _refresh_slot(slot_index: int) -> void:
 		nodes.real_time_label.text = ""
 		nodes.load_button.disabled = true
 		nodes.load_button.modulate.a = 0.5
+		nodes.delete_button.disabled = true
+		nodes.delete_button.modulate.a = 0.5
 	else:
 		nodes.game_time_label.text = _format_game_time(info)
 		nodes.real_time_label.text = _format_real_time(info)
 		nodes.load_button.disabled = false
 		nodes.load_button.modulate.a = 1.0
+		nodes.delete_button.disabled = false
+		nodes.delete_button.modulate.a = 1.0
+
+	# _refresh_slot re-reads from disk, so any armed confirmation on this
+	# slot is stale the moment its contents change (e.g. after deleting).
+	if slot_index == _pending_delete_slot:
+		_disarm_delete()
 
 
 ## "Day X, XX:XX" using the in-game day counter + Events' clock string.
@@ -81,11 +99,13 @@ func _format_real_time(info: Dictionary) -> String:
 
 
 func _on_save_pressed(slot_index: int) -> void:
+	_disarm_delete()
 	SaveManager.save_game(slot_index)
 	_refresh_slot(slot_index)
 
 
 func _on_load_pressed(slot_index: int) -> void:
+	_disarm_delete()
 	if not SaveManager.has_save(slot_index):
 		return
 	SaveManager.load_game(slot_index)
@@ -93,3 +113,39 @@ func _on_load_pressed(slot_index: int) -> void:
 	# which listens for SaveManager.game_loaded — hiding this node directly
 	# would only hide the settings panel's own content, not the menu itself,
 	# and would leave it permanently hidden the next time this tab is opened.
+
+
+func _on_delete_pressed(slot_index: int) -> void:
+	if not SaveManager.has_save(slot_index):
+		return
+
+	if _pending_delete_slot != slot_index:
+		_arm_delete(slot_index)
+		return
+
+	_disarm_delete()
+	SaveManager.delete_save(slot_index)
+	_refresh_slot(slot_index)
+
+
+## First press on a slot's delete button: arm it and dim the icon as a
+## "press again to confirm" cue. Any other slot's arming (or a timeout)
+## clears this automatically.
+func _arm_delete(slot_index: int) -> void:
+	_disarm_delete()
+	_pending_delete_slot = slot_index
+	_slot_nodes[slot_index].delete_button.modulate = Color(1.0, 0.4, 0.4)
+
+	_confirm_timer = get_tree().create_timer(CONFIRM_TIMEOUT)
+	_confirm_timer.timeout.connect(_disarm_delete)
+
+
+func _disarm_delete() -> void:
+	if _confirm_timer:
+		if _confirm_timer.timeout.is_connected(_disarm_delete):
+			_confirm_timer.timeout.disconnect(_disarm_delete)
+		_confirm_timer = null
+
+	if _pending_delete_slot != -1:
+		_slot_nodes[_pending_delete_slot].delete_button.modulate = Color(1, 1, 1, 1)
+		_pending_delete_slot = -1
