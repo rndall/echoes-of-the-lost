@@ -81,6 +81,10 @@ func save_game(slot: int) -> void:
 			# Replace with however your Events/time system exposes clock time.
 			"time_string": Events.get_time_string() if Events.has_method("get_time_string") else "",
 			"player_position": [player_pos.x, player_pos.y],
+			# Wall-clock save timestamp (UTC unix seconds). Stored as a raw
+			# int rather than a pre-formatted string so the UI is free to
+			# render it however it likes (and so it stays JSON/locale safe).
+			"real_time_unix": Time.get_unix_time_from_system(),
 		},
 		"game_manager": _serialize_game_manager(),
 		"player_inv": (load(PLAYER_INV_PATH) as Inventory).to_save_dict(),

@@ -26,7 +26,10 @@ func _collect_slot_nodes(panel_path: String) -> Dictionary:
 	var panel: Panel = get_node(panel_path)
 	return {
 		"slot_label": panel.get_node("save_slot") as Label,
-		"time_label": panel.get_node("save_time") as Label,
+		# Two separate labels per slot in the scene: in-game day/clock time,
+		# and the real-world wall-clock moment the save was written.
+		"game_time_label": panel.get_node("save_time_game") as Label,
+		"real_time_label": panel.get_node("save_time_real") as Label,
 		"save_button": panel.get_node("save_button") as TextureButton,
 		"load_button": panel.get_node("load_button") as TextureButton,
 	}
@@ -44,17 +47,37 @@ func _refresh_slot(slot_index: int) -> void:
 	nodes.slot_label.text = "SLOT %d" % (slot_index + 1)
 
 	if info.is_empty():
-		nodes.time_label.text = "Empty"
+		nodes.game_time_label.text = "Empty"
+		nodes.real_time_label.text = ""
 		nodes.load_button.disabled = true
 		nodes.load_button.modulate.a = 0.5
 	else:
-		var day: int = info.get("day", 0)
-		var time_string: String = info.get("time_string", "")
-		nodes.time_label.text = (
-			"Day %d %s" % [day, time_string] if time_string != "" else "Day %d" % day
-		)
+		nodes.game_time_label.text = _format_game_time(info)
+		nodes.real_time_label.text = _format_real_time(info)
 		nodes.load_button.disabled = false
 		nodes.load_button.modulate.a = 1.0
+
+
+## "Day X, XX:XX" using the in-game day counter + Events' clock string.
+## Falls back to just "Day X" if no clock string was available at save time.
+func _format_game_time(info: Dictionary) -> String:
+	var day: int = info.get("day", 0)
+	var time_string: String = info.get("time_string", "")
+	if time_string == "":
+		return "Day %d" % day
+	return "Day %d, %s" % [day, time_string]
+
+
+## "YYYY,MM,DD H:i:s" (24-hour, zero-padded) built from the unix timestamp
+## recorded at save time. Uses UTC to match Time.get_unix_time_from_system().
+func _format_real_time(info: Dictionary) -> String:
+	if not info.has("real_time_unix"):
+		return ""
+	var unix_time: int = int(info.get("real_time_unix", 0))
+	var dt: Dictionary = Time.get_datetime_dict_from_unix_time(unix_time)
+	return "%04d,%02d,%02d %02d:%02d:%02d" % [
+		dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second
+	]
 
 
 func _on_save_pressed(slot_index: int) -> void:
