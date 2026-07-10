@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yy0xjuxbo7ks" path="res://inventory/item_scripts/anting_anting.gd" id="1_iimbc"]
 [ext_resource type="Texture2D" uid="uid://d16tv11jeww5a" path="res://inventory/assets/items/ice_sparkles.png" id="2_iimbc"]
-[ext_resource type="AudioStream" uid="uid://b3kyeoqessag7" path="res://inventory/assets/sfx/Never Gonna Give You Up.mp3" id="3_003bj"]
+[ext_resource type="AudioStream" uid="uid://ckh4qqpt3thbl" path="res://inventory/assets/sfx/anting_anting_echo.wav" id="3_p83uf"]
 [ext_resource type="AudioStream" uid="uid://budr8dcgmudia" path="res://inventory/assets/sfx/artifact pickup sting.mp3" id="4_p83uf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_003bj"]
@@ -67,8 +67,8 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_dutb6")
 
 [node name="Echo" type="AudioStreamPlayer2D" parent="." unique_id=1801062104]
-stream = ExtResource("3_003bj")
-volume_db = -10.0
+stream = ExtResource("3_p83uf")
+volume_db = 8.0
 autoplay = true
 max_distance = 150.0
 bus = &"Music"
