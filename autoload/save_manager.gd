@@ -224,11 +224,22 @@ func _serialize_game_manager() -> Dictionary:
 
 
 func _deserialize_game_manager(d: Dictionary) -> void:
-	GameManager.player_health = d.get("player_health", GameManager.BASE_MAX_PLAYER_HEALTH)
-	GameManager.apply_artifact_buffs(
-		d.get("artifact_health_buff", 0.0),
-		d.get("artifact_attack_buff", 0.0)
-	)
+	# Restore the buff totals and MAX_PLAYER_HEALTH directly rather than
+	# going through apply_artifact_buffs(). That function is meant for the
+	# *live* case — "an artifact was just picked up, add the difference to
+	# current health" — and computes its delta against whatever
+	# artifact_health_buff happens to already be sitting in memory. On load
+	# that in-memory value has nothing to do with the save being restored
+	# (e.g. it's whatever was live before Load was pressed), so the delta
+	# it computes is essentially arbitrary and was silently corrupting the
+	# player_health we'd just set from the save one line above. The saved
+	# player_health already reflects the correct value including buffs, so
+	# nothing here needs to "adjust" it — just restore the numbers as-is.
+	GameManager.artifact_health_buff = d.get("artifact_health_buff", 0.0)
+	GameManager.artifact_attack_buff = d.get("artifact_attack_buff", 0.0)
+	GameManager.MAX_PLAYER_HEALTH = GameManager.BASE_MAX_PLAYER_HEALTH + GameManager.artifact_health_buff
+	GameManager.player_health = d.get("player_health", GameManager.MAX_PLAYER_HEALTH)
+	Events.artifact_buffs_changed.emit(GameManager.artifact_health_buff, GameManager.artifact_attack_buff)
 
 	var weapon_id: String = d.get("player_weapon_id", "")
 	if weapon_id != "":

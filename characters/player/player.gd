@@ -23,8 +23,19 @@ func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_death)
 	
+	# health_component.health is the value actually used for taking damage,
+	# and _on_health_changed() writes it straight back into
+	# GameManager.player_health on every hit — so if it's left stale after a
+	# load, the very next hit silently overwrites the health we just
+	# restored with whatever health_component had before the load happened.
+	SaveManager.game_loaded.connect(_on_game_loaded)
+	
 	animation_tree.set_active(true)
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
+
+func _on_game_loaded() -> void:
+	health_component.max_health = GameManager.MAX_PLAYER_HEALTH
+	health_component.health = GameManager.player_health
 
 func _on_artifact_inv_updated() -> void:
 	# Sum buffs across every artifact currently owned. Only one of each
