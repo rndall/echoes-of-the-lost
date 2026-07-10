@@ -1,23 +1,27 @@
 class_name Player
 extends CharacterBody2D
 
+const INV: Inventory = preload("uid://bn2stjinnsiyq")
+const ARTIFACT_INV: Inventory = preload("uid://douhrv0500seb")
+const WEAPON_INV: Inventory = preload("uid://4c04xqhej0fr")
+
 @export var speed: float = 100.0
+
+var walk_distance_accum: float = 0.0
+var facing_direction: Vector2 = Vector2.DOWN
 
 @onready var hurt: AudioStreamPlayer2D = $Hurt
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var state_machine: StateMachine = $StateMachine
-@onready var inv: Inventory = preload("res://inventory/resources/player_inv.tres")
-@onready var artifact_inv = preload("res://inventory/resources/artifact_inv.tres")
-
-var walk_distance_accum: float = 0.0
-var facing_direction: Vector2 = Vector2.DOWN
+@onready var shadow: AutoShadow2D = $Shadow
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 
 
 func _ready() -> void:
 	print(health_component.health)
-	artifact_inv.update.connect(_on_artifact_inv_updated)
+	ARTIFACT_INV.update.connect(_on_artifact_inv_updated)
 	_on_artifact_inv_updated()  # apply buffs from whatever artifacts are already owned, and sync health_component
 
 	health_component.health_changed.connect(_on_health_changed)
@@ -44,7 +48,7 @@ func _on_artifact_inv_updated() -> void:
 	# but it stays generic so it scales cleanly when more artifacts exist.
 	var total_health_buff: float = 0.0
 	var total_attack_buff: float = 0.0
-	for slot in artifact_inv.slots:
+	for slot in ARTIFACT_INV.slots:
 		if slot.item and slot.item is ArtifactItem:
 			total_health_buff += slot.item.health_buff
 			total_attack_buff += slot.item.attack_buff
@@ -66,10 +70,11 @@ func _on_health_changed(current_health: float, _attack: Attack) -> void:
 func _on_death() -> void:
 	print("dead")
 	state_machine._transition_to_next_state(PlayerState.DEAD)
+	Events.game_over.emit(false)
 
 
 func collect(item):
-	inv.insert(item)
+	INV.insert(item)
 
 
 func heal(amount: int) -> void:
@@ -80,3 +85,17 @@ func heal(amount: int) -> void:
 	health_component.health = health
 	Events.player_health_changed.emit(health)
 	print([amount, health])
+
+
+func respawn() -> void:
+	INV.clear()
+	ARTIFACT_INV.clear()
+	WEAPON_INV.clear()
+	
+	hurtbox_component.set_deferred("monitorable", true)
+	health_component.max_health = GameManager.MAX_PLAYER_HEALTH
+	health_component.revive()
+	
+	state_machine._transition_to_next_state(PlayerState.IDLE)
+	set_physics_process(true)
+	shadow.show()

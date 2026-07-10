@@ -63,3 +63,18 @@ func _apply_invincibility(duration: float, should_flash: bool = true) -> void:
 		tween.tween_interval(duration)
 	
 	tween.finished.connect(func(): can_take_damage = true)
+
+
+func revive() -> void:
+	dead = false
+	can_take_damage = true
+	is_blocking = false
+	
+	health = max_health
+	
+	sprite_2d.modulate = Color.WHITE
+	sprite_2d.scale = Vector2.ONE
+	
+	get_owner().set_physics_process(true)
+	
+	health_changed.emit(health, null)
