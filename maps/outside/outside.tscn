@@ -536,7 +536,7 @@ position = Vector2(429, 258)
 [node name="HouseEntranceSpawn" type="Marker2D" parent="Spawns" unique_id=1355594249]
 position = Vector2(458, 270)
 
-[node name="Default" type="Marker2D" parent="Spawns" unique_id=998647916]
+[node name="Default" type="Marker2D" parent="Spawns" unique_id=70055637]
 position = Vector2(213, 374)
 
 [node name="BossSpawn" type="Marker2D" parent="Spawns" unique_id=1646863804]

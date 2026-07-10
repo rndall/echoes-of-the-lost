@@ -1866,9 +1866,8 @@ metadata/_custom_type_script = "uid://o12jg021ygoa"
 script = ExtResource("13_aqrcq")
 metadata/_custom_type_script = "uid://o12jg021ygoa"
 
-[node name="Dead" type="Node" parent="StateMachine" unique_id=1258362766 node_paths=PackedStringArray("hurtbox_component")]
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1258362766]
 script = ExtResource("13_8l73k")
-hurtbox_component = NodePath("../../HurtboxComponent")
 metadata/_custom_type_script = "uid://o12jg021ygoa"
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="." unique_id=1794402395]

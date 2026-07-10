@@ -4,6 +4,7 @@ const TARGET_SCENE: Dictionary[Events.Map, String] = {
 	Events.Map.HOUSE: "uid://3s5rfvjydnns", 
 	Events.Map.OUTSIDE: "uid://c5g3ll83gblw0", 
 }
+const GAME_OVER = preload("uid://bfd2ikvbrexa8")
 
 var next_spawn: String = "Default"
 
@@ -16,6 +17,7 @@ var next_spawn: String = "Default"
 var pending_load_position: Vector2 = Vector2.INF
 
 @onready var player: Player = $Player
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var day_night_cycle_ui: Control = $CanvasLayer/DayNightCycleUI
 @onready var day_night_cycle: CanvasModulate = $DayNightCycle
 @onready var world_container = $WorldContainer
@@ -40,6 +42,8 @@ func _ready() -> void:
 	get_tree().paused = false
 	
 	Events.scene_load_finished.connect(_on_scene_load_finished)
+	Events.replay.connect(_on_replay)
+	Events.game_over.connect(_on_game_over)
 
 
 ## Normal in-game map transition (day/night change, going indoors/outdoors,
@@ -114,6 +118,29 @@ func _on_scene_load_finished(loaded_map: PackedScene) -> void:
 	# settled, whether we got here from a normal map transition or a save
 	# load, so it's the natural point to persist "where the player is."
 	SaveManager.autosave()
+
+
+func _on_replay() -> void:
+	pending_load_position = Vector2.INF
+	next_spawn = "Default"
+	
+	GameManager.reset()
+	day_night_cycle.reset()
+	
+	switch_map(Events.Map.OUTSIDE)
+	
+	await Events.scene_load_finished
+	hud.show()
+	menu_ui.set_process(true)
+	player.respawn()
+
+
+func _on_game_over(win: bool) -> void:
+	var game_over_scene = GAME_OVER.instantiate()
+	print(win)
+	canvas_layer.add_child(game_over_scene)
+	menu_ui.set_process(false)
+	hud.hide()
 
 
 func _enter_gameplay() -> void:
