@@ -5,6 +5,8 @@ const INV: Inventory = preload("uid://bn2stjinnsiyq")
 const ARTIFACT_INV: Inventory = preload("uid://douhrv0500seb")
 const WEAPON_INV: Inventory = preload("uid://4c04xqhej0fr")
 
+const PLAYER_INV_DEFAULT = preload("uid://ck24isuiv3du3")
+
 @export var speed: float = 100.0
 
 var walk_distance_accum: float = 0.0
@@ -88,10 +90,6 @@ func heal(amount: int) -> void:
 
 
 func respawn() -> void:
-	INV.clear()
-	ARTIFACT_INV.clear()
-	WEAPON_INV.clear()
-	
 	hurtbox_component.set_deferred("monitorable", true)
 	health_component.max_health = GameManager.MAX_PLAYER_HEALTH
 	health_component.revive()
@@ -99,3 +97,9 @@ func respawn() -> void:
 	state_machine._transition_to_next_state(PlayerState.IDLE)
 	set_physics_process(true)
 	shadow.show()
+
+
+func reset_inventory_for_new_game() -> void:
+	INV.copy_from(PLAYER_INV_DEFAULT)
+	ARTIFACT_INV.clear()
+	WEAPON_INV.clear()

@@ -105,3 +105,12 @@ func get_all_quests() -> Array[MainQuest]:
 	for quest in quests.values():
 		quest_array.append(quest)
 	return quest_array
+
+
+func reset_quests() -> void:
+	quests.clear()
+	main_quests_initialized = false
+	initialize_quests()
+	save_quests()
+
+	print("[MainQuests] Quests reset for new game")
