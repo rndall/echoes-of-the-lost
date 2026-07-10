@@ -134,6 +134,7 @@ columns = 2
 layout_mode = 2
 
 [node name="artifact_slot_ui2" parent="inventory/artifact_slots" unique_id=1943478940 instance=ExtResource("7_sys31")]
+visible = false
 layout_mode = 2
 
 [node name="quest_panel_controller_ui" parent="inventory" unique_id=69840059 instance=ExtResource("2_oogfd")]
