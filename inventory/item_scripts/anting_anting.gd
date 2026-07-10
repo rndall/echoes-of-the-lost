@@ -57,6 +57,7 @@ func _try_collect() -> void:
 	if collected:
 		GameManager.anting_anting_collected = true
 		MainQuestManager.update_quest_progress("1", 1)
+		Events.artifact_collected.emit()
 		echo.stop()
 		pickup_sound.play()
 		hide()

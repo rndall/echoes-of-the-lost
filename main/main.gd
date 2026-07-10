@@ -24,6 +24,13 @@ var pending_load_position: Vector2 = Vector2.INF
 @onready var main_menu: CanvasItem = $CanvasLayer/MainMenu
 @onready var hud: CanvasLayer = $HUD
 @onready var menu_ui: Control = $HUD/menu_ui
+@onready var hotbar_ui: Control = $HUD/hotbar_ui
+@onready var anting_anting_found: Node2D = $HUD/anting_anting_found
+@onready var anting_anting_found_icon: TextureRect = $HUD/anting_anting_found/TextureRect
+
+## How long the "artifact found" popup stays on screen before the
+## drag-ghost-into-hotbar animation begins.
+const ARTIFACT_FOUND_DISPLAY_TIME := 2.5
 
 
 func _ready() -> void:
@@ -44,6 +51,7 @@ func _ready() -> void:
 	Events.scene_load_finished.connect(_on_scene_load_finished)
 	Events.new_game_started.connect(_on_new_game_started)
 	Events.game_over.connect(_on_game_over)
+	Events.artifact_collected.connect(_on_artifact_collected)
 
 
 ## Normal in-game map transition (day/night change, going indoors/outdoors,
@@ -145,6 +153,45 @@ func _on_game_over(win: bool) -> void:
 	canvas_layer.add_child(game_over_scene)
 	menu_ui.set_process(false)
 	hud.hide()
+
+
+## Runs the full "artifact picked up" feedback sequence:
+##   1. Show the anting_anting_found popup for a few seconds.
+##   2. Hide it again.
+##   3. Spawn a drag-ghost copy of the popup's own icon — same texture, same
+##      on-screen size and position it was just displayed at — and shrink it
+##      continuously as it flies into the hotbar, disappearing on arrival.
+##      Using the popup's icon (rather than the world pickup scene's sprite,
+##      which stays hidden and is often a different placeholder image) is
+##      what sells the illusion that the item on screen is what flies into
+##      the inventory.
+func _on_artifact_collected() -> void:
+	anting_anting_found.show()
+	await get_tree().create_timer(ARTIFACT_FOUND_DISPLAY_TIME).timeout
+	anting_anting_found.hide()
+
+	if not is_instance_valid(anting_anting_found_icon):
+		push_error("main.gd: anting_anting_found_icon is null/invalid — check that $HUD/anting_anting_found/TextureRect still exists at that exact path.")
+		return
+	if not is_instance_valid(hotbar_ui):
+		push_error("main.gd: hotbar_ui is null/invalid — check that $HUD/hotbar_ui still exists at that exact path.")
+		return
+	if anting_anting_found_icon.texture == null:
+		push_error("main.gd: anting_anting_found_icon.texture is null — the TextureRect has no texture assigned.")
+		return
+
+	# Don't read .size / .global_position separately — the icon can carry its
+	# own scale (it does: 15x, pivoting from its top-left corner), which those
+	# properties ignore entirely. Transforming the local rect's corners through
+	# the full global transform (with canvas) gives the actual on-screen box,
+	# scale/pivot/canvas-transform and all.
+	var xform: Transform2D = anting_anting_found_icon.get_global_transform_with_canvas()
+	var top_left: Vector2 = xform * Vector2.ZERO
+	var bottom_right: Vector2 = xform * anting_anting_found_icon.size
+	var start_size: Vector2 = bottom_right - top_left
+	var start_center: Vector2 = (top_left + bottom_right) / 2
+	var hotbar_screen_pos: Vector2 = hotbar_ui.get_global_transform_with_canvas().origin + Vector2(200.0, 100.0)
+	DragGhost.fly_and_shrink(anting_anting_found_icon.texture, start_center, hotbar_screen_pos, start_size)
 
 
 func _enter_gameplay() -> void:

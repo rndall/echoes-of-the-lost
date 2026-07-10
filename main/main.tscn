@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cssgo4awamqw0" path="res://ui/main_menu.tscn" id="9_grrlh"]
 [ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="10_bsumw"]
 [ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="11_fwcvl"]
+[ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="12_fwcvl"]
 
 [node name="Main" type="Node2D" unique_id=1144406930]
 y_sort_enabled = true
@@ -55,3 +56,28 @@ hotbar_ui = NodePath("../hotbar_ui")
 main_menu = NodePath("../../CanvasLayer/MainMenu")
 
 [node name="hotbar_ui" parent="HUD" unique_id=385176462 instance=ExtResource("11_fwcvl")]
+
+[node name="anting_anting_found" type="Node2D" parent="HUD" unique_id=794313499]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="HUD/anting_anting_found" unique_id=877839867]
+modulate = Color(0, 0, 0, 0.46400002)
+z_index = -1
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="Label" type="Label" parent="HUD/anting_anting_found" unique_id=224956376]
+offset_left = 313.0
+offset_top = 428.0
+offset_right = 853.0
+offset_bottom = 492.0
+theme_override_font_sizes/font_size = 64
+text = "Artifact Found!"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/anting_anting_found" unique_id=989016783]
+offset_left = 323.0
+offset_top = -32.0
+offset_right = 363.0
+offset_bottom = 8.0
+scale = Vector2(15, 15)
+texture = ExtResource("12_fwcvl")

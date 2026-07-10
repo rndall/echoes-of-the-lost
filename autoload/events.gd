@@ -17,6 +17,12 @@ signal artifact_buffs_changed(health_buff: float, attack_buff: float)
 signal new_game_started
 signal game_over(win: bool)
 
+## Emitted when a world artifact (e.g. anting-anting) is picked up. No
+## payload needed: main.gd owns the HUD's "found" popup and its icon directly,
+## so it sources the texture/size to fly into the hotbar from there rather
+## than from the (hidden, often-different) sprite on the world pickup scene.
+signal artifact_collected
+
 enum Map {HOUSE, OUTSIDE}
 
 ## Cached clock, kept in sync with whatever the day/night cycle emits via

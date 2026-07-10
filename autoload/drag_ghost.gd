@@ -51,6 +51,40 @@ func fly_to(texture: Texture2D, from_pos: Vector2, to_pos: Vector2, duration: fl
 	tween.chain().tween_callback(flying_ghost.queue_free)
 
 
+# Used for artifact-pickup feedback (e.g. the anting-anting "found" popup):
+# spawns a copy of the artifact's sprite at `from_pos`, sized to match the
+# artifact's actual on-screen size, then continuously shrinks it while it
+# travels to `to_pos` (the hotbar), disappearing the instant it arrives.
+#
+# Unlike fly_to(), which stays full-size and only fades at the end, this
+# tweens "scale" alongside "position" for the whole trip so the shrink is
+# continuous and finishes exactly as the ghost reaches the hotbar.
+func fly_and_shrink(texture: Texture2D, from_pos: Vector2, to_pos: Vector2, start_size: Vector2, duration: float = 1.5) -> void:
+	if texture == null:
+		push_error("DragGhost.fly_and_shrink: texture is null, nothing to show.")
+		return
+	if not is_instance_valid(canvas):
+		push_error("DragGhost.fly_and_shrink: canvas is null/invalid — DragGhost autoload may not have run _ready() yet.")
+		return
+
+	var shrinking_ghost := TextureRect.new()
+	shrinking_ghost.texture = texture
+	shrinking_ghost.size = start_size
+	shrinking_ghost.pivot_offset = start_size / 2
+	shrinking_ghost.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	canvas.add_child(shrinking_ghost)
+	shrinking_ghost.position = from_pos - shrinking_ghost.pivot_offset
+	print("DragGhost.fly_and_shrink: ghost spawned at ", shrinking_ghost.position, " size ", start_size, " -> ", to_pos)
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(shrinking_ghost, "position", to_pos - shrinking_ghost.pivot_offset, duration)
+	tween.tween_property(shrinking_ghost, "scale", Vector2.ZERO, duration)
+	tween.chain().tween_callback(shrinking_ghost.queue_free)
+
+
 func _process(_delta: float) -> void:
 	if ghost:
 		ghost.global_position = ghost.get_global_mouse_position() - ghost.pivot_offset
