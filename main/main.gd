@@ -140,6 +140,7 @@ func _on_game_over(win: bool) -> void:
 	var real_settigs_ui = menu_ui.settings_ui.get_node("settings_ui")
 	real_settigs_ui.refresh_all_slots()
 	var game_over_scene = GAME_OVER.instantiate()
+	game_over_scene.win = win
 	print(win)
 	canvas_layer.add_child(game_over_scene)
 	menu_ui.set_process(false)
