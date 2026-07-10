@@ -16,7 +16,12 @@ var current_day: int = 0
 func _exit_tree() -> void:
 	var save_data = GameManager.get_data_entry(get_path())
 	save_data["hp"] = health_component.health
-	save_data["pos"] = global_position
+	# GameManager.data goes straight into JSON via SaveManager, which can't
+	# represent a raw Vector2 — it silently gets str()'d into something like
+	# "(12, 34)" and then blows up on load when assigned back to
+	# global_position. Store it as a plain [x, y] array instead, same as
+	# GameManager.anting_anting_saved_pos already does correctly.
+	save_data["pos"] = [global_position.x, global_position.y]
 	save_data["frame"] = sprite_2d.frame
 
 	if has_died:
@@ -39,7 +44,8 @@ func _ready() -> void:
 		return
 	
 	health_component.health = value["hp"]
-	global_position = value["pos"]
+	var pos_arr: Array = value["pos"]
+	global_position = Vector2(pos_arr[0], pos_arr[1])
 	sprite_2d.frame = value["frame"]
 	
 	if value.has("dead") and value["dead"]:
@@ -82,7 +88,7 @@ func _on_died() -> void:
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 
 		var log_position = global_position + offset
-		var log_drop := {"id": "log_%d" % spawned_drops.size(), "item": "log", "pos": log_position}
+		var log_drop := {"id": "log_%d" % spawned_drops.size(), "item": "log", "pos": [log_position.x, log_position.y]}
 		spawned_drops.append(log_drop)
 		_spawn_drop(log_scene, log_drop)
 		
@@ -92,7 +98,7 @@ func _on_died() -> void:
 		var offset = Vector2(cos(angle), sin(angle)) * distance
 
 		var apple_position = global_position + offset
-		var apple_drop := {"id": "apple_%d" % spawned_drops.size(), "item": "apple", "pos": apple_position}
+		var apple_drop := {"id": "apple_%d" % spawned_drops.size(), "item": "apple", "pos": [apple_position.x, apple_position.y]}
 		spawned_drops.append(apple_drop)
 		_spawn_drop(apple_scene, apple_drop)
 
@@ -151,7 +157,8 @@ func _spawn_drops(drops: Array) -> void:
 
 func _spawn_drop(item_scene: PackedScene, drop: Dictionary) -> void:
 	var drop_instance = item_scene.instantiate()
-	drop_instance.global_position = drop["pos"]
+	var pos_arr: Array = drop["pos"]
+	drop_instance.global_position = Vector2(pos_arr[0], pos_arr[1])
 	drop_instance.set_meta("tree_save_path", get_path())
 	drop_instance.set_meta("drop_id", drop["id"])
 	get_parent().call_deferred("add_child", drop_instance)
