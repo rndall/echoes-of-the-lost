@@ -14,6 +14,12 @@ var player_health: float = 10
 var anting_anting_saved_pos: Vector2
 var anting_anting_collected: bool = false
 
+## Seed for the procedural grass patch layout on the Outside map (see
+## grass_spawner.gd). 0 means "not generated yet" — the spawner rolls a
+## fresh nonzero seed on first entry and stores it here so the exact same
+## layout is restored after a save/load instead of re-rolling every time.
+var grass_patch_seed: int = 0
+
 ## Totals derived from every ArtifactItem currently owned. Recomputed by
 ## whoever owns the artifact inventory (see Player._on_artifact_inv_updated)
 ## and applied here so the buff persists across scenes.
@@ -131,6 +137,9 @@ func reset() -> void:
 	# Collectibles
 	anting_anting_saved_pos = Vector2.ZERO
 	anting_anting_collected = false
+	
+	# World layout
+	grass_patch_seed = 0
 	
 	# World state
 	phase = PHASE.DAY

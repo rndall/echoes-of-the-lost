@@ -248,6 +248,7 @@ func _serialize_game_manager() -> Dictionary:
 			GameManager.anting_anting_saved_pos.y,
 		],
 		"anting_anting_collected": GameManager.anting_anting_collected,
+		"grass_patch_seed": GameManager.grass_patch_seed,
 		# The generic per-node data dict. Only JSON-safe values (bool, int,
 		# float, String, Array, Dictionary) are safe in here — if any node
 		# is storing a Vector2/Resource/etc. via store_data_value, convert
@@ -288,6 +289,8 @@ func _deserialize_game_manager(d: Dictionary) -> void:
 	var pos_arr: Array = d.get("anting_anting_saved_pos", [0.0, 0.0])
 	GameManager.anting_anting_saved_pos = Vector2(pos_arr[0], pos_arr[1])
 	GameManager.anting_anting_collected = d.get("anting_anting_collected", false)
+
+	GameManager.grass_patch_seed = d.get("grass_patch_seed", 0)
 
 	GameManager.data = d.get("data", {})
 
