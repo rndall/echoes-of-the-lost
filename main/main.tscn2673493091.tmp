@@ -29,12 +29,12 @@ y_sort_enabled = true
 color = Color(0.13333334, 0.14901961, 0.25882354, 1)
 script = ExtResource("2_pjrb6")
 gradient = ExtResource("3_xwkvk")
+initial_hour = 20
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=313321479]
 
 [node name="DayNightCycleUI" parent="CanvasLayer" unique_id=1929152440 instance=ExtResource("4_c651c")]
 mouse_filter = 2
-use_24_hour_time = false
 
 [node name="MainMenu" parent="CanvasLayer" unique_id=1721133168 node_paths=PackedStringArray("hud") instance=ExtResource("9_grrlh")]
 hud = NodePath("../../HUD")
