@@ -215,7 +215,8 @@ func _enter_gameplay() -> void:
 func quit_to_main_menu() -> void:
 	for child in world_container.get_children():
 		child.queue_free()
-
+	
+	GameManager.reset()
 	player.hide()
 	player.set_physics_process(false)
 
