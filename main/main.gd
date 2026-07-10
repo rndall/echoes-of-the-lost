@@ -42,7 +42,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	
 	Events.scene_load_finished.connect(_on_scene_load_finished)
-	Events.replay.connect(_on_replay)
+	Events.new_game_started.connect(_on_new_game_started)
 	Events.game_over.connect(_on_game_over)
 
 
@@ -120,7 +120,7 @@ func _on_scene_load_finished(loaded_map: PackedScene) -> void:
 	SaveManager.autosave()
 
 
-func _on_replay() -> void:
+func _on_new_game_started() -> void:
 	pending_load_position = Vector2.INF
 	next_spawn = "Default"
 	

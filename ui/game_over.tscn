@@ -42,11 +42,11 @@ layout_mode = 2
 theme_override_constants/separation = 48
 alignment = 1
 
-[node name="ReplayButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1363783299]
-custom_minimum_size = Vector2(200, 50)
+[node name="StartNewGameButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1363783299]
+custom_minimum_size = Vector2(275, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Replay"
+text = "Start New Game"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1469513113]
 custom_minimum_size = Vector2(200, 50)
@@ -54,5 +54,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartNewGameButton" to="." method="_on_start_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -13,8 +13,8 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_replay_button_pressed() -> void:
-	Events.replay.emit()
+func _on_start_new_game_button_pressed() -> void:
+	Events.new_game_started.emit()
 	await Events.scene_load_finished
 	queue_free()
 
