@@ -134,3 +134,17 @@ func get_all_tasks() -> Array[Task]:
 	for task in tasks.values():
 		task_array.append(task)
 	return task_array
+
+
+func reset_daily_tasks_for_new_game() -> void:
+	tasks.clear()
+	current_day = 0
+	daily_tasks_initialized = false
+
+	initialize_tasks()
+
+	# Save clean daily task state
+	save_tasks()
+
+	tasks_reset.emit()
+	print("[DailyTasks] Daily tasks reset for new game")

@@ -220,3 +220,14 @@ func clear() -> void:
 		slot.clear()
 
 	update.emit()
+
+
+func copy_from(other: Inventory) -> void:
+	for i in range(slots.size()):
+		if i < other.slots.size():
+			slots[i].item = other.slots[i].item
+			slots[i].amount = other.slots[i].amount
+		else:
+			slots[i].clear()
+
+	update.emit()

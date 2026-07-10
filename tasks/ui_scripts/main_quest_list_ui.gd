@@ -35,7 +35,7 @@ func _ready() -> void:
 	# Connect to quest manager signals
 	MainQuestManager.quest_updated.connect(_on_quest_updated)
 	MainQuestManager.quest_completed.connect(_on_quest_completed)
-
+	
 	# Populate UI with quests
 	_setup_quest_uis()
 

@@ -133,6 +133,8 @@ func _on_new_game_started() -> void:
 	next_spawn = "Default"
 	
 	GameManager.reset()
+	MainQuestManager.reset_quests()
+	DailyTaskManager.reset_daily_tasks_for_new_game()
 	day_night_cycle.reset()
 	
 	switch_map(Events.Map.OUTSIDE)
@@ -140,6 +142,7 @@ func _on_new_game_started() -> void:
 	await Events.scene_load_finished
 	hud.show()
 	menu_ui.set_process(true)
+	player.reset_inventory_for_new_game()
 	player.respawn()
 
 
