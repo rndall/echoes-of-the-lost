@@ -16,7 +16,6 @@ var past_minute: float = -1.0
 
 
 func _ready() -> void:
-	Events.map_changed.connect(_on_map_changed)
 	time = INGAME_TO_REAL_MINUTE_DURATION * initial_hour * MINUTES_PER_HOUR
 
 
@@ -56,10 +55,6 @@ func _update_game_phase(hour: int) -> void:
 	if GameManager.phase != current_phase:
 		GameManager.phase = current_phase
 		print("Phase changed to: ", "DAY" if current_phase == GameManager.PHASE.DAY else "NIGHT")
-
-
-func _on_map_changed(map: Events.Map) -> void:
-	visible = map == Events.Map.OUTSIDE
 
 
 func reset() -> void:
