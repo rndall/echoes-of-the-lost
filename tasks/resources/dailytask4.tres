@@ -11,5 +11,5 @@ description = "Walk 500 units"
 task_type = 3
 target_amount = 500
 reward_item = ExtResource("1_beint")
-reward_item_amount = 3
+reward_item_amount = 1
 metadata/_custom_type_script = "uid://b6dk4cvvnwlv7"

@@ -8,13 +8,13 @@
 [sub_resource type="Resource" id="Resource_de57d"]
 script = ExtResource("2_m4j26")
 item = ExtResource("3_m4j26")
-amount = 60
+amount = 2
 metadata/_custom_type_script = "uid://dld72vt2wtgge"
 
 [sub_resource type="Resource" id="Resource_loe11"]
 script = ExtResource("2_m4j26")
 item = ExtResource("4_pjc36")
-amount = 5
+amount = 2
 metadata/_custom_type_script = "uid://dld72vt2wtgge"
 
 [sub_resource type="Resource" id="Resource_lxows"]
