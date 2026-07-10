@@ -16,6 +16,16 @@ const HOVER_DURATION: float = 1.0  # Display tooltip after 1 second of hovering
 var is_hovering: bool = false
 
 func _ready() -> void:
+	# Draw the tooltip in global/viewport space so it renders above every
+	# sibling row and header, and is never clipped by this row's ancestors
+	# (e.g. the list's BodyClip). We restore its visual position manually
+	# below since top_level changes what "position" means.
+	var local_offset: Vector2 = desc_panel.position
+	desc_panel.top_level = true
+	desc_panel.z_as_relative = false
+	desc_panel.z_index = 100
+	desc_panel.set_meta("local_offset", local_offset)
+
 	if quest:
 		update_display()
 
@@ -46,6 +56,7 @@ func _on_mouse_exited() -> void:
 		desc_panel.visible = false
 
 func _show_quest_description():
+	desc_panel.global_position = global_position + desc_panel.get_meta("local_offset")
 	description.visible = true
 	desc_panel.visible = true
 
