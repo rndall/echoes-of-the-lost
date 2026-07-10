@@ -5,6 +5,7 @@ const TARGET_SCENE: Dictionary[Events.Map, String] = {
 	Events.Map.OUTSIDE: "uid://c5g3ll83gblw0", 
 }
 const GAME_OVER = preload("uid://bfd2ikvbrexa8")
+const LOADING_SCREEN: PackedScene = preload("uid://da3fy45kwnqqm")
 
 var next_spawn: String = "Default"
 
@@ -52,6 +53,8 @@ func _ready() -> void:
 	Events.new_game_started.connect(_on_new_game_started)
 	Events.game_over.connect(_on_game_over)
 	Events.artifact_collected.connect(_on_artifact_collected)
+	
+	Events.sleep_sequence_started.connect(_on_sleep_sequence_started)
 
 
 ## Normal in-game map transition (day/night change, going indoors/outdoors,
@@ -230,4 +233,21 @@ func quit_to_main_menu() -> void:
 			main_menu.close_load_panel()
 
 	pending_load_position = Vector2.INF
+	get_tree().paused = false
+
+
+func _on_sleep_sequence_started(wake_hour: int) -> void:
+	get_tree().paused = true 
+
+	var transition = LOADING_SCREEN.instantiate()
+	canvas_layer.add_child(transition)
+
+	await transition.loading_screen_ready
+
+	Events.sleep_requested.emit(wake_hour)
+
+	await get_tree().create_timer(1.0).timeout
+
+	transition.fade_out()
+
 	get_tree().paused = false
