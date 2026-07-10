@@ -31,7 +31,7 @@ func _ready() -> void:
 
 	quit_button.pressed.connect(_on_quit_pressed)
 
-	_refresh_all_slots()
+	refresh_all_slots()
 
 
 func _collect_slot_nodes(panel_path: String) -> Dictionary:
@@ -48,7 +48,7 @@ func _collect_slot_nodes(panel_path: String) -> Dictionary:
 	}
 
 
-func _refresh_all_slots() -> void:
+func refresh_all_slots() -> void:
 	for slot_index in _slot_nodes.size():
 		_refresh_slot(slot_index)
 

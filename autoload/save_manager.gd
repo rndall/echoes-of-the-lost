@@ -260,3 +260,13 @@ func _deserialize_game_manager(d: Dictionary) -> void:
 	GameManager.anting_anting_collected = d.get("anting_anting_collected", false)
 
 	GameManager.data = d.get("data", {})
+
+
+func clear_all_saves() -> void:
+	for slot in range(SAVE_SLOTS):
+		delete_save(slot)
+	
+	delete_save(AUTOSAVE_SLOT)
+	
+	DirAccess.remove_absolute(SAVE_DIR)
+	DirAccess.make_dir_recursive_absolute(SAVE_DIR)

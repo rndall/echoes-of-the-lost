@@ -136,6 +136,9 @@ func _on_replay() -> void:
 
 
 func _on_game_over(win: bool) -> void:
+	SaveManager.clear_all_saves()
+	var real_settigs_ui = menu_ui.settings_ui.get_node("settings_ui")
+	real_settigs_ui.refresh_all_slots()
 	var game_over_scene = GAME_OVER.instantiate()
 	print(win)
 	canvas_layer.add_child(game_over_scene)
