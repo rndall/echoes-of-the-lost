@@ -7,7 +7,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
-		_connect_inventory_signals(player.inv)
+		_connect_inventory_signals(player.INV)
 	else:
 		push_error("[Outside] Player not found — inventory drop signal not connected")
 

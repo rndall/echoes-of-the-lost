@@ -112,3 +112,31 @@ func apply_artifact_buffs(new_health_buff: float, new_attack_buff: float) -> voi
 		player_health = min(player_health + health_delta, MAX_PLAYER_HEALTH)
 
 	Events.artifact_buffs_changed.emit(artifact_health_buff, artifact_attack_buff)
+
+
+func reset() -> void:
+	clear_all_data()
+
+	MAX_PLAYER_HEALTH = BASE_MAX_PLAYER_HEALTH
+	player_health = BASE_MAX_PLAYER_HEALTH
+	Events.player_health_changed.emit(BASE_MAX_PLAYER_HEALTH)
+	
+	# Artifacts
+	artifact_health_buff = 0.0
+	artifact_attack_buff = 0.0
+	
+	# Equipment
+	player_weapon = null
+	
+	# Collectibles
+	anting_anting_saved_pos = Vector2.ZERO
+	anting_anting_collected = false
+	
+	# World state
+	phase = PHASE.DAY
+	day = 1
+	
+	Events.artifact_buffs_changed.emit(
+		artifact_health_buff,
+		artifact_attack_buff
+	)

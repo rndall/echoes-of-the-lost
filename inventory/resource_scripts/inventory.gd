@@ -213,3 +213,10 @@ func use_item(slot_index: int, player: Node) -> bool:
 		update.emit()
 
 	return consumed
+
+
+func clear() -> void:
+	for slot in slots:
+		slot.clear()
+
+	update.emit()
