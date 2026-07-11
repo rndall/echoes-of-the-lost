@@ -25,7 +25,8 @@ func _ready() -> void:
 func _on_play_button_pressed() -> void:
 	# Get map from save if implemented
 	var map = Events.Map.OUTSIDE
-	get_tree().current_scene.switch_map(map)
+	Events.new_game_started.emit()
+	#get_tree().current_scene.switch_map(map)
 	await Events.scene_load_finished
 	hud.show()
 	# Hide rather than queue_free(): Main.quit_to_main_menu() re-shows this
