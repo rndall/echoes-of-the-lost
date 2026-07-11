@@ -13,6 +13,18 @@
 [ext_resource type="PackedScene" uid="uid://btipt2uux5qw1" path="res://menu/menu_ui.tscn" id="10_bsumw"]
 [ext_resource type="PackedScene" uid="uid://b1w3xirxma8nw" path="res://inventory/scenes/hotbar_ui.tscn" id="11_fwcvl"]
 [ext_resource type="Texture2D" uid="uid://gjv6832hvevp" path="res://inventory/assets/items/anting-anting.png" id="12_fwcvl"]
+[ext_resource type="Shader" uid="uid://b124s7dln7xrl" path="res://main/main.gdshader" id="14_73k8k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3onaq"]
+shader = ExtResource("14_73k8k")
+shader_parameter/scanline_color = Color(0, 0, 0, 1)
+shader_parameter/flicker_color = Color(0, 0, 0, 1)
+shader_parameter/scanlines_count = 10.0
+shader_parameter/scanlines_intensity = 0.05
+shader_parameter/flicker_speed = 30.0
+shader_parameter/flicker_intensity = 0.025
+shader_parameter/color_offset = 1.5
+shader_parameter/blur = 0.15
 
 [node name="Main" type="Node2D" unique_id=1144406930]
 y_sort_enabled = true
@@ -443,3 +455,14 @@ offset_right = 363.0
 offset_bottom = 8.0
 scale = Vector2(15, 15)
 texture = ExtResource("12_fwcvl")
+
+[node name="CRT" type="CanvasLayer" parent="." unique_id=1884377545]
+
+[node name="ColorRect" type="ColorRect" parent="CRT" unique_id=1589077502]
+material = SubResource("ShaderMaterial_3onaq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
