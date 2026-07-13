@@ -17,12 +17,22 @@ func _ready() -> void:
 		queue_free()
 		return
 
-	_randomize_scale()
+	_resolve_scale()
 	health_component.died.connect(_on_death)
 
 
-func _randomize_scale() -> void:
-	scale_factor = randi_range(MIN_SCALE, MAX_SCALE)
+## Reuses the scale already stored on GameManager (e.g. restored from a save)
+## so obstacle footprints stay identical across saves/loads — GrassSpawner
+## measures each stone's collider to decide where grass can spawn, so a
+## stone that re-rolls its scale on every load silently changes the valid
+## grass area even when grass_patch_seed itself hasn't changed.
+func _resolve_scale() -> void:
+	if GameManager.has_data_value(name, "scale_factor"):
+		scale_factor = GameManager.get_data_value(name, "scale_factor")
+	else:
+		scale_factor = randi_range(MIN_SCALE, MAX_SCALE)
+		GameManager.store_data_value(name, "scale_factor", scale_factor)
+
 	scale = Vector2.ONE * scale_factor
 
 	# HealthComponent's _ready() already ran (children ready before parents),

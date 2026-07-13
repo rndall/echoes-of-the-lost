@@ -82,6 +82,7 @@ func _resolve_seed() -> void:
 		GameManager.grass_patch_seed = new_seed
 
 	seed(GameManager.grass_patch_seed)
+	print("[GrassSpawner] seed = ", GameManager.grass_patch_seed)
 
 
 func _spawn_grass_patches() -> void:
